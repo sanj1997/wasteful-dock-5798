@@ -39,7 +39,7 @@ const CartModal = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <Flex borderBottom="1px solid #D3D3D3" p={5} justify="space-between" align={"center"}>
-                        <Flex align="center" gap={2} >
+                        <Flex align="center" gap={2} onClick={onClose}>
                             <ArrowBackIcon w={6} h={6} />
                             <Text fontSize="25px" fontWeight="600" size="lg">Bag</Text>
                             <Text mt={2}>(total)</Text>
