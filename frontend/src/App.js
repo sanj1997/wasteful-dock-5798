@@ -1,6 +1,10 @@
+import AdminDashboard from "./pages/AdminDashboard";
+
 function App() {
   return (
-    <div></div>
+    <div>
+      <AdminDashboard/>
+    </div>
   );
 }
 
