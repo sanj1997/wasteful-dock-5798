@@ -1,6 +1,10 @@
+import CartModal from "./components/CartModal";
+
 function App() {
   return (
-    <div></div>
+    <div>
+      <CartModal />
+    </div>
   );
 }
 
