@@ -16,6 +16,7 @@ import {
     Text,
 } from '@chakra-ui/react'
 import React from 'react'
+import AddressForm from './AddressForm'
 
 const AddressModal = () => {
 
@@ -43,10 +44,14 @@ const AddressModal = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Create your account</DrawerHeader>
+                    <DrawerHeader fontSize={"30px"}>New Address</DrawerHeader>
 
                     <DrawerBody>
-                        <Input placeholder='Type here...' />
+                     <Box>
+                    
+                     <AddressForm />
+                     </Box>
+                        
                     </DrawerBody>
 
                     <DrawerFooter>
