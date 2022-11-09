@@ -1,13 +1,20 @@
 
+
+import AllRoutes from "./routes/AllRoutes";
+import Navbar from "./components/Navbar";
+import AdminDashboard from "./pages/AdminDashboard";
 import CartModal from "./components/CartModal";
 import Address from "./pages/Address";
 
 function App() {
   return (
-    <div>
-      <CartModal />
-     {/* <Address/> */}
-    </div>
+    <>
+    <Navbar />
+    <AllRoutes />
+    <AdminDashboard/>
+     <CartModal />
+     <Address/>
+    </>
   );
 }
 
