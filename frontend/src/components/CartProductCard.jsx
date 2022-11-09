@@ -28,12 +28,12 @@ const CartProductCard = () => {
             </Flex>
             <Flex borderTop="1px solid #D3D3D3" justify={"space-between"} px={3} align="center">
                 <Box>
-                    <Select placeholder='Quantity : 1' >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <Select placeholder='Quantity : 1' border="none">
+                        <option value="1">Quantity : 1</option>
+                        <option value="2">Quantity : 2</option>
+                        <option value="3">Quantity : 3</option>
+                        <option value="4">Quantity : 4</option>
+                        <option value="5">Quantity : 5</option>
                     </Select>
 
                 </Box>
