@@ -1,6 +1,7 @@
 
 import CartModal from "./components/CartModal";
 import Address from "./pages/Address";
+import OrderConfirm from "./pages/OrderConfirm";
 import Payment from "./pages/Payment";
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <div>
       {/* <CartModal /> */}
       {/* <Address/> */}
-      <Payment />
+      {/* <Payment /> */}
+      <OrderConfirm />
     </div>
   );
 }
