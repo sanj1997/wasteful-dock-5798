@@ -13,22 +13,26 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 
-const AddressForm = () => {
+const AddressForm = ({ onClose }) => {
 
 
 
     return (
-        <Flex align="center" justify="center" mb={5}>    
+        <Flex align="center" justify="center" mb={5}>
             <Box rounded="md" w="90%" pb={5}>
-            <Text mb={3} fontSize={"20px"} fontWeight={"bold"}>Address</Text>
+                <Text mb={3} fontSize={"20px"} fontWeight={"bold"}>Address</Text>
                 <Formik
                     initialValues={{
                         pin: "",
                         house: "",
-                        road: ""
+                        road: "",
+                        name: "",
+                        phone: "",
+                        email: ""
                     }}
                     onSubmit={(values) => {
                         //    ############## form submit logic here ########## 
+                        console.log(values)
                     }}
                 >
                     {({ handleSubmit, errors, touched }) => (
@@ -48,11 +52,11 @@ const AddressForm = () => {
                                         validate={(value) => {
                                             let error;
                                             if (!value) {
-                                                error = 'This filed is required';
+                                                error = 'This field is required';
                                             } else if (value.length < 6) {
-                                                error = 'Pin code is too short it must contain 6 letters.';
+                                                error = 'Pin code is too short it must contain 6 numbers.';
                                             } else if (value.length > 6) {
-                                                error = 'Pin code length is too long it must contain 6 letters only.'
+                                                error = 'Pin code length is too long it must contain 6 numbers only.'
                                             }
                                             return error;
                                         }}
@@ -74,7 +78,7 @@ const AddressForm = () => {
                                         validate={(value) => {
                                             let error;
                                             if (!value) {
-                                                error = 'This filed is required';
+                                                error = 'This field is required';
                                             }
                                             return error;
                                         }}
@@ -90,14 +94,14 @@ const AddressForm = () => {
                                         name="road"
                                         placeholder="Road Name/ Area /Colony."
                                         variant='outline'
-                                        minH="200px"
+                                        minH="150px"
                                         size='lg'
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
                                             let error;
                                             if (!value) {
-                                                error = 'This filed is required';
+                                                error = 'This field is required';
                                             }
                                             return error;
                                         }}
@@ -105,8 +109,82 @@ const AddressForm = () => {
 
                                     <FormErrorMessage>{errors.pin}</FormErrorMessage>
                                 </FormControl>
+                                <Box>
+                                    <Text fontSize={"20px"} fontWeight={"bold"}>Contact</Text>
+                                    <Text fontSize={"12px"}>Information provided here will be used to contact you for delivery updates.</Text>
+                                </Box>
 
-                                <Button h="48px" _hover={{ bg: "#E80071" }} type="submit" bg="#E80071" color={"white"} width="full">
+                                <FormControl isInvalid={!!errors.name && touched.name}>
+                                    <Field
+                                        as={Input}
+                                        id="name"
+                                        name="name"
+                                        placeholder="Name"
+                                        type="tel"
+                                        variant='outline'
+                                        size='lg'
+                                        bg="gray.100"
+                                        border="1px solid black"
+                                        validate={(value) => {
+                                            let error;
+                                            if (!value) {
+                                                error = 'This field is required';
+                                            }
+                                            return error;
+                                        }}
+                                    />
+
+                                    <FormErrorMessage>{errors.name}</FormErrorMessage>
+                                </FormControl>
+                                <FormControl isInvalid={!!errors.phone && touched.phone}>
+                                    <Field
+                                        as={Input}
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="Phone"
+                                        variant='outline'
+                                        size='lg'
+                                        bg="gray.100"
+                                        color="black"
+                                        border="1px solid black"
+                                        validate={(value) => {
+                                            let error;
+                                            if (!value) {
+                                                error = 'This field is required';
+                                            } else if (value.length < 10) {
+                                                error = 'Phone number is too short it must contain 10 letters.';
+                                            } else if (value.length > 10) {
+                                                error = 'Phone number length is too long it must contain 10 letters only.'
+                                            }
+                                            return error;
+                                        }}
+                                    />
+
+                                    <FormErrorMessage>{errors.phone}</FormErrorMessage>
+                                </FormControl>
+                                <FormControl isInvalid={!!errors.email && touched.email}>
+
+                                    <Field
+                                        as={Input}
+                                        id="email"
+                                        name="email"
+                                        placeholder="Email ID"
+                                        variant='outline'
+                                        size='lg'
+                                        bg="gray.100"
+                                        border="1px solid black"
+                                        validate={(value) => {
+                                            let error;
+                                            if (!value) {
+                                                error = 'This field is required';
+                                            }
+                                            return error;
+                                        }}
+                                    />
+
+                                    <FormErrorMessage>{errors.name}</FormErrorMessage>
+                                </FormControl>
+                                <Button onClick={onClose} position={"fixed"} bottom="20px" h="48px" _hover={{ bg: "#E80071" }} type="submit" bg="#E80071" color={"white"} width="80%">
                                     Ship to this address
                                 </Button>
                             </VStack>
