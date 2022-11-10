@@ -5,8 +5,8 @@ import Address from "./pages/Address";
 function App() {
   return (
     <div>
-      <CartModal />
-     {/* <Address/> */}
+      {/* <CartModal /> */}
+     <Address/>
     </div>
   );
 }

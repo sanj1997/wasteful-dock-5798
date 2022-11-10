@@ -47,18 +47,15 @@ const AddressModal = () => {
                     <DrawerHeader fontSize={"30px"}>New Address</DrawerHeader>
 
                     <DrawerBody>
-                     <Box>
-                    
-                     <AddressForm />
-                     </Box>
-                        
+
+
+                        <AddressForm onClose={onClose} />
+
+
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button variant='outline' mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                        <Button colorScheme='blue'>Save</Button>
+
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
