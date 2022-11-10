@@ -26,7 +26,7 @@ const AddressModal = () => {
     return (
         <>
             <Flex align={"center"} justify="center
-            " border={"2px dotted #D3D3D3"} minH="180px" w="30%" borderRadius={"10px"} _hover={{ background: "#ffe3e8", border: "2px dotted #E80071" }} onClick={onOpen} ref={btnRef}>
+            " border={"2px dotted #D3D3D3"} h={["120px","140px","160px", "180px"]} w="30%" borderRadius={"10px"} _hover={{ background: "#ffe3e8", border: "2px dotted #E80071" }} onClick={onOpen} ref={btnRef}>
                 <Box color="#E80071">
                     <Center mb={3}>
                         <AddIcon w={6} h={6} />
@@ -47,18 +47,15 @@ const AddressModal = () => {
                     <DrawerHeader fontSize={"30px"}>New Address</DrawerHeader>
 
                     <DrawerBody>
-                     <Box>
-                    
-                     <AddressForm />
-                     </Box>
-                        
+
+
+                        <AddressForm onClose={onClose} />
+
+
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button variant='outline' mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                        <Button colorScheme='blue'>Save</Button>
+
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
