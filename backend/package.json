@@ -14,7 +14,8 @@
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "redis-cli": "^2.1.2"
   },
   "devDependencies": {},
   "scripts": {
