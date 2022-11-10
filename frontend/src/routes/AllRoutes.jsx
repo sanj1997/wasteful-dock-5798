@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Address from '../pages/Address'
@@ -14,8 +15,10 @@ const AllRoutes = () => {
       <Route path='/address' element={<Address />} />
       <Route path='/orderconfirm' element={<OrderConfirm />} />
       <Route path='/payment' element={<Payment />} />
+       <Route path='/skin' element={<Skin />}/>
     </Routes>
+
   )
 }
 
-export default AllRoutes
+export default AllRoutes;
