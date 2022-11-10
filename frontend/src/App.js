@@ -9,11 +9,11 @@ import Address from "./pages/Address";
 function App() {
   return (
     <>
-    <Navbar />
-    <AllRoutes />
+    {/* <Navbar />
+    <AllRoutes /> */}
     <AdminDashboard/>
-     <CartModal />
-     <Address/>
+     {/* <CartModal />
+     <Address/> */}
     </>
   );
 }

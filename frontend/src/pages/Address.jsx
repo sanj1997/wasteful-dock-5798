@@ -1,4 +1,4 @@
-import { AddIcon } from '@chakra-ui/icons'
+// import { AddIcon } from '@chakra-ui/icons';
 import { border, Box, Center, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import AddressModal from '../components/AddressModal'
