@@ -13,6 +13,7 @@ import {
 import React from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 import photo from "./assets/package.png";
+import { Link } from "react-router-dom";
 
 const Signin = () => {
   return (
@@ -65,7 +66,7 @@ const Signin = () => {
             color="white"
             marginBottom="16px"
           >
-            Enter Mobile Number or Email
+            <Link to="/login" >Enter Mobile Number or Email</Link>
           </Text>
           <Flex
             border="1px solid grey"
