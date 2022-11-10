@@ -3,7 +3,7 @@ const crypto=require("crypto-js")
 const jwt=require("jsonwebtoken")
 const sendEmail = require("../utils/email")
 require("dotenv").config()
-const createUser=async(firstName,lastName,userName,password,email="0000000000",phone=0000000000)=>{
+const createUser=async(firstName,lastName,userName,password,email,phone)=>{
        //user existence 
        console.log(email,phone)
        let response;
