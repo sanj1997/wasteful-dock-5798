@@ -7,7 +7,7 @@ import SlidingWindow from '../components/Skin/SlidingWindow';
 const Skin = () => {
 	return (
 		<>
-		<Box mt={10}>
+		<Box pt={10} bg={'rgb(242,243,242)'}>
 			<Heading fontSize={'24px'} textAlign='center'>Moisturizers Products Collection (4539)</Heading>
 			<SlidingWindow />
 			<Heading fontSize={'24px'} textAlign='center'>All Products</Heading>
@@ -19,7 +19,7 @@ const Skin = () => {
 					<Products />
 				</Box>
 			</Flex>
-		</Box>
+			</Box>
 		</>
 	)
 }
