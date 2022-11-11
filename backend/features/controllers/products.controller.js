@@ -33,7 +33,7 @@ const getAllProducts=async(req)=>{
     let response;
     try{
        const allProducts=await ProductModel.find().skip((page-1)*5).limit(5)
-       response={message:"Successful",data:allProducts}
+       response={message:"Successful", data:allProducts}
     }catch(e){
        response={message:e.message}
     }
@@ -42,7 +42,7 @@ const getAllProducts=async(req)=>{
 const getSingleProduct=async(id)=>{
     let response;
     try{
-        const product=await ProductModel.findById(id)
+        const product = await ProductModel.findById(id)
         response={message:"Successfull",data:product}
     }catch(e){
         response={message:e.message}

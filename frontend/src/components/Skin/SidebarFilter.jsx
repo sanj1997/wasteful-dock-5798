@@ -36,7 +36,7 @@ const price = [
 const SidebarFilter = () => {
 	return (
 		<>
-		<Flex direction={'column'} gap={5} p={5}>
+		<Flex direction={'column'} gap={5} p={8}>
 			<ListViewComponent listArr={sortByName} name='Sort By : Popularity'/>
 			<ListViewComponent listArr={category} name='Category'/>
 			<ListViewComponent listArr={Brand} name='Brand'/>

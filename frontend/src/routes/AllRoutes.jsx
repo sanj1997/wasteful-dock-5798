@@ -6,7 +6,8 @@ import Cart from '../pages/Cart'
 import Home from '../pages/Home'
 import OrderConfirm from '../pages/OrderConfirm'
 import Payment from '../pages/Payment'
-
+import SingalProduct from '../pages/SingalProduct'
+import Skin from '../pages/Skin';
 const AllRoutes = () => {
   return (
     <Routes>
@@ -16,6 +17,7 @@ const AllRoutes = () => {
       <Route path='/orderconfirm' element={<OrderConfirm />} />
       <Route path='/payment' element={<Payment />} />
        <Route path='/skin' element={<Skin />}/>
+       <Route path='/skin/:id' element={<SingalProduct />}/>
     </Routes>
 
   )
