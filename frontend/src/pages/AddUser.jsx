@@ -77,12 +77,12 @@ const AddUser = () => {
         </Link>
         <Spacer />
         <Text color="#3f414d" fontSize="14px" fontWeight="semibold">
-          ALMOST THERE!
+          Let's Know More About You!
         </Text>
         <Spacer />
       </Flex>
       <Divider />
-      <Text
+      {/* <Text
         backgroundColor="#f3f3f3"
         border="1px solid #ebebeb"
         borderRadius="2px"
@@ -94,11 +94,11 @@ const AddUser = () => {
         textAlign="center"
       >
         1234567890
-      </Text>
-      <FormControl>
+      </Text> */}
+      <FormControl mt="2rem" >
         <Input
           variant="flushed"
-          placeholder="Full Name"
+          placeholder="Enter first name"
           border-bottom="1px solid #e1e1e1"
           paddingRight="25px"
           fontSize="14px"
@@ -110,7 +110,31 @@ const AddUser = () => {
         />
         <Input
           variant="flushed"
-          placeholder="Email Address"
+          placeholder="Enter last name"
+          border-bottom="1px solid #e1e1e1"
+          paddingRight="25px"
+          fontSize="14px"
+          focusBorderColor="#fc2779"
+          mt=".2rem"
+          value={creds.name}
+          name="name"
+          onChange={handleChange}
+        />
+        <Input
+          variant="flushed"
+          placeholder="Enter Email Address"
+          border-bottom="1px solid #e1e1e1"
+          paddingRight="25px"
+          fontSize="14px"
+          focusBorderColor="#fc2779"
+          mt=".2rem"
+          value={creds.name}
+          name="name"
+          onChange={handleChange}
+        />
+        <Input
+          variant="flushed"
+          placeholder="Email Password"
           border-bottom="1px solid #e1e1e1"
           paddingRight="25px"
           fontSize="14px"
