@@ -5,13 +5,13 @@ const OrderSchema=new Schema(
         userId:{type:Schema.Types.ObjectId,ref:'user'},
         products:[
             {
-                productId:{type:Schema.Types.ObjectId,ref:'product'},
-                quantity:{type:Number,default:1}
+                product:{type:Object},
+                quantity:{type:Number,default:1},
+                date:{type:String}
             }
         ],
-        amount:{type:Number,required:true},
-        address:{type:Schema.Types.ObjectId,ref:'user'},
-        status:{type:String,enum:['Pending','Successful'],default:'Pending'}
+        // Total:{type:Number,required:true},
+        // status:{type:String,enum:['Pending','Successful'],default:'Pending'}
     },{timestamps:true}
 )
 

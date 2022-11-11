@@ -5,8 +5,8 @@ const CartSchema=new Schema(
         userId:{type:Schema.Types.ObjectId,ref:'user'},
         products:[
             {
-                productId:{type:Schema.Types.ObjectId,ref:'product'},
-                quantity:{type:Number,default:1}
+                productId:{type:Schema.Types.ObjectId,ref:'product',required:false},
+                quantity:{type:Number,default:1,required:false}
             }
         ]
     },{timestamps:true}
