@@ -12,10 +12,10 @@ const Skin = () => {
 			<SlidingWindow />
 			<Heading fontSize={'24px'} textAlign='center'>All Products</Heading>
 			<Flex>
-				<Box width={'28%'}>
+				<Box width={'25%'}>
 					<SidebarFilter />
 				</Box>
-				<Box width={'72%'}>
+				<Box width={'75%'}>
 					<Products />
 				</Box>
 			</Flex>
