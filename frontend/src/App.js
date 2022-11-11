@@ -12,11 +12,11 @@ import AllRoutes from "./routes/AllRoutes";
 function App() {
   return (
     <div>
-      {/* <AllRoutes /> */}
-      <UpperFooter />
+      <AllRoutes />
+      {/* <UpperFooter />
       <FooterList />
       <UpperLowerFooter />
-      <LowerFooter />
+      <LowerFooter /> */}
     </div>
   );
 }

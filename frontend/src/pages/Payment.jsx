@@ -1,10 +1,35 @@
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import CartDetails from '../components/CartDetails'
-
+import useRazorpay from "react-razorpay";
+import r_logo from "../assets/pngs/razorpay_logo.png"
 
 const Payment = () => {
+
+    const Razorpay = useRazorpay();
+
+    // const handlePayment = async (params) => {
+    //     const order = await createOrder(params); //  Create order on your backend
+
+    //     const options = {
+    //         key: "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
+    //         amount: "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    //         currency: "INR",
+    //         order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
+    //         handler: function (response) {
+    //             alert(response.razorpay_payment_id);
+    //             alert(response.razorpay_order_id);
+    //             alert(response.razorpay_signature);
+    //         },
+    //     };
+
+    //     const rzp1 = new Razorpay(options)
+
+    //     rzp1.open();
+    // };
+
+
     return (
         <Box w={"80%"} m="auto">
             <Flex justify={"space-between"} align="center">
@@ -16,8 +41,8 @@ const Payment = () => {
                     <Image src="https://adn-static1.nykaa.com/media/wysiwyg/Payments/desktop-icons/payment-icon.svg" />
                 </Box>
             </Flex>
-            <Flex justify={"space-between"}>
-                <Box  w="65%">
+            <Flex justify={"space-between"} >
+                <Box w="65%" border="1px solid #D3D3D3">
                     <Tabs variant='unstyled' bg='white' borderRadius={"10px"} display={"flex"}>
                         <TabList display={"flex"} flexDir="column" w="80%" bg={"#F3F4F5"}>
                             <Tab _selected={{ bg: 'white', borderLeft: "3px solid #e80071", paddingTop: "20px", paddingBottom: "15px" }}>
@@ -42,7 +67,7 @@ const Payment = () => {
                                         <Image src="https://adn-static1.nykaa.com/media/wysiwyg/Payments/UPI.svg" />
                                     </Box>
                                     <Box textAlign={"left"} w={"80%"}>
-                                        <Text fontWeight={"500"}>UPI</Text>
+                                        <Text fontWeight={"500"}>Razor Pay</Text>
                                         <Text fontSize={"14px"} fontWeight="400">Google Pay, PhonePe, Paytm & more</Text>
                                     </Box>
                                     <Box>
@@ -144,7 +169,16 @@ const Payment = () => {
                                 <Text>Sorry, this payment option is not avilable currently. </Text>
                             </TabPanel>
                             <TabPanel>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda commodi eum, et labore, vel eius sunt, placeat explicabo similique voluptatibus architecto. Id, inventore ut! Quaerat nisi officia nulla magnam inventore.</p>
+                                <Flex justify={"center"} >
+                                    <Box>
+                                        <Image w="150px" src={r_logo} />
+                                        <Center>
+                                            <Button mt={5} colorScheme="pink">Pay Now</Button>
+                                        </Center>
+
+                                    </Box>
+                                </Flex>
+
                             </TabPanel>
                         </TabPanels>
                     </Tabs>

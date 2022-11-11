@@ -5,7 +5,7 @@ import Styles from "../../Styles/Footer.module.css"
 const FooterList = () => {
     return (
         <Box bg={"#8c8d94"} color="white">
-            <SimpleGrid columns={{ md: 3, lg: 5 }} spacing={10} w={["90%", "80%"]} m={"auto"} p={5} py={10}>
+            <SimpleGrid columns={{ md: 3, lg: 5 }} spacing={10} w={["90%", "80%"]} m={"auto"}  py={10}>
                 <Box>
                     <UnorderedList className={Styles.List} styleType="none" lineHeight="25px">
                         <Image src="https://cdn.iconscout.com/icon/free/png-256/nykaa-3384872-2822953.png" h={"40px"} />
