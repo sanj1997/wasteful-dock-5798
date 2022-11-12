@@ -9,10 +9,12 @@ import { Box } from "@chakra-ui/react";
 import Otpverify from "./pages/Otpverify";
 import AddUser from "./pages/AddUser";
 import SignIn from "./pages/SignIn";
+import AllRoutes from "./routes/AllRoutes";
 
 function App() {
   return (
     <Box>
+      <AllRoutes />
       <Home />
     </Box>
   );
