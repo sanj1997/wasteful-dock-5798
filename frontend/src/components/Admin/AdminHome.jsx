@@ -1,4 +1,4 @@
-import { Box,Flex,Text } from '@chakra-ui/react';
+import { Box,Flex,SimpleGrid,Text } from '@chakra-ui/react';
 import React from 'react';
 import { BarChart,CartesianGrid,XAxis,YAxis,Tooltip,Legend,Bar} from 'recharts';
 import Widget from './Widget';
@@ -68,20 +68,26 @@ const AdminHome = () => {
       ]
       
   return (
-    <Box backgroundColor={'#f7f7f7'}>
-        <Box padding='1rem 5rem'>
+    <Box backgroundColor={'#f7f7f7'} marginTop='60px'>
+        <Box padding='1rem'>
             <Text fontSize={42} fontWeight={700}>DashBoard</Text>
         </Box>
-        <Flex padding='1rem 5rem' gap='1rem' >
+        <SimpleGrid minChildWidth={300} spacing='1rem' padding='1rem'>
+          <Box>
             <Widget dimensions={[80,80]} logo={'https://static.vecteezy.com/system/resources/previews/005/567/661/original/rupee-icon-indian-currency-symbol-illustration-coin-symbol-free-vector.jpg'} title={'Total Sales'} figure={'Rs. 1,00,000'}/>
+          </Box>
+          <Box>
             <Widget dimensions={[60,60]} logo={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREeeWu-Nebjp0jzZI4xRhWMJzJgDBM5LfaSg&usqp=CAU'} title={'Total Orders'} figure={'3290'}/>
+          </Box>
+          <Box>
             <Widget dimensions={[100,100,20]} logo={'https://www.nicepng.com/png/detail/304-3048415_business-advice-product-icon-png.png'} title={'Total Products'} figure={'322'}/>
-        </Flex>
-        <Box backgroundColor='#fff' padding='3rem 1rem' margin='5rem' boxShadow='rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px' borderRadius='6px'>
+          </Box>
+        </SimpleGrid>
+        <Box backgroundColor='#fff' padding='3rem 1rem' boxShadow='rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px' borderRadius='6px'>
             <Box marginBottom={'2rem'}>
                 <Text fontSize={36} fontWeight={700}>Sales Statistics</Text>
             </Box>
-            <BarChart width={530} height={250} data={data}>
+            <BarChart width={730} height={250} data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis />

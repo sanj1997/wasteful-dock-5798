@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import {Box, Flex} from '@chakra-ui/react';
-import AdminSidebar from '../components/Admin/AdminSidebar';
+import NavbarAdmin from '../components/Admin/NavbarAdmin';
 import AdminMain from '../components/Admin/AdminMain';
 
 const AdminDashboard = () => {
-  const [sidebar,compressSidebar]=useState(false);
-  const compress=()=>{
-    compressSidebar(!sidebar);
-  }
   return (
     <Flex>
         {/* Left Sidebar */}
-        <Box position='fixed'>
-          <AdminSidebar compressed={sidebar} compress={compress}/>
-        </Box>
+         <Box position='fixed' width='100%'>
+          <NavbarAdmin/>
+        </Box> 
         {/* Right Side container */}
-        <Box marginLeft={sidebar===true?'81px':'231px'} width='100%'>
+        <Box width='100%'>
           <AdminMain/>
         </Box>
     </Flex>

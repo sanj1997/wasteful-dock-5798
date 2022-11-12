@@ -8,7 +8,6 @@ import AdminProducts from './AdminProducts';
 const AdminMain = ({compressed}) => {
   return (
     <>
-      <NavbarAdmin compressed={compressed}/>
       <Box>
       {/* routes here */}
       <Routes>

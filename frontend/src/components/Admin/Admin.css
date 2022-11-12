@@ -1,0 +1,18 @@
+.sidebar::-webkit-scrollbar{
+    width: 10px;
+}
+.sidebar::-webkit-scrollbar-thumb{
+    background-color: #7d7c89;
+}
+.sidebar::-webkit-scrollbar-track{
+    background-color: #fff;
+}
+
+@media all and (max-width:1000px){
+    .navbar-left>img{
+        display:none;
+    }
+    .navbar-right{
+        display:none;
+    }
+}
