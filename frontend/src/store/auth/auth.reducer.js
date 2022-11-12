@@ -10,7 +10,8 @@ const InitialState={
     lastName:JSON.parse(localStorage.getItem("lastName"))||null,
     userName:JSON.parse(localStorage.getItem("userName"))||null,
     message:null,
-    isVerified:false
+    isVerified:false,
+    userId:JSON.parse(localStorage.getItem("yql"))||null,
 }
 
 const authReducer=(state=InitialState,{type,payload})=>{
@@ -51,8 +52,9 @@ const authReducer=(state=InitialState,{type,payload})=>{
         localStorage.setItem("firstName",JSON.stringify(payload.firstName))
         localStorage.setItem("lastName",JSON.stringify(payload.lastName))
         localStorage.setItem("userName",JSON.stringify(payload.userName))
+        localStorage.setItem("yql",JSON.stringify(payload.uId))
         return {
-                ...state, loading: false, Rtoken:payload.csv, Mtoken:payload.asv, firstName:payload.firstName, lastName:payload.lastName, userName:payload.userName
+                ...state, loading: false, Rtoken:payload.csv, Mtoken:payload.asv, firstName:payload.firstName, lastName:payload.lastName, userName:payload.userName, userId:payload.uId
             }
         case SIGN_IN_ERROR:return {
             ...state, loading:false,error:true

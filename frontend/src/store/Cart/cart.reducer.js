@@ -27,7 +27,7 @@ export const cartReducer = (state = initialData, { type, payload }) => {
             ...state, loading: false, error: true
         }
         case CART_ADD_SUCCESS: return {
-            ...state, loading: false, error: false, data: [...state.data, payload]
+            ...state, loading: false
         }
         case CART_UPDATE_LOADING: return {
             ...state, loading: true,

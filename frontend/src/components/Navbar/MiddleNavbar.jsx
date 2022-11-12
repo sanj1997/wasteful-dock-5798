@@ -6,6 +6,7 @@ import { AiFillShopping } from "react-icons/ai"
 import Styles from "./Navbar.module.css"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import CartModal from '../CartModal'
 
 const MiddleNavbar = () => {
     const {loading,Mtoken}=useSelector((store)=>store.auth)
@@ -31,7 +32,7 @@ const MiddleNavbar = () => {
                     <Link to={"/signUp"}><Button colorScheme={"pink"}>Signup</Button></Link>
                     <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link>
                     <Box position="relative" >
-                        <AiFillShopping size={"25px"} />
+                        <CartModal />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>
                             <Center fontSize={"15px"} color={"white"}>4</Center>
                         </Box>

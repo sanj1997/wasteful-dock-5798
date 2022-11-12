@@ -1,9 +1,15 @@
 import { Button, Flex, Heading, Img, Input, InputGroup, InputRightAddon, Text, Box } from '@chakra-ui/react'
 import React from 'react'
 import { GoLocation } from 'react-icons/go'
+import { useDispatch } from 'react-redux'
+import { addCartData } from '../../store/Cart/cart.action'
 
 const ProductInfo = ({data}) => {
-	const {title, price, off_price, offer, image1, image2, image3, description} = data?.product;
+	const dispatch=useDispatch()
+	const {title, price, off_price, offer, image1, image2, image3, description,_id} = data?.product;
+	const handleAddToCart=()=>{
+       dispatch(addCartData(_id))
+	}
 	return (
 		<>
 		<Flex pt={10} bg={'rgb(242,243,242)'}>
@@ -30,7 +36,7 @@ const ProductInfo = ({data}) => {
 					<Text>inclusive of all taxes</Text>
 					<Flex alignItems={'center'} mt={12} mb={12}>
 						<Box width={'47%'} p={8} borderRight="1px solid rgb(220,225,229)">
-							<Button color={'white'} bg={'rgb(253,38,121)'} width={'100%'}>Add to Bag</Button>
+							<Button onClick={handleAddToCart} color={'white'} bg={'rgb(253,38,121)'} width={'100%'}>Add to Bag</Button>
 						</Box>
 						<Box width={'50%'} pr={6} pl={6}>
 							<Flex gap={2} alignItems='center'>

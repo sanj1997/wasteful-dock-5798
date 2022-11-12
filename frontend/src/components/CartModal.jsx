@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
     Drawer,
     DrawerBody,
@@ -18,17 +18,25 @@ import {
 } from '@chakra-ui/react'
 import CartProductCard from './CartProductCard'
 import { ArrowBackIcon, ArrowForwardIcon, InfoOutlineIcon } from '@chakra-ui/icons'
-
+import {AiFillShopping} from "react-icons/ai"
+import { useDispatch, useSelector } from 'react-redux'
+import { getCartData } from '../store/Cart/cart.action'
 const CartModal = () => {
-
+    const {data}=useSelector((store)=>store.cart)
+    const {userId}=useSelector((store)=>store.auth)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const ref=useRef(null)
     const btnRef = React.useRef()
-
+    const dispatch=useDispatch()
+    console.log(data,"cart data")
+    useEffect(()=>{
+       ref.current=dispatch(getCartData(userId))
+    },[])
     return (
         <>
-            <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-                Open
-            </Button>
+            {/* <Button ref={btnRef} onClick={onOpen}> */}
+              <AiFillShopping size={"25px"} ref={btnRef} onClick={onOpen}/>
+            {/* </Button> */}
             <Drawer
                 isOpen={isOpen}
                 placement='right'
@@ -52,8 +60,8 @@ const CartModal = () => {
 
                     <DrawerBody>
                         <Box>
-                            {Array(10).fill(0).map((el) => {
-                                return <CartProductCard />
+                            {data.map((el)=>{
+                                return <CartProductCard/>
                             })}
                         </Box>
                         <Box border="1px solid #D3D3D3" p={3} borderRadius="10px">
