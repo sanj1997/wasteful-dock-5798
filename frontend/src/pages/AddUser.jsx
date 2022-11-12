@@ -67,7 +67,7 @@ const AddUser = () => {
       margin="auto"
       marginTop="4rem"
       height="full"
-      borderTopRadius="1rem"
+      borderRadius="1rem"
       padding=".8rem"
     >
       <Flex mt=".7rem" mb="1rem" ml=".4rem" mr=".4rem">

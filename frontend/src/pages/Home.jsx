@@ -91,7 +91,7 @@ let featuredArr = [
   {
     img: "https://images-static.nykaa.com/uploads/af94358f-87a6-484a-b105-63b92e9019d6.jpg?tr=w-300,cm-pad_resize",
     offer: "Upto 35% Off",
-    desc: "Free Body Mist mini trio on Rs.599+",
+    desc: "Free Body Mist trio on Rs.599+",
   },
   {
     img: "https://images-static.nykaa.com/uploads/02a3c530-711c-4fb0-89a8-ee68215eddc3.jpg?tr=w-300,cm-pad_resize",
@@ -110,7 +110,7 @@ let featuredArr = [
   },
   {
     img: "https://images-static.nykaa.com/uploads/52d3c769-9f88-4912-ab09-88789acf17fd.jpg?tr=w-300,cm-pad_resize",
-    offer: "Flat 15% Off + Additional 10% Off on",
+    offer: "Flat 15% Off + Additional 10% Off",
     desc: "On Entire Range",
   },
   {
@@ -127,6 +127,16 @@ let featuredArr = [
     img: "https://images-static.nykaa.com/uploads/38ce9084-1f44-4e79-bee7-f561e45acef9.gif?tr=w-300,cm-pad_resize",
     offer: "Buy 2 Get 1",
     desc: "On the Entire Range",
+  },
+  {
+    img: "https://images-static.nykaa.com/uploads/5980857c-05fb-43de-b6c9-42b3a6c9ddf6.jpeg?tr=w-300,cm-pad_resize",
+    offer: "Flat 10% off",
+    desc: "On entire range!",
+  },
+  {
+    img: "https://images-static.nykaa.com/uploads/2409a2db-79b3-4e00-86fe-1304156065f1.jpg?tr=w-300,cm-pad_resize",
+    offer: " Pick Your Gifts on Rs. 800+",
+    desc: "Pick Your Mini on Rs. 2000+",
   },
 ];
 
@@ -145,6 +155,11 @@ let threePhotosArr = [
     img: "https://images-static.nykaa.com/uploads/25f04cf1-475c-4172-a33b-006159ebc06e.jpg?tr=w-600,cm-pad_resize",
     offer: "Upto 40% Off",
     desc: "On Hair Removal Heroes",
+  },
+  {
+    img: "https://images-static.nykaa.com/uploads/7ba28276-d6f1-493d-a6b8-68686deaa086.jpg?tr=w-600,cm-pad_resize",
+    offer: "Upto 20% Off + ",
+    desc: "Free Gift on Rs 699+",
   },
 ];
 
@@ -280,13 +295,13 @@ const Home = () => {
 
             <Grid
               templateColumns={[
+                "repeat(1, 1fr)",
+                "repeat(1, 1fr)",
                 "repeat(2, 1fr)",
-                "repeat(2, 1fr)",
-                "repeat(2, 1fr)",
-                "repeat(4, 1fr)",
-                "repeat(4, 1fr)",
+                "repeat(3, 1fr)",
+                "repeat(4, 1fr)"
               ]}
-              gap={4}
+              gap={[1, 1, 2, 2, 2]}
               width="75%"
               m="auto"
               position="relative"
@@ -338,8 +353,10 @@ const Home = () => {
               w="75%"
               m="auto"
               mt="2rem"
-              gap={7}
+              gap={9}
               position="relative"
+              alignItems="flex-start"
+              justifyContent="center"
             >
               {threePhotosArr.map((el, id) => (
                 <Box
@@ -610,4 +627,3 @@ const Home = () => {
 };
 
 export default Home;
-
