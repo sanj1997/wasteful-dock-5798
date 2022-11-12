@@ -15,7 +15,6 @@ function App() {
   return (
     <Box>
       <AllRoutes />
-      <Home />
     </Box>
   );
 }

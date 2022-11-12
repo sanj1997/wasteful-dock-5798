@@ -8,6 +8,8 @@ import ProductInfo from '../components/SinglePage/ProductInfo';
 import CustomerViewProducts from '../components/SinglePage/CustomerViewProducts';
 import ProductDetails from '../components/Skin/ProductDetails';
 import ProductReview from '../components/SinglePage/ProductReview';
+import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 const SingalProduct = () => {
 	const params = useParams();
@@ -23,11 +25,12 @@ const SingalProduct = () => {
 	// console.log(data, loading);
 
 	if(loading){
-		return <h1>Loading ...</h1>
+		return 
 	}
 
 	return (
 		<>
+		<Navbar/>
 		<ProductInfo data={data}/>
 		<Box bg={'rgb(242,243,242)'}>
 			<Flex width='85%' margin='auto' gap={7}>
@@ -44,6 +47,7 @@ const SingalProduct = () => {
 				</Box>
 			</Flex>
 		</Box>
+		<Footer/>
 		</>
 	)
 }

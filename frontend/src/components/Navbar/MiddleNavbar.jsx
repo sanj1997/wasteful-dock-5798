@@ -4,8 +4,11 @@ import React from 'react'
 import logo from "../../assets/pngs/Beautiva_logo.png"
 import { AiFillShopping } from "react-icons/ai"
 import Styles from "./Navbar.module.css"
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const MiddleNavbar = () => {
+    const {loading,Mtoken}=useSelector((store)=>store.auth)
     return (
         <Box height={"70px"} borderBottom="1px solid #D3D3D3">
             <Flex w={"85%"} m="auto" gap={8} align="center" h="full">
@@ -15,7 +18,7 @@ const MiddleNavbar = () => {
                     <Text className={Styles.category}>Brands</Text>
                     <Text className={Styles.category}>Luxe</Text>
                     <Text className={Styles.category}>Beautiva Fashion</Text>
-                    <Text className={Styles.category}>Beauty Advice</Text>
+                    {/* <Text className={Styles.category}>Beauty Advice</Text> */}
                 </Flex>
                 <InputGroup w={"25%"}>
                     <InputLeftElement
@@ -25,8 +28,8 @@ const MiddleNavbar = () => {
                     <Input type='text' placeholder='Search for Products,Brands etc..' />
                 </InputGroup>
                 <HStack >
-                    <Button colorScheme={"pink"}>Signup</Button>
-                    <Button colorScheme={"pink"} variant="outline">Signin</Button>
+                    <Link to={"/signUp"}><Button colorScheme={"pink"}>Signup</Button></Link>
+                    <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link>
                     <Box position="relative" >
                         <AiFillShopping size={"25px"} />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>

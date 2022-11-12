@@ -11,23 +11,30 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { verifyUser } from "../store/auth/auth.action";
 
 const Otpverify = () => {
   const toast = useToast();
-
+  const dispatch=useDispatch()
+  const {isVerified}=useSelector((store)=>store.auth)
+  console.log(isVerified)
   const [otp, setOtp] = useState("");
-
+  const [email, setEmail] = useState({email:""})
+  const navigate=useNavigate()
   //dummy conditions
-  const [condition, setCondition] = useState(false);
+  // const [condition, setCondition] = useState(false);
 
   // function for otp verifucation
   const handleVerify = () => {
-    if (condition) {
-      return toast({ description: "Otp Verified", status: "success" });
-    } else {
-      return toast({ description: "Invalid otp", status: "error" });
-    }
+    console.log(email,otp)
+    dispatch(verifyUser(otp,email))
+    // if (condition) {
+    //   return toast({ description: "Otp Verified", status: "success" });
+    // } else {
+    //   return toast({ description: "Invalid otp", status: "error" });
+    // }
     // if otp was verified successfully then navigate to
     // add user page
   };
@@ -35,13 +42,18 @@ const Otpverify = () => {
   // when the page redering for the first time
   // this message will appear , like opt sent successfully
   useEffect(() => {
-    setTimeout(() => {
+    if(isVerified)
+    {
       toast({
-        description: "OTP sent successfully",
-        colorScheme: "#fc2779",
+        description: "Verification successful",
+        status:"success"
       });
-    }, 2000);
-  }, []);
+      setTimeout(() => {
+        navigate("/signIn")
+     }, 3000);
+    }
+    
+  }, [isVerified]);
 
   return (
     <Box
@@ -54,9 +66,8 @@ const Otpverify = () => {
       padding=".8rem"
     >
       <Flex marginTop=".3rem">
-        <Link to="/signin">
+        
           <CloseIcon height="14px" width="14px" cursor="pointer" />
-        </Link>
         <Spacer />
         <Text color="#3f414d" fontSize="14px" fontWeight="semibold">
           REGISTER
@@ -75,7 +86,7 @@ const Otpverify = () => {
           padding=".3rem"
         >
           {" "}
-          Welcome to Nykaa!{" "}
+          Welcome to Beautiva!{" "}
         </Text>
         <Text
           fontSize="14px"
@@ -90,7 +101,7 @@ const Otpverify = () => {
           Register now and get{" "}
           <span style={{ color: "#fc2779" }}>2000 Reward Points!</span>{" "}
         </Text>
-        <Text
+        {/* <Text
           backgroundColor="#f3f3f3"
           border="1px solid #ebebeb"
           borderRadius="2px"
@@ -100,9 +111,17 @@ const Otpverify = () => {
           fontSize="14px"
         >
           1234567890
-        </Text>
+        </Text> */}
 
         <Flex marginBottom="2.8rem">
+        <Input
+            variant="flushed"
+            placeholder="Enter Email"
+            borderBottomColor="red"
+            paddingRight="25px"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br/>
           <Input
             variant="flushed"
             placeholder="OTP"

@@ -111,9 +111,9 @@ const validateUser=async(email,password)=>{
                 expiresIn:"5 seconds"
                })
                const refreshToken=jwt.sign({id:user._id,role:user.role},`${process.env.JWT_REFRESH_SECRET}`,{
-                expiresIn:"10 seconds"
+                expiresIn:"7 days"
                })
-               response= {message:"Login successful",asv:mainToken,csv:refreshToken}
+               response= {message:"Login successful",asv:mainToken,csv:refreshToken, firstName:user.firstName, lastName:user.lastName, userName:user.userName}
            }
        }
        catch(e)
@@ -127,7 +127,8 @@ const removeUser=()=>{
    
 }
 
-const revalidateUser=(refreshToken)=>{
+const revalidateUser=async(refreshToken)=>{
+    console.log(refreshToken,"hello")
     let response;
     try{
         const data=jwt.verify(refreshToken,`${process.env.JWT_REFRESH_SECRET}`)

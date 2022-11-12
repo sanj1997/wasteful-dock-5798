@@ -1,9 +1,9 @@
 const express = require("express")
 const { createOrder, addToOrders, getOrders } = require("../controllers/orders.controller")
 const router=express.Router()
-
+const authmiddleware=require("../middlewares/authmiddleware")
 //create orders
-router.post("/create-order",async(req,res)=>{
+router.post("/create-order",authmiddleware,async(req,res)=>{
     const {id}=req.body
     const response=await createOrder(id)
     if(response.message==="Order already exists, please continue"||response.message==="Successful")
@@ -14,7 +14,7 @@ router.post("/create-order",async(req,res)=>{
 })
 
 //add to orders
-router.post("/",async(req,res)=>{
+router.post("/",authmiddleware,async(req,res)=>{
     const {id}=req.body
     const response=await addToOrders(id)
     if(response.message==="Successful")
@@ -25,7 +25,7 @@ router.post("/",async(req,res)=>{
 })
 
 //get Orders
-router.get("/:id",async(req,res)=>{
+router.get("/:id",authmiddleware,async(req,res)=>{
     const {id}=req.params
     const response=await getOrders(id)
     if(response.message==="Successful")

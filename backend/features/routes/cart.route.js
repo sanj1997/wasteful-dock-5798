@@ -1,9 +1,9 @@
 const express = require("express")
 const { addTocart, removeFromCart, createCart, updateCart, getCart } = require("../controllers/carts.controller")
 const router=express.Router()
-
+const authmiddleware=require("../middlewares/authmiddleware")
 //create cart
-router.post("/create-cart",async(req,res)=>{
+router.post("/create-cart",authmiddleware,async(req,res)=>{
     const {id}=req.body
     const response=await createCart(id)
     if(response.message==="Cart already exists, please continue"||response.message==="Successful")
@@ -14,7 +14,7 @@ router.post("/create-cart",async(req,res)=>{
 })
 
 //add to cart
-router.post("/",async(req,res)=>{
+router.post("/",authmiddleware,async(req,res)=>{
     const {productID}=req.body
     const mainToken=req.headers.authorization
     const response=await addTocart(productID,mainToken)
@@ -34,7 +34,7 @@ router.post("/",async(req,res)=>{
 })
 
 //delete from cart
-router.delete("/",async(req,res)=>{
+router.delete("/",authmiddleware,async(req,res)=>{
     const {id}=req.body
     const mainToken=req.headers.authorization
     const response= await removeFromCart(id,mainToken)
@@ -46,7 +46,7 @@ router.delete("/",async(req,res)=>{
 })
 
 //update Cart
-router.patch("/",async(req,res)=>{
+router.patch("/",authmiddleware,async(req,res)=>{
     const {id,quantity}=req.body
     const mainToken=req.headers.authorization
     const response=await updateCart(id,mainToken,quantity)
@@ -58,7 +58,7 @@ router.patch("/",async(req,res)=>{
 })
 
 //get cart
-router.get("/:id",async(req,res)=>{
+router.get("/:id",authmiddleware,async(req,res)=>{
     const {id}=req.params
     const response=await getCart(id)
     if(response.message==="Successful")

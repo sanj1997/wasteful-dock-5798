@@ -12,25 +12,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [creds, setCreds] = useState("");
+  const [creds, setCreds] = useState({email:"",password:""});
   const navigate = useNavigate();
   const toast = useToast();
 
+  const handleValues=(e)=>{
+    const {name,value}=e.terget
+    setCreds({...creds,[name]:value})
+  }
   // phone number submitted or email
   const handleSubmit = () => {
-    if (creds.length < 10) {
-      return toast({
-        description: "Enter valid Mobile Number",
-        status: "error",
-      });
-    } else if (!creds.includes("com")) {
-      return toast({ description: "Enter valid email id", status: "error" });
-    } else {
-      // after submitting creds successfully
-      // this will be navigate to otp verify page
-      // post the mobile number or email
-      //navigate("/verifyotp")
-    }
+    
   };
 
   return (
@@ -56,7 +48,7 @@ const Login = () => {
       <Divider padding="2" width="100" color="black" />
       <Box padding="1rem">
         <Input
-          placeholder="Enter Email ID or Phone Number"
+          placeholder="Enter Email ID"
           border="1px solid red"
           borderColor="red"
           borderRadius="2px"
@@ -64,8 +56,8 @@ const Login = () => {
           fontSize="14px"
           marginTop="-1rem"
           // this name can be change as per database schema
-          name="creds"
-          onChange={(e) => setCreds(e.target.value)}
+          name="email"
+          onChange={handleValues}
         />
         <Text
           borderRadius="2px"

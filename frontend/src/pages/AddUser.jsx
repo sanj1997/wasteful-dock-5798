@@ -10,16 +10,24 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { signUpUser } from "../store/auth/auth.action";
 
 const AddUser = () => {
   const toast = useToast();
-
+  const dispatch=useDispatch()
+  const navigate = useNavigate()
+  const {message}=useSelector((store)=>store.auth)
+  console.log(message)
   const [creds, setCreds] = useState({
-    name: "",
     email: "",
+    firstName:"",
+    lastName:"",
+    password:"",
+    userName:""
   });
 
   // onchange function
@@ -34,8 +42,8 @@ const AddUser = () => {
   // add a new user
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!handleValidation(creds)) {
-      console.log(creds);
+    if (handleValidation(creds)) {
+      dispatch(signUpUser(creds))
       // after successfully add user name and email take him
       // at home page
     } else {
@@ -45,21 +53,32 @@ const AddUser = () => {
 
   // frontend validation
   const handleValidation = (creds) => {
-    if (creds.name.length < 3) {
+    if (creds.firstName.length < 3) {
       return toast({
         description: "name should be more than three charecters",
         status: "error",
       });
-    } else if (creds.email.length < 1) {
+    } else if (creds.password.length < 1) {
       return toast({
-        description: "PLease enter your email",
+        description: "Password should be more than 7 characters",
         status: "error",
       });
     } else {
       return true;
     }
   };
-
+  useEffect(()=>{
+    if(message)
+    {
+      toast({
+        description: message,
+        status :"info"
+       })
+       setTimeout(()=>{
+        navigate("/otp-verify")
+      },3000)
+    }
+  },[message])
   return (
     <Box
       border="1px solid grey"
@@ -82,19 +101,6 @@ const AddUser = () => {
         <Spacer />
       </Flex>
       <Divider />
-      {/* <Text
-        backgroundColor="#f3f3f3"
-        border="1px solid #ebebeb"
-        borderRadius="2px"
-        color="#3f414d"
-        padding=".4rem"
-        mt=".4rem"
-        marginBottom="16px"
-        fontSize="14px"
-        textAlign="center"
-      >
-        1234567890
-      </Text> */}
       <FormControl mt="2rem" >
         <Input
           variant="flushed"
@@ -104,8 +110,8 @@ const AddUser = () => {
           fontSize="14px"
           focusBorderColor="#fc2779"
           mt=".2rem"
-          value={creds.name}
-          name="name"
+          // value={creds.name}
+          name="firstName"
           onChange={handleChange}
         />
         <Input
@@ -116,8 +122,20 @@ const AddUser = () => {
           fontSize="14px"
           focusBorderColor="#fc2779"
           mt=".2rem"
-          value={creds.name}
-          name="name"
+          // value={creds.name}
+          name="lastName"
+          onChange={handleChange}
+        />
+        <Input
+          variant="flushed"
+          placeholder="Enter your user name"
+          border-bottom="1px solid #e1e1e1"
+          paddingRight="25px"
+          fontSize="14px"
+          focusBorderColor="#fc2779"
+          mt=".2rem"
+          // value={creds.name}
+          name="userName"
           onChange={handleChange}
         />
         <Input
@@ -128,8 +146,8 @@ const AddUser = () => {
           fontSize="14px"
           focusBorderColor="#fc2779"
           mt=".2rem"
-          value={creds.name}
-          name="name"
+          // value={creds.name}
+          name="email"
           onChange={handleChange}
         />
         <Input
@@ -140,8 +158,8 @@ const AddUser = () => {
           fontSize="14px"
           mb="4rem"
           focusBorderColor="#fc2779"
-          value={creds.email}
-          name="email"
+          // value={creds.email}
+          name="password"
           onChange={handleChange}
         />
         <Button

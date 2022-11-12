@@ -1,8 +1,9 @@
 const express = require("express")
 const router=express.Router()
 const Razorpay=require("razorpay")
+const authmiddleware=require("../middlewares/authmiddleware")
 require("dotenv").config()
-router.post("/",async(req,res)=>{
+router.post("/",authmiddleware,async(req,res)=>{
     const {amount}=req.body
     var instance = new Razorpay({ key_id: process.env.RAZORPAY_KEY, key_secret: process.env.RAZORPAY_SECRET })
     let order=await instance.orders.create({
