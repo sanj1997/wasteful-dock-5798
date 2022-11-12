@@ -11,7 +11,6 @@ import React, { useState } from "react";
 
 import Carousel from "react-bootstrap/Carousel";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { FaBox } from "react-icons/fa";
 
 let firstCarousel = [
   {
@@ -238,7 +237,10 @@ const Home = () => {
                     boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
                     key={id}
                     position="relative"
-                    _hover={{boxShadow:"rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"}}
+                    _hover={{
+                      boxShadow:
+                        "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                    }}
                   >
                     <Img src={el.img} width="100%" />
                     <Box
@@ -295,6 +297,10 @@ const Home = () => {
                   key={id}
                   m="auto"
                   boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+                  _hover={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                  }}
                 >
                   <Box>
                     <Img src={el.img} />
@@ -338,6 +344,10 @@ const Home = () => {
                 <Box
                   key={id}
                   boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+                  _hover={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                  }}
                 >
                   <Box
                     width="100%"
@@ -415,7 +425,6 @@ const Home = () => {
                   <BiChevronRight />
                 </Box>
               </Flex>
-
               <Text
                 textAlign="center"
                 fontSize="24px"
@@ -426,7 +435,6 @@ const Home = () => {
               >
                 BUYING GUIDES
               </Text>
-
               <Container height="95%">
                 <Carousel className="w-80">
                   {buyingGuidsArr.map((el, id) => (
@@ -452,11 +460,24 @@ const Home = () => {
                 GIFT CARD
               </Text>
 
-              <Container>
+              <Container
+                _hover={{
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                }}
+              >
                 <Img src="https://images-static.nykaa.com/uploads/98a30133-4e10-49d0-b1f7-80d97faa33ff.jpg?tr=w-600,cm-pad_resize" />
               </Container>
 
-              <Box m="auto" mt="3rem" width="80%">
+              <Box
+                m="auto"
+                mt="3rem"
+                width="80%"
+                _hover={{
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                }}
+              >
                 <Img
                   src="https://images-static.nykaa.com/uploads/3df85e95-5d80-46b7-a8fb-75fd485c35ba.jpg?tr=w-1200,cm-pad_resize"
                   width="1200px"
@@ -466,7 +487,15 @@ const Home = () => {
                 />
               </Box>
 
-              <Box m="auto" mt="3rem" width="80%">
+              <Box
+                m="auto"
+                mt="3rem"
+                width="80%"
+                _hover={{
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                }}
+              >
                 <Img
                   src="https://images-static.nykaa.com/uploads/1462f351-b1c2-49c0-a68a-6357b6fb4e97.jpg?tr=w-1200,cm-pad_resize"
                   m="auto"
@@ -486,7 +515,12 @@ const Home = () => {
               </Text>
 
               <Flex width="80%" gap={2} m="auto">
-                <Box>
+                <Box
+                  _hover={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                  }}
+                >
                   {" "}
                   <Img
                     src="https://images-static.nykaa.com/uploads/9531931b-cdda-4132-b117-33346d9afafe.gif?tr=w-600,cm-pad_resize"
@@ -494,7 +528,12 @@ const Home = () => {
                     boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
                   />
                 </Box>
-                <Box>
+                <Box
+                  _hover={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                  }}
+                >
                   {" "}
                   <Img
                     src="https://images-static.nykaa.com/uploads/ecf5057b-a298-4f19-8a70-aec6f3244b12.jpg?tr=w-600,cm-pad_resize"
@@ -516,7 +555,12 @@ const Home = () => {
               </Text>
 
               <Flex width="80%" gap={2} m="auto">
-                <Box>
+                <Box
+                  _hover={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                  }}
+                >
                   {" "}
                   <Img
                     src="https://images-static.nykaa.com/uploads/e2bf223b-ba25-4417-833d-8d864cbdd299.jpg?tr=w-600,cm-pad_resize"
@@ -524,7 +568,12 @@ const Home = () => {
                     boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
                   />
                 </Box>
-                <Box>
+                <Box
+                  _hover={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                  }}
+                >
                   <Img
                     src="https://images-static.nykaa.com/uploads/b32ddcf1-b431-4819-8eda-05959b32d131.gif?tr=w-600,cm-pad_resize"
                     width="100%"
@@ -533,7 +582,16 @@ const Home = () => {
                 </Box>
               </Flex>
 
-              <Box m="auto" mt="3rem" mb="3rem" width="80%">
+              <Box
+                m="auto"
+                mt="3rem"
+                mb="3rem"
+                width="80%"
+                _hover={{
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px",
+                }}
+              >
                 <Img
                   src="https://images-static.nykaa.com/uploads/58c1c0b0-5a0b-4614-acfc-3205e669d8a7.jpg?tr=w-1200,cm-pad_resize"
                   m="auto"
