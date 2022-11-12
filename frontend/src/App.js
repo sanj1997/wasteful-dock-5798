@@ -13,7 +13,7 @@ import SignIn from "./pages/SignIn";
 function App() {
   return (
     <Box>
-      <Home />
+      
     </Box>
   );
 }

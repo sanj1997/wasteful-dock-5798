@@ -50,7 +50,7 @@ const Otpverify = () => {
       margin="auto"
       marginTop="4rem"
       height="full"
-      borderTopRadius="1rem"
+      borderRadius="1rem"
       padding=".8rem"
     >
       <Flex marginTop=".3rem">
