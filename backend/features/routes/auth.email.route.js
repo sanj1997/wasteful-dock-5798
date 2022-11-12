@@ -15,6 +15,11 @@ router.post("/signup",async(req,res)=>{
      {
         return res.status(500).send(response)
      }
+     else if (response.message==="Otp is sent to your registered email")
+     {
+        console.log("heeeeeeeeeyyyyyyy")
+        return res.send(response)
+     }
      return res.status(401).send(response)
 })
 //verify email
@@ -70,7 +75,7 @@ router.post ("/login",async(req,res)=>{
     return res.status(401).send(response)
 })
 //refresh token
-router.post("/refresh",async(req,res)=>{
+router.get("/refresh",async(req,res)=>{
     const refreshToken=req.headers.authorization
     const response=await revalidateUser(refreshToken)
     if(response.message==="successful")
