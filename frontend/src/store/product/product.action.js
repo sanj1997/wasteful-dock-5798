@@ -21,7 +21,7 @@ export const getProductById = (id) => async(dispatch) =>{
 	// console.log(id)
 	try{
 		let res = await axios.get(`http://localhost:8080/products/${id}`)
-		// console.log(res.data)
+		console.log(res.data)
 		dispatch({type: PRODUCT_GET_BY_ID_SUCCESS, payload: res.data.data});
 	}catch(e){
 		dispatch({type: PRODUCT_GET_BY_ID_ERROR});

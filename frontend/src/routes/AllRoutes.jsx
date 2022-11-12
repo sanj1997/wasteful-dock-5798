@@ -8,6 +8,7 @@ import OrderConfirm from '../pages/OrderConfirm'
 import Payment from '../pages/Payment'
 import SingalProduct from '../pages/SingalProduct'
 import Skin from '../pages/Skin';
+import Whishlist from '../pages/Wishlist'
 const AllRoutes = () => {
   return (
     <Routes>
@@ -17,6 +18,7 @@ const AllRoutes = () => {
       <Route path='/orderconfirm' element={<OrderConfirm />} />
       <Route path='/payment' element={<Payment />} />
        <Route path='/skin' element={<Skin />}/>
+       <Route path='/whishlist' element={<Whishlist />}/>
        <Route path='/skin/:id' element={<SingalProduct />}/>
     </Routes>
 
