@@ -13,7 +13,7 @@ const createCart=async(id)=>{
         }
         else
         {
-           const newCart=await CartModel.create({userId:id})
+           const newCart=await CartModel.create({userId:id,products:[]})
            response={message:"Successful"}
         }
     }catch(e){
@@ -27,23 +27,31 @@ const addTocart=async(pId,mainToken)=>{
       try{
          const userData=jwt.verify(mainToken,process.env.JWT_MAIN_SECRET)
          const isPresent=await CartModel.find({userId:userData.id},{"products.productId":pId})
+         // console.log(isPresent.products.quantity)
          const checkAvailability=await ProductModel.findById(pId)
-         if(isPresent.length>0)
-         {
-            response={message:"Product already added in the cart"}
-         }
-         else if(!checkAvailability)
+
+         // if(isPresent.products.length>0)
+         // {
+         //    response={message:"Product already added in the cart"}
+         // }
+         if(!checkAvailability)
          {
             response={message:"Product currently unavailable"}
          }
          else
          {
+            console.log(pId,"product id",userData.id,"user id")
             const newProduct=await CartModel.updateOne({userId:userData.id},{$push:{products:{productId:pId,quantity:1}}})
+            const updateProduct=await CartModel.updateOne({userId:userData.id,"products.productId":pId},{$set:{"products.quantity":1}})
+            const product=await CartModel.findOne({userId:userData.id})
+            console.log(updateProduct)
+            console.log(product)
             response={message:"Product added to cart successfully"}
          }
       }catch(e){
           response={message:e.message}
       }
+      return response
 }
 
 const removeFromCart=async(pId,mainToken)=>{
@@ -88,7 +96,7 @@ const updateCart=async(pid,mainToken,quantity)=>{
 const getCart=async(id)=>{
       let response;
       try{
-         const userCart=await CartModel.findOne({userId:id}).populate("product")
+         const userCart=await CartModel.findOne({userId:id}).populate("products.productId")
          response={message:"Successful",data:userCart}
       }catch(e){
          response={message:e.message}

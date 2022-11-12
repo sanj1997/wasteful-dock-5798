@@ -9,6 +9,7 @@ const orderRouter = require("./features/routes/order.route");
 const paymentRouter = require("./features/routes/payment.route");
 const authRouter = require("./features/routes/auth.email.route");
 const googleRouter=require("../backend/features/routes/auth.google.route")
+const cartRouter=require("../backend/features/routes/cart.route")
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +22,7 @@ app.use("/comments", commentRouter);
 app.use("/wishlist", wishlistRouter);
 app.use("/orders", orderRouter);
 app.use("/payments", paymentRouter);
+app.use("/cart",cartRouter)
 app.listen(8080, async () => {
   await dbConnect();
   console.log("server started on port http://localhost:8080");

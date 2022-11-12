@@ -4,8 +4,8 @@ const router=express.Router()
 const authmiddleware=require("../middlewares/authmiddleware")
 //create cart
 router.post("/create-cart",authmiddleware,async(req,res)=>{
-    const {id}=req.body
-    const response=await createCart(id)
+    console.log(req.body.userID,"user id")
+    const response=await createCart(req.body.userID)
     if(response.message==="Cart already exists, please continue"||response.message==="Successful")
     {
         return res.send(response)
@@ -14,10 +14,11 @@ router.post("/create-cart",authmiddleware,async(req,res)=>{
 })
 
 //add to cart
-router.post("/",authmiddleware,async(req,res)=>{
-    const {productID}=req.body
+router.post("/:id",authmiddleware,async(req,res)=>{
+    const {id}=req.params
+    console.log(id,"req id")
     const mainToken=req.headers.authorization
-    const response=await addTocart(productID,mainToken)
+    const response=await addTocart(id,mainToken)
     if(response.message==="Product already added in the cart")
     {
         return res.send(response)

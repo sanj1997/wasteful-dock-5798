@@ -69,9 +69,9 @@ const verifyUser=async(otp,email)=>{
     let response;
      try{
         //check if otp is valid or not with redis//
-        console.log(otp,email)
+        // console.log(otp,email)
         const data= await getDataFromRedis(email)
-        console.log(data,"otp from db")
+        // console.log(data,"otp from db")
         const user=await UserModel.findOne({email:email})
         if(!user)
         {
@@ -108,12 +108,12 @@ const validateUser=async(email,password)=>{
            else
            {
                const mainToken=jwt.sign({id:user._id,role:user.role},`${process.env.JWT_MAIN_SECRET}`,{
-                expiresIn:"5 seconds"
+                expiresIn:"5 minute"
                })
                const refreshToken=jwt.sign({id:user._id,role:user.role},`${process.env.JWT_REFRESH_SECRET}`,{
                 expiresIn:"7 days"
                })
-               response= {message:"Login successful",asv:mainToken,csv:refreshToken, firstName:user.firstName, lastName:user.lastName, userName:user.userName}
+               response= {message:"Login successful",asv:mainToken,csv:refreshToken, firstName:user.firstName, lastName:user.lastName, userName:user.userName, uId:user._id}
            }
        }
        catch(e)
@@ -128,7 +128,7 @@ const removeUser=()=>{
 }
 
 const revalidateUser=async(refreshToken)=>{
-    console.log(refreshToken,"hello")
+    // console.log(refreshToken,"hello")
     let response;
     try{
         const data=jwt.verify(refreshToken,`${process.env.JWT_REFRESH_SECRET}`)
