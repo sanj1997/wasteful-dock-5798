@@ -4,16 +4,11 @@ import { useState } from 'react';
 import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io';
 import {BsCheck} from 'react-icons/bs';
 
-const ListViewComponent = ({listArr, name}) => {
+const ListViewComponent = ({listArr, name, checkBoxStatus, getFilterData}) => {
 	const [toggleList, setToggleList] = useState(false);
-	const [checkBoxStatus, setCheckBoxStatus] = useState("");
 
 	const changeFun = ()=>{
 		setToggleList(!toggleList);
-	}
-
-	const getFilterData = (f)=>{
-		setCheckBoxStatus(f)
 	}
 
 	return toggleList ? (
@@ -25,10 +20,10 @@ const ListViewComponent = ({listArr, name}) => {
 		</Flex>
 		<Flex direction={'column'} gap={1} mt={2} cursor={'pointer'}>
 			{listArr.map((l, i)=>(
-				<Flex key={i} p={2} justifyContent='space-between' alignItems={'center'} onClick={()=> getFilterData(l)}>
+				<Flex key={i} p={2} justifyContent='space-between' alignItems={'center'} onClick={()=> getFilterData(name, l)}>
 					<Text fontSize={'17px'} cursor={'pointer'}>{l}</Text>
-					<Flex alignItems={'center'} justifyContent='center' width={'20px'} height='20px' border={checkBoxStatus === l ? "" :'1px solid gray'} borderRadius={'50%'} bg={checkBoxStatus === l ? 'rgb(253,39,120)': "gray.200"}>
-						{checkBoxStatus === l ? (<BsCheck fontSize={'20px'} color='white' />) : ""}
+					<Flex alignItems={'center'} justifyContent='center' width={'20px'} height='20px' border={checkBoxStatus[name] === l ? "" :'1px solid gray'} borderRadius={'50%'} bg={checkBoxStatus[name] === l ? 'rgb(253,39,120)': "gray.200"}>
+						{checkBoxStatus[name] === l ? (<BsCheck fontSize={'20px'} color='white' />) : ""}
 					</Flex>
 				</Flex>
 			))}

@@ -21,7 +21,7 @@ const CustomerViewProducts = () => {
 
 	return (
 		<Box>
-			<Flex p={'20px 20px 20px 0px'} gap={6} width="100%">
+			<Flex p={'20px 0px 20px 0px'} gap={6} width="100%">
 				<ProductDetails product={p1}/>
 				<ProductDetails product={p2} />
 				<ProductDetails product={p3} />
