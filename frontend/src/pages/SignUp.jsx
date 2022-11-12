@@ -13,7 +13,7 @@ const SignUp = () => {
         margin="auto"
         marginTop="6rem"
         height="full"
-        borderTopRadius="1rem"
+        borderRadius="1rem"
         padding="1rem"
       >
         <Link to="/">
