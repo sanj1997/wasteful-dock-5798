@@ -8,12 +8,13 @@ const wishlistRouter = require("./features/routes/wishlist.route");
 const orderRouter = require("./features/routes/order.route");
 const paymentRouter = require("./features/routes/payment.route");
 const authRouter = require("./features/routes/auth.email.route");
+const googleRouter=require("../backend/features/routes/auth.google.route")
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get("/", (req, res) => res.send("hello"));
-app.use("/users", userRouter);
+app.use("/users", googleRouter);
 app.use("/auth", authRouter);
 app.use("/products", productRouter);
 app.use("/comments", commentRouter);
