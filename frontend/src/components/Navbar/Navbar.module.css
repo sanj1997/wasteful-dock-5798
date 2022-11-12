@@ -1,0 +1,43 @@
+.category:hover {
+    color: #fc2779;
+    cursor: pointer;
+}
+
+.list {
+    color: gray;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    
+}
+
+.ListItem{
+    height: full;
+    padding: 10px;
+}
+.ListItem:hover {
+    color: #fc2779;
+    cursor: pointer;
+    border-bottom: 3px solid #fc2779;   
+}
+
+.container{
+    position: absolute;
+    margin-top: 15px;
+    display: none;
+}
+
+.ListItem:hover .container {
+    display: block;
+  }
+
+  .txt:hover{
+    color:black;
+  }
+
+  .container_list:hover{
+    color: #fc2779;
+    cursor: pointer;
+  }

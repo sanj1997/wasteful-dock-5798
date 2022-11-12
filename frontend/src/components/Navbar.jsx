@@ -8,6 +8,7 @@ const Navbar = () => {
     <Flex gap={10} p={2} bg='gray.200' cursor={'pointer'}>
       <NavLink to={'/'}>Home</NavLink>
       <NavLink to={'/skin'}>Skin</NavLink>
+      <NavLink to={'/whishlist'}>Whishlist</NavLink>
     </Flex>
     </>
   )

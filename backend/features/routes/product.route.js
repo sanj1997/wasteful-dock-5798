@@ -35,7 +35,7 @@ router.get("/all-products",async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     const {id}=req.params
     const response=await getSingleProduct(id)
-    // if(response.message==="Successful")
+    if(response.message==="Successful")
     if(response)
     {
         return res.send(response)

@@ -31,7 +31,7 @@ const SingalProduct = () => {
 		<ProductInfo data={data}/>
 		<Box bg={'rgb(242,243,242)'}>
 			<Flex width='85%' margin='auto' gap={7}>
-				<Box width={'75%'}>
+				<Box width={'78%'}>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Product Description</Heading >
 					<ProductDescription description={description}/>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Customer also Viewed</Heading >
@@ -39,7 +39,7 @@ const SingalProduct = () => {
 					<Heading fontSize={'20px'} pt={10} pb={10}>Product Details</Heading >
 					<ProductReview rating = {rating}/>
 				</Box>
-				<Box width={'20%'} mt={"100px"}>
+				<Box width={'20%'} mt={"102px"}> 
 					<ProductDetails product = {data.product} favButton = {false}/>
 				</Box>
 			</Flex>

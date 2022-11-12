@@ -1,4 +1,5 @@
 const express = require("express")
+const passport = require("../utils/google-oauth")
 const {createUserEmail,validateUser,revalidateUser, verifyUser, forgotPassword, resetPassword, reSendOtp} = require("../controllers/auth.controller")
 const router=express.Router()
 
@@ -115,6 +116,16 @@ router.post("/reset-password",async(req,res)=>{
     return res.status(401).send(response)
 })
 //google oauth
+
+router.get('/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login', session:false }),
+  function(req, res) {
+    console.log(req.user)
+    // Successful authentication, redirect home.
+    //create main token and refresh token here to store in redux store
+    res.send("Google sign in successful")
+    // res.redirect('/');
+  });
 //logout
 
 module.exports=router

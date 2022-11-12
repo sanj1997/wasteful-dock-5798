@@ -43,7 +43,8 @@ const getSingleProduct=async(id)=>{
     let response;
     try{
         const product = await ProductModel.findById(id)
-        response={message:"Successfull",data:product}
+        console.log(product,"request")
+        response={message:"Successful",data:product}
     }catch(e){
         response={message:e.message}
     }
