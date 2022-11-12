@@ -1,12 +1,14 @@
+import { Box } from '@chakra-ui/react'
 import React from 'react'
-import MiddleNavbar from '../components/Navbar/MiddleNavbar'
-import TopNavbar from '../components/Navbar/TopNavbar'
+import Footer from '../components/Footer/Footer'
+import Navbar from '../components/Navbar/Navbar'
+
 
 const Home = () => {
   return (
     <div>
-      <TopNavbar />
-      <MiddleNavbar />
+      <Navbar />
+      <Footer />
     </div>
   )
 }

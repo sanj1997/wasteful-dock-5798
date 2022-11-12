@@ -1,5 +1,5 @@
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, HStack, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, Image, Input, SimpleGrid, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { ImMobile } from "react-icons/im"
 
@@ -22,11 +22,15 @@ const UpperFooter = () => {
                             <ImMobile size={"25px"} />
                             <Text fontSize={"12px"}>EXPERIENCE THE NYKAA MOBILE APP</Text>
                         </HStack>
+                        <HStack mt={3}>
+                            <Image w={"120px"} src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" />
+                            <Image w={"120px"} src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Available_on_the_App_Store_%28black%29.png" />
 
+                        </HStack>
                     </Box>
                 </Flex>
                 <Flex color={"white"} gap={3} align="center" justify="right">
-                    <Flex h="full" mt={"13%"}>
+                    <Flex h="full" mt={"15%"}>
                         <PhoneIcon w={6} h={6} />
                     </Flex>
                     <Box>

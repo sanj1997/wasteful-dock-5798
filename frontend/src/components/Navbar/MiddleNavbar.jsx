@@ -25,8 +25,8 @@ const MiddleNavbar = () => {
                     <Input type='text' placeholder='Search for Products,Brands etc..' />
                 </InputGroup>
                 <HStack >
-                <Button colorScheme={"pink"}>Signup</Button>
-                <Button  colorScheme={"pink"} variant="outline">Signin</Button>
+                    <Button colorScheme={"pink"}>Signup</Button>
+                    <Button colorScheme={"pink"} variant="outline">Signin</Button>
                     <Box position="relative" >
                         <AiFillShopping size={"25px"} />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>

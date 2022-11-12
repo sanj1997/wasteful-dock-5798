@@ -5,7 +5,7 @@ const UpperLowerFooter = () => {
     return (
         <Box>
 
-            <SimpleGrid columns={{ md: 3, lg: 5 }}  height="25vh" w={["90%", "80%"]} m="auto">
+            <SimpleGrid columns={{ md: 3, lg: 5 }} height="25vh" w={["90%", "80%"]} m="auto">
                 <Flex gap={3} align="center">
                     <Box>
                         <Image src="https://adn-static2.nykaa.com/media/wysiwyg/2021/Free-shipping.svg" />

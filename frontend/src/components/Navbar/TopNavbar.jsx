@@ -17,9 +17,9 @@ const TopNavbar = () => {
                             'BEAUTY BONANZA Get Your Daily Dose Of Amazing Deals']}
                         typeSpeed={40}
                         backSpeed={50}
-                        loop 
+                        loop
                         showCursor={false}
-                        >
+                    >
                     </Typed> </Text>
             </Box>
         </Box>
