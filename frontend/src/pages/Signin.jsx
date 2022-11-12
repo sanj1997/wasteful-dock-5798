@@ -8,21 +8,25 @@ import {
   Input,
   Spacer,
   Text,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signInUser } from "../store/auth/auth.action";
 
 const SignIn = () => {
+  const {Mtoken, error}=useSelector((store)=>store.auth)
+  const navigate=useNavigate()
   const toast = useToast();
-
+  const dispatch=useDispatch()
   const [creds, setCreds] = useState({
-    name: "",
     email: "",
+    password: "",
   });
-
-  // onchange function
+   
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCreds({
@@ -31,34 +35,23 @@ const SignIn = () => {
     });
   };
 
-  // add a new user
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!handleValidation(creds)) {
-      console.log(creds);
-      // after successfully add user name and email take him
-      // at home page
-    } else {
-      console.log("validation failed");
-    }
+    dispatch(signInUser(creds))
   };
-
-  // frontend validation
-  const handleValidation = (creds) => {
-    if (creds.name.length < 3) {
-      return toast({
-        description: "name should be more than three charecters",
-        status: "error",
-      });
-    } else if (creds.email.length < 1) {
-      return toast({
-        description: "PLease enter your email",
-        status: "error",
-      });
-    } else {
-      return true;
-    }
-  };
+  
+ useEffect(()=>{
+   if(Mtoken)
+   {
+     toast({
+      description:"Login successful",
+      status:"success"
+     })
+     setTimeout(()=>{
+       navigate("/")
+     },3000)
+   }
+ },[Mtoken])
 
   return (
     <Box
@@ -103,9 +96,10 @@ const SignIn = () => {
           paddingRight="25px"
           fontSize="14px"
           focusBorderColor="#fc2779"
+          type={"email"}
           mt=".2rem"
-          value={creds.name}
-          name="name"
+          // value={creds.name}
+          name="email"
           onChange={handleChange}
         />
         <Input
@@ -116,11 +110,12 @@ const SignIn = () => {
           fontSize="14px"
           mb="4rem"
           focusBorderColor="#fc2779"
-          value={creds.email}
-          name="email"
+          type={"password"}
+          // value={creds.email}
+          name="password"
           onChange={handleChange}
         />
-        <Button
+        <Link><Button
           backgroundColor="#fc2779"
           borderRadius="2px"
           color="white"
@@ -133,7 +128,7 @@ const SignIn = () => {
           onClick={handleSubmit}
         >
           SIGN IN
-        </Button>
+        </Button></Link>
       </FormControl>
     </Box>
   );

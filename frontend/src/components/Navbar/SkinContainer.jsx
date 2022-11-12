@@ -1,14 +1,15 @@
 import { Box, ListItem, SimpleGrid, UnorderedList } from '@chakra-ui/react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Styles from "./Navbar.module.css"
 
 const SkinContainer = () => {
     return (
         <div>
-            <SimpleGrid columns={5} spacing={10} mt={1} border="1px solid #D3D3D3" p={3} zIndex={5} bg={"#FFF"} ml={"-10%"} w={"90%"}>
+            <SimpleGrid columns={5} spacing={10} mt={1} border="1px solid #D3D3D3" p={3} zIndex={2} bg={"#FFF"} ml={"-8%"} w={"90%"}>
                 <Box>
                     <UnorderedList styleType={"none"} fontSize="14px" color={"gray"} lineHeight="25px">
-                        <ListItem className={Styles.container_list} fontWeight="bold" >Moisturizers</ListItem>
+                        <Link to={"/skin"}><ListItem className={Styles.container_list} fontWeight="bold" >Moisturizers</ListItem></Link>
                         <ListItem className={Styles.container_list}>Cream</ListItem>
                         <ListItem className={Styles.container_list}>Night Cream</ListItem>
                         <ListItem className={Styles.container_list}>Face Oils</ListItem>

@@ -45,7 +45,7 @@ const SignUp = () => {
             marginTop="2rem"
             marginBottom="2rem"
           />
-          <Link to="/login">
+          <Link to="/details">
             <Text
               borderRadius="4px"
               background="#fc2779"
@@ -57,7 +57,7 @@ const SignUp = () => {
               color="white"
               marginBottom="16px"
             >
-              Enter Mobile Number or Email
+              Register with Email
             </Text>
           </Link>
           <Flex
