@@ -1,3 +1,4 @@
+
 import {
   Box,
   Center,
@@ -609,3 +610,4 @@ const Home = () => {
 };
 
 export default Home;
+
