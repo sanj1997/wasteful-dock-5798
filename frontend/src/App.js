@@ -13,10 +13,6 @@ function App() {
   return (
     <div>
       <AllRoutes />
-      {/* <UpperFooter />
-      <FooterList />
-      <UpperLowerFooter />
-      <LowerFooter /> */}
     </div>
   );
 }
