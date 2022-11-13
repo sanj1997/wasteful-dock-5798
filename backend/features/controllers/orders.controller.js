@@ -1,38 +1,34 @@
-const CartModel = require("../models/cart.model");
 const OrderModel = require("../models/order.model");
+const CartModel=require("../models/carts.model")
 
-const createOrder=async(id)=>{
-    let response;
-    try{
-      const isPresent=await OrderModel.findOne({userId:id})
-      if(isPresent)
-      {
-        response={message:"Order already exists, please continue"}
-      }
-      else
-      {
-        const newOrder=await OrderModel.create({userId:id})
-        response={message:"Successful"}
-      }
-    }catch(e){
-        response={message:e.message}
-    }
-    return response
-}
+
 
 const addToOrders=async(uid)=>{
     let response;
     try{
          const userCart=await CartModel.findOne({userId:uid}).populate("product")
-        //  let data=[]
-         for(let i=0;i<userCart.products.length;i++)
+         const isPresent=await OrderModel.findOne({userId:uid})
+         if(isPresent)
          {
-            userCart.products[i].date = getDate()
-            const updateUserOrders=await OrderModel.updateOne({userId:uid},{$push:{products:userCart.products[i]}})
-            // data.push(userCart.products[i])
+               // for(let i=0;i<userCart.length;i++)
+               // {
+                  // userCart[i]["date"]=getDate()
+                  const deleteOrders=await OrderModel.deleteOne({userId:uid})
+                  const updateOrders=await OrderModel.create({userId:uid,products:[...isPresent.products,userCart]})
+                  
+               // }
+               response={message:"Orders updated successfully"}
+         }else
+         {
+            for(let i=0;i<userCart.length;i++)
+            {
+               userCart[i]["date"]=getDate()
+               console.log(userCart[i].date,"date")
+            }
+            const createOrder=await OrderModel.create({userId:uid,products:userCart})
+            response={message:"Successful"}
          }
-        //  const updateUserOrders=await OrderModel.updateOne({userId:uid},{$push})
-        response={message:"Successful"}
+        
     }catch(e){
        response={message:e.message}
     }
@@ -57,4 +53,4 @@ const getDate=()=>{
     let currentDate = `${day}-${month}-${year}`;
     return currentDate
 }
-module.exports={createOrder, addToOrders, getOrders}
+module.exports={ addToOrders, getOrders}

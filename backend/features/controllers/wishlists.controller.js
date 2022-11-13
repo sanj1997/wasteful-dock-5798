@@ -5,14 +5,15 @@ const addToWishlist=async(mainToken,productID)=>{
     let response;
     try{
         const userData=jwt.verify(mainToken,process.env.JWT_MAIN_SECRET)
-        const isPresent=await WishlistModel.findOne({"products":{productId:productID},userId:userData.id})
+        const isPresent=await WishlistModel.findOne({userId:userData.id,product:productID})
         if(isPresent)
         {
             response={message:"Product already exists in wishlist"}
         }
         else
         {
-            const updateWishlist=await WishlistModel.updateOne({userId:userData.id},{$push:{products:productID}})
+            console.log(productID,"from user")
+            const updateWishlist=await WishlistModel.create({userId:userData.id,product:productID})
             response={message:"Successful"}
         }
     }catch(e){
@@ -20,7 +21,7 @@ const addToWishlist=async(mainToken,productID)=>{
     }
     return response
 }
-const getWishlist=async(id,mainToken)=>{
+const getWishlist=async(id)=>{
         let response;
         try{
            const userWishlist=await WishlistModel.findOne({userId:id}).populate("product")
@@ -35,7 +36,7 @@ const deleteFromWishlist=async(id,mainToken)=>{
     let response;
     try{
         const userData=jwt.verify(mainToken,process.env.JWT_MAIN_SECRET)
-        const updateWishlist=await WishlistModel.updateOne({userId:userData.id},{$pull:{products:{productId:id}}})
+        const updateWishlist=await WishlistModel.deleteOne({userId:userData.id,product:id})
         response={message:"Successful"}
     }catch(e){
         response={message:e.message}

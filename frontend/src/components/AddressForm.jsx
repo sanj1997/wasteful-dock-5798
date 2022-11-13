@@ -12,11 +12,10 @@ import {
     Text,
     Textarea,
 } from "@chakra-ui/react";
+import instance from '../middleware/auth.middleware';
+import { Link } from 'react-router-dom';
 
 const AddressForm = ({ onClose }) => {
-
-
-
     return (
         <Flex align="center" justify="center" mb={5}>
             <Box rounded="md" w="90%" pb={5}>
@@ -30,9 +29,10 @@ const AddressForm = ({ onClose }) => {
                         phone: "",
                         email: ""
                     }}
-                    onSubmit={(values) => {
+                    onSubmit={async(values) => {
                         //    ############## form submit logic here ########## 
-                        console.log(values)
+                       const res=await instance.post("/auth/address",values)
+                       console.log(res.message)
                     }}
                 >
                     {({ handleSubmit, errors, touched }) => (
@@ -50,6 +50,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            // setPin(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -76,6 +77,7 @@ const AddressForm = ({ onClose }) => {
                                         color="black"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            // setHouse(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -99,6 +101,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            // setRoad(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -126,6 +129,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            // setName(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -148,6 +152,7 @@ const AddressForm = ({ onClose }) => {
                                         color="black"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            // setPhone(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -174,6 +179,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            // setEmail(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -184,9 +190,9 @@ const AddressForm = ({ onClose }) => {
 
                                     <FormErrorMessage>{errors.name}</FormErrorMessage>
                                 </FormControl>
-                                <Button onClick={onClose} position={"fixed"} bottom="20px" h="48px" _hover={{ bg: "#E80071" }} type="submit" bg="#E80071" color={"white"} width="80%">
+                                <Link to={"/payment"}><Button onClick={onClose} position={"fixed"} bottom="20px" h="48px" _hover={{ bg: "#E80071" }} type="submit" bg="#E80071" color={"white"} width="80%">
                                     Ship to this address
-                                </Button>
+                                </Button></Link>
                             </VStack>
                         </form>
                     )}

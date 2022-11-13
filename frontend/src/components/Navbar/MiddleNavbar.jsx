@@ -1,11 +1,20 @@
 import { Search2Icon } from '@chakra-ui/icons'
-import { Box, Button, Center, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Center, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
 import React from 'react'
 import logo from "../../assets/pngs/Beautiva_logo.png"
 import { AiFillShopping } from "react-icons/ai"
 import Styles from "./Navbar.module.css"
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import CartModal from '../CartModal'
+import { signOutUser } from '../../store/auth/auth.action'
 
 const MiddleNavbar = () => {
+    const {loading,Mtoken,userName}=useSelector((store)=>store.auth)
+    const dispatch=useDispatch()
+    const handleLogout=()=>{
+        dispatch(signOutUser())
+    }
     return (
         <Box height={"70px"} borderBottom="1px solid #D3D3D3">
             <Flex w={"85%"} m="auto" gap={8} align="center" h="full">
@@ -15,7 +24,7 @@ const MiddleNavbar = () => {
                     <Text className={Styles.category}>Brands</Text>
                     <Text className={Styles.category}>Luxe</Text>
                     <Text className={Styles.category}>Beautiva Fashion</Text>
-                    <Text className={Styles.category}>Beauty Advice</Text>
+                    {/* <Text className={Styles.category}>Beauty Advice</Text> */}
                 </Flex>
                 <InputGroup w={"25%"}>
                     <InputLeftElement
@@ -25,10 +34,18 @@ const MiddleNavbar = () => {
                     <Input type='text' placeholder='Search for Products,Brands etc..' />
                 </InputGroup>
                 <HStack >
-                    <Button colorScheme={"pink"}>Signup</Button>
-                    <Button colorScheme={"pink"} variant="outline">Signin</Button>
+                
+                        {Mtoken?<Box>
+                            <HStack>
+                        <Avatar size='sm' src='https://bit.ly/broken-link' />
+                        <Text fontWeight={"bold"}>{userName}</Text>
+                        <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
+                    </HStack>
+                    
+                        </Box>:<Box><Link to={"/signUp"}><Button mr={"5px"} colorScheme={"pink"}>Signup</Button></Link>
+                    <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
                     <Box position="relative" >
-                        <AiFillShopping size={"25px"} />
+                        <CartModal />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>
                             <Center fontSize={"15px"} color={"white"}>4</Center>
                         </Box>

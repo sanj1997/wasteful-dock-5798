@@ -3,13 +3,9 @@ const {Schema,model}=require('mongoose');
 const WishlistSchema=new Schema(
     {
         userId:{type:Schema.Types.ObjectId,ref:'user'},
-        products:[
-            {
-                productId:{type:Schema.Types.ObjectId,ref:'product'}
-            }
-        ]
+        product:{type:Schema.Types.ObjectId,ref:'product'}
     },{timestamps:true}
 )
 
-const WishlistModel=model('cart',WishlistSchema);
+const WishlistModel=model('wishlist',WishlistSchema);
 module.exports=WishlistModel;

@@ -31,6 +31,7 @@
 
 .ListItem:hover .container {
     display: block;
+    z-index: 5;
   }
 
   .txt:hover{

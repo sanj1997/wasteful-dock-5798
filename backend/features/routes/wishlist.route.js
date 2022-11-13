@@ -1,9 +1,9 @@
 const express = require("express")
 const { addToWishlist, getWishlist, deleteFromWishlist } = require("../controllers/wishlists.controller")
 const router=express.Router()
-
+const authmiddleware=require("../middlewares/authmiddleware")
 //add to wishlist
-router.post("/",async(req,res)=>{
+router.post("/",authmiddleware,async(req,res)=>{
     const mainToken=req.headers.authorization
     const {id}=req.body
     const response=await addToWishlist(mainToken,id)
@@ -19,10 +19,9 @@ router.post("/",async(req,res)=>{
 })
 
 //get wishlist
-router.get("/",async(req,res)=>{
+router.get("/",authmiddleware,async(req,res)=>{
     const mainToken=req.headers.authorization
-    const {id}=req.body
-    const response=await getWishlist(id,mainToken)
+    const response=await getWishlist(req.body.userID)
     if(response.message==="Successful")
     {
         return res.send(response)
@@ -31,7 +30,7 @@ router.get("/",async(req,res)=>{
 })
 
 //delete from wishlist
-router.delete("/:id",async(req,res)=>{
+router.delete("/:id",authmiddleware,async(req,res)=>{
     const {id}=req.params
     const mainToken=req.headers.authorization
     const response=await deleteFromWishlist(id,mainToken)

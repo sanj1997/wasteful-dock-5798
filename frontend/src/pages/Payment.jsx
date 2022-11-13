@@ -1,33 +1,51 @@
-import { Box, Button, Center, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, Heading, Image, Text, Toast, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import CartDetails from '../components/CartDetails'
 import useRazorpay from "react-razorpay";
 import r_logo from "../assets/pngs/razorpay_logo.png"
+import instance from '../middleware/auth.middleware';
+import { useNavigate } from 'react-router-dom';
 
 const Payment = () => {
-
+    const navigate=useNavigate()
     const Razorpay = useRazorpay();
+    const total=JSON.parse(localStorage.getItem("total"))||0
+    const toast=useToast()
+    const handlePayment = async (params) => {
+        const order = await instance.post("/payments",{amount:params}); //  Create order on your backend
+        console.log(order.message)
+        const options = {
+            key: "rzp_test_AXYx1ocjhVC5q5", // Enter the Key ID generated from the Dashboard
+            amount: params, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            currency: "INR",
+            order_id: order.data.order, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
+            handler: function (response) {
+                toast({
+                    description:response.razorpay_payment_id,
+                    status:"success"
+                })
+                toast({
+                    description:response.razorpay_order_id,
+                    status:"success"
+                })
+                toast({
+                    description:response.razorpay_signature,
+                    status:"success"
+                })
+                // alert(response.razorpay_payment_id);
+                // alert(response.razorpay_order_id);
+                // alert(response.razorpay_signature);
+                setTimeout(() => {
+                    navigate("/")
+                }, 3000);
+            },
+        };
 
-    // const handlePayment = async (params) => {
-    //     const order = await createOrder(params); //  Create order on your backend
+        const rzp1 = new Razorpay(options)
 
-    //     const options = {
-    //         key: "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
-    //         amount: "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    //         currency: "INR",
-    //         order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
-    //         handler: function (response) {
-    //             alert(response.razorpay_payment_id);
-    //             alert(response.razorpay_order_id);
-    //             alert(response.razorpay_signature);
-    //         },
-    //     };
-
-    //     const rzp1 = new Razorpay(options)
-
-    //     rzp1.open();
-    // };
+        rzp1.open();
+    };
 
 
     return (
@@ -173,7 +191,7 @@ const Payment = () => {
                                     <Box>
                                         <Image w="150px" src={r_logo} />
                                         <Center>
-                                            <Button mt={5} colorScheme="pink">Pay Now</Button>
+                                            <Button onClick={()=>handlePayment(total)} mt={5} colorScheme="pink">Pay Now</Button>
                                         </Center>
 
                                     </Box>
