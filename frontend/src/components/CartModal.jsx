@@ -21,7 +21,7 @@ import { ArrowBackIcon, ArrowForwardIcon, InfoOutlineIcon } from '@chakra-ui/ico
 import {AiFillShopping} from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartData } from '../store/Cart/cart.action'
-import { Link } from 'react-router-dom'
+import { json, Link } from 'react-router-dom'
 const CartModal = () => {
     const {data}=useSelector((store)=>store.cart)
     const {userId}=useSelector((store)=>store.auth)
@@ -32,11 +32,12 @@ const CartModal = () => {
     const dispatch=useDispatch()
     console.log(data,"cart data")
     useEffect(()=>{
-       ref.current=dispatch(getCartData(userId))
+       dispatch(getCartData(userId))
     },[])
-    const total=data?.reduce((acc,el)=>{
-       return acc+(el.quantity*el.product.price)
-    },0)
+    localStorage.setItem("total",JSON.stringify(data?.reduce((acc,el)=>{
+        return acc+(el.quantity*el.product.price)
+     },0)))
+    const total=JSON.parse(localStorage.getItem("total"))||0
     return (
         <>
             {/* <Button ref={btnRef} onClick={onOpen}> */}

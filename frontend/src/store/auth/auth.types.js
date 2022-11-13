@@ -10,3 +10,4 @@ export const SIGN_OUT_ERROR="auth/signout/error"
 export const EMAIL_VERIFY_LOADING="auth/email/loading"
 export const EMAIL_VERIFY_SUCCESS="auth/email/success"
 export const EMAIL_VERIFY_ERROR="auth/email/error"
+

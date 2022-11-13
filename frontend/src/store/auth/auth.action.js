@@ -1,4 +1,4 @@
-import { SIGN_IN_ERROR, SIGN_IN_LOADING, SIGN_IN_SUCCESS, SIGN_UP_LOADING, SIGN_UP_SUCCESS, SIGN_UP_ERROR, EMAIL_VERIFY_LOADING, EMAIL_VERIFY_SUCCESS, EMAIL_VERIFY_ERROR } from "./auth.types"
+import { SIGN_IN_ERROR, SIGN_IN_LOADING, SIGN_IN_SUCCESS, SIGN_UP_LOADING, SIGN_UP_SUCCESS, SIGN_UP_ERROR, EMAIL_VERIFY_LOADING, EMAIL_VERIFY_SUCCESS, EMAIL_VERIFY_ERROR, SIGN_OUT_SUCCESS } from "./auth.types"
 import axios from "axios"
 
 
@@ -33,4 +33,8 @@ export const signInUser=(creds)=>async(dispatch)=>{
     }catch(e){
       dispatch({type:SIGN_IN_ERROR})
     }
+}
+
+export const signOutUser=()=>{
+   return {type:SIGN_OUT_SUCCESS}
 }

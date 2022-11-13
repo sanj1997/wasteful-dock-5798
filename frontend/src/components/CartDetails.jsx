@@ -14,7 +14,8 @@ import { InfoOutlineIcon } from '@chakra-ui/icons'
 import { useSelector } from 'react-redux'
 
 
-const CartDetails = ({total}) => {
+const CartDetails = () => {
+    const total=JSON.parse(localStorage.getItem("total"))||0
     const {data}=useSelector((store)=>store.cart)
     return (
         <Accordion allowToggle border={"1px solid #D3D3D3"} w={["35vw","30vw","28vw", "22vw"]} borderRadius={"10px"} mt={10}>

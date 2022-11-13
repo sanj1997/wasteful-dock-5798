@@ -5,11 +5,16 @@ import logo from "../../assets/pngs/Beautiva_logo.png"
 import { AiFillShopping } from "react-icons/ai"
 import Styles from "./Navbar.module.css"
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CartModal from '../CartModal'
+import { signOutUser } from '../../store/auth/auth.action'
 
 const MiddleNavbar = () => {
-    const {loading,Mtoken}=useSelector((store)=>store.auth)
+    const {loading,Mtoken,userName}=useSelector((store)=>store.auth)
+    const dispatch=useDispatch()
+    const handleLogout=()=>{
+        dispatch(signOutUser())
+    }
     return (
         <Box height={"70px"} borderBottom="1px solid #D3D3D3">
             <Flex w={"85%"} m="auto" gap={8} align="center" h="full">
@@ -33,11 +38,11 @@ const MiddleNavbar = () => {
                         {Mtoken?<Box>
                             <HStack>
                         <Avatar size='sm' src='https://bit.ly/broken-link' />
-                        <Text fontWeight={"bold"}>Gautam</Text>
-                        <Button colorScheme={"pink"}>Logout</Button>
+                        <Text fontWeight={"bold"}>{userName}</Text>
+                        <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
                     </HStack>
                     
-                        </Box>:<Box><Link to={"/signUp"}><Button colorScheme={"pink"}>Signup</Button></Link>
+                        </Box>:<Box><Link to={"/signUp"}><Button mr={"5px"} colorScheme={"pink"}>Signup</Button></Link>
                     <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
                     <Box position="relative" >
                         <CartModal />
