@@ -12,11 +12,22 @@ import {
     Text,
     Textarea,
 } from "@chakra-ui/react";
+const initialState={
+    address:{
+      
+    },
+    contact:{
 
+    }
+}
 const AddressForm = ({ onClose }) => {
-
-
-
+    const [pin,setPin]=useState("")
+    const [house,setHouse]=useState("")
+    const [road,setRoad]=useState("")
+    const [name,setName]=useState("")
+    const [phone,setPhone]=useState("")
+    const [email,setEmail]=useState("")
+    console.log(house)
     return (
         <Flex align="center" justify="center" mb={5}>
             <Box rounded="md" w="90%" pb={5}>
@@ -50,6 +61,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            setPin(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -76,6 +88,7 @@ const AddressForm = ({ onClose }) => {
                                         color="black"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            setHouse(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -99,6 +112,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            setRoad(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -126,6 +140,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            setName(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -148,6 +163,7 @@ const AddressForm = ({ onClose }) => {
                                         color="black"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            setPhone(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';
@@ -174,6 +190,7 @@ const AddressForm = ({ onClose }) => {
                                         bg="gray.100"
                                         border="1px solid black"
                                         validate={(value) => {
+                                            setEmail(value)
                                             let error;
                                             if (!value) {
                                                 error = 'This field is required';

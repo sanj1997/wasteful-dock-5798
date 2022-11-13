@@ -1,5 +1,5 @@
 import { Search2Icon } from '@chakra-ui/icons'
-import { Box, Button, Center, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Center, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
 import React from 'react'
 import logo from "../../assets/pngs/Beautiva_logo.png"
 import { AiFillShopping } from "react-icons/ai"
@@ -29,8 +29,16 @@ const MiddleNavbar = () => {
                     <Input type='text' placeholder='Search for Products,Brands etc..' />
                 </InputGroup>
                 <HStack >
-                    <Link to={"/signUp"}><Button colorScheme={"pink"}>Signup</Button></Link>
-                    <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link>
+                
+                        {Mtoken?<Box>
+                            <HStack>
+                        <Avatar size='sm' src='https://bit.ly/broken-link' />
+                        <Text fontWeight={"bold"}>Gautam</Text>
+                        <Button colorScheme={"pink"}>Logout</Button>
+                    </HStack>
+                    
+                        </Box>:<Box><Link to={"/signUp"}><Button colorScheme={"pink"}>Signup</Button></Link>
+                    <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
                     <Box position="relative" >
                         <CartModal />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>
