@@ -2,7 +2,8 @@ const express = require("express")
 const passport = require("../utils/google-oauth")
 const {createUserEmail,validateUser,revalidateUser, verifyUser, forgotPassword, resetPassword, reSendOtp} = require("../controllers/auth.controller")
 const router=express.Router()
-
+const authmiddleware=require("../middlewares/authmiddleware")
+const UserModel = require("../models/user.model")
 //sign up
 router.post("/signup",async(req,res)=>{
      const {firstName,lastName,userName,password,email}=req.body
@@ -133,4 +134,24 @@ router.get('/google/callback',
   });
 //logout
 
+router.post("/address",authmiddleware,async(req,res)=>{
+    console.log(req.body,"body")
+    try{
+        const updateUser=await UserModel.updateOne({_id:req.body.userID},{$set:{address:req.body}})
+        return res.send({message:"Successful"})
+    }catch(e){
+        return res.status(401).send({message:e.message})
+    }
+})
+router.get("/:id",authmiddleware,async(req,res)=>{
+    try{
+        const userDetails=await UserModel.findById({_id:req.body.userID})
+        delete userDetails.password
+        delete userDetails.email
+        return res.send({message:"Successful",data:userDetails})
+    }catch(e){
+        return res.status(401).send({message:e.message})
+    }
+
+})
 module.exports=router
