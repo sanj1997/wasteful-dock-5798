@@ -37,6 +37,7 @@ instance.interceptors.response.use(
                 "Authorization":rToken
             },
          })
+         console.log(res.data.asv)
          localStorage.setItem("asv",JSON.stringify(res.data.asv))
          return instance(previousRequest)
       }

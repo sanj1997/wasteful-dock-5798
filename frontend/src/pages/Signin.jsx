@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signInUser } from "../store/auth/auth.action";
-import { createcart } from "../store/Cart/cart.action";
+// import { createcart } from "../store/Cart/cart.action";
 
 const SignIn = () => {
   const {Mtoken, error}=useSelector((store)=>store.auth)
@@ -48,7 +48,7 @@ const SignIn = () => {
       description:"Login successful",
       status:"success"
      })
-     dispatch(createcart())
+    //  dispatch(createcart())
      setTimeout(()=>{
        navigate("/")
      },3000)

@@ -60,7 +60,7 @@ const CartModal = () => {
 
                     <DrawerBody>
                         <Box>
-                            {data.map((el)=>{
+                            {data?.map((el)=>{
                                 return <CartProductCard/>
                             })}
                         </Box>
