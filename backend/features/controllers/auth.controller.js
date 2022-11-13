@@ -108,7 +108,7 @@ const validateUser=async(email,password)=>{
            else
            {
                const mainToken=jwt.sign({id:user._id,role:user.role},`${process.env.JWT_MAIN_SECRET}`,{
-                expiresIn:"5 minute"
+                expiresIn:"5 days"
                })
                const refreshToken=jwt.sign({id:user._id,role:user.role},`${process.env.JWT_REFRESH_SECRET}`,{
                 expiresIn:"7 days"

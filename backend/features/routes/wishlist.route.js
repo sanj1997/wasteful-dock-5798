@@ -21,8 +21,7 @@ router.post("/",authmiddleware,async(req,res)=>{
 //get wishlist
 router.get("/",authmiddleware,async(req,res)=>{
     const mainToken=req.headers.authorization
-    const {id}=req.body
-    const response=await getWishlist(id,mainToken)
+    const response=await getWishlist(req.body.userID)
     if(response.message==="Successful")
     {
         return res.send(response)

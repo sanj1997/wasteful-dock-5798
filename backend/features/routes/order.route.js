@@ -1,23 +1,18 @@
 const express = require("express")
-const { createOrder, addToOrders, getOrders } = require("../controllers/orders.controller")
+const {  addToOrders, getOrders } = require("../controllers/orders.controller")
 const router=express.Router()
 const authmiddleware=require("../middlewares/authmiddleware")
-//create orders
-router.post("/create-order",authmiddleware,async(req,res)=>{
-    const {id}=req.body
-    const response=await createOrder(id)
-    if(response.message==="Order already exists, please continue"||response.message==="Successful")
+
+
+//add to orders
+router.post("/:id",authmiddleware,async(req,res)=>{
+    const {id}=req.params
+    const response=await addToOrders(id)
+    if(response.message==="Successful")
     {
         return res.send(response)
     }
-    return res.status(401).send(response)
-})
-
-//add to orders
-router.post("/",authmiddleware,async(req,res)=>{
-    const {id}=req.body
-    const response=await addToOrders(id)
-    if(response.message==="Successful")
+    else if(response.message="Orders updated successfully")
     {
         return res.send(response)
     }

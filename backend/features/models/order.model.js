@@ -27,10 +27,10 @@ const OrderSchema=new Schema(
         products:[
             {
                 product:{type:Object},
-                quantity:{type:Number,default:1},
+                quantity:{type:Number},
                 date:{type:String}
             }
-        ],
+        ]
         // Total:{type:Number,required:true},
         // status:{type:String,enum:['Pending','Successful'],default:'Pending'}
     },{timestamps:true}
