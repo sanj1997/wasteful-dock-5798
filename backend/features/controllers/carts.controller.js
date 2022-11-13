@@ -55,7 +55,8 @@ const updateCart = async (pid, mainToken, quantity) => {
 const getCart = async (id) => {
   let response;
   try {
-    const userCart = await CartModel.findOne({ userId: id }).populate("product")
+    const userCart = await CartModel.find({ userId: id }).populate("product")
+    console.log(userCart,"cert")
     response = { message: "Successful", data: userCart };
   } catch (e) {
     response = { message: e.message };
