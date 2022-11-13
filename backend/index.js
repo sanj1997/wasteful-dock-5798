@@ -23,7 +23,8 @@ app.use("/wishlist", wishlistRouter);
 app.use("/orders", orderRouter);
 app.use("/payments", paymentRouter);
 app.use("/cart",cartRouter)
-app.listen(8080, async () => {
+const PORT=process.env.PORT||8080;
+app.listen(PORT, async () => {
   await dbConnect();
-  console.log("server started on port http://localhost:8080");
+  console.log(`server started on port ${PORT}`);
 });

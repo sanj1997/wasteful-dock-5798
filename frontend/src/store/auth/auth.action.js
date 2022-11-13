@@ -5,7 +5,7 @@ import axios from "axios"
 export const signUpUser=(creds)=>async(dispatch)=>{
      dispatch({type:SIGN_UP_LOADING})
      try{
-        const res=await axios.post("http://localhost:8080/auth/signup",creds)
+        const res=await axios.post("https://beautiva-backend-production.up.railway.app/auth/signup",creds)
         console.log(res.data.message)
         dispatch({type:SIGN_UP_SUCCESS,payload:res.data.message})
      }catch(e){
@@ -16,7 +16,7 @@ export const signUpUser=(creds)=>async(dispatch)=>{
 export const verifyUser=(otp,email)=>async(dispatch)=>{
     dispatch({type:EMAIL_VERIFY_LOADING})
     try{
-       const res=await axios.post("http://localhost:8080/auth/verify-email",{otp,email})
+       const res=await axios.post("https://beautiva-backend-production.up.railway.app/auth/verify-email",{otp,email})
        console.log(res.data.message)
        dispatch({type:EMAIL_VERIFY_SUCCESS})
     }catch(e){
@@ -28,7 +28,7 @@ export const signInUser=(creds)=>async(dispatch)=>{
     console.log(creds)
     dispatch({type:SIGN_IN_LOADING})
     try{
-      const res=await axios.post("http://localhost:8080/auth/login",creds)
+      const res=await axios.post("https://beautiva-backend-production.up.railway.app/auth/login",creds)
       dispatch({type:SIGN_IN_SUCCESS,payload:res.data})
     }catch(e){
       dispatch({type:SIGN_IN_ERROR})
