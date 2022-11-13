@@ -3,11 +3,11 @@ import { PRODUCT_GET_BY_ID_LOADING, PRODUCT_GET_BY_ID_ERROR, PRODUCT_GET_BY_ID_S
 import axios from 'axios';
 
 //get product
-export const getProduct = () => async(dispatch) =>{
+export const getProduct = (page, order) => async(dispatch) =>{
 	dispatch({type: PRODUCT_GET_LOADING});
 
 	try{
-		let res = await axios.get("http://localhost:8080/products/all-products")
+		let res = await axios.get(`http://localhost:8080/products/all-products?page=${page}&order=${order}`)
 
 		dispatch({type: PRODUCT_GET_SUCCESS, payload: res.data});
 	}catch(e){

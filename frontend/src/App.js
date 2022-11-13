@@ -8,14 +8,15 @@ import Login from "./pages/Login";
 import { Box } from "@chakra-ui/react";
 import Otpverify from "./pages/Otpverify";
 import AddUser from "./pages/AddUser";
-import SignIn from "./pages/SignIn";
+import SignIn from "./pages/Signin";
 import AllRoutes from "./routes/AllRoutes";
 
 function App() {
   return (
     <Box>
+      <Navbar />
       <AllRoutes />
-      <Home />
+      {/* <Home /> */}
     </Box>
   );
 }

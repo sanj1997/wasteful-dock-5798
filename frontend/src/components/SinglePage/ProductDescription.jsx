@@ -15,7 +15,7 @@ const ProductDescription = ({description}) => {
 				<Text cursor={'pointer'} color={togglebar ==="How To Use" ? "rgb(253,38,121)" : ""} fontWeight={500} fontSize='18px' onClick={()=> setTogglebar("How To Use")}>How To Use</Text>
 			</Flex>
 			<Box pt={4} pl={4} pr={4}>
-				<Text pb={4}>{description}</Text>
+				<Text p={4} fontSize='17px'>{description}</Text>
 				<Flex cursor={'pointer'} gap={2} alignItems={'center'} justifyContent='center' color='rgb(253,38,121)' p={3} borderBlockStart='1px solid rgb(220,225,229)'>
 					<Heading cursor={'pointer'} size={'sm'}>Read More</Heading>
 					<IoIosArrowDown />

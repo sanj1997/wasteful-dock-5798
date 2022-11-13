@@ -7,6 +7,10 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { BsBag, BsCart3 } from 'react-icons/bs';
 import { GrFavorite } from 'react-icons/gr';
 import { AiFillCreditCard, AiOutlinePoweroff } from 'react-icons/ai';
+import WishlistProducts from '../components/wishlist/WishlistProduct';
+import { useSelector } from 'react-redux';
+import OrderProducts from '../components/wishlist/OrderProduct';
+import { useEffect } from 'react';
 
 const userInfo= {
 	name: "Dinesh Karde",
@@ -17,7 +21,15 @@ const userInfo= {
 
 
 const Whishlist = () => {
-	const [cartItem, setCartItem] = useState([]);
+	const [cartItem, setCartItem] = useState([{name: "Dk", product: "ok"}]);
+	const dataWishlist = useSelector((store) => store.getWishlistReducer.data);
+	const dataOrder = useSelector((store) => store.getWishlistReducer.data);
+
+	console.log(dataWishlist.product.data)
+
+	useEffect(()=>{
+
+	}, [dataWishlist])
 
     return (
 			<Box bg={'rgb(242,243,242)'}>
@@ -90,7 +102,7 @@ const Whishlist = () => {
 										{/* My orders */}
 
 										<TabPanel>
-											{cartItem.length === 0 ? (
+											{dataOrder.product.data?.length === 0 ? (
 												<Box  width='100%'>
 													<Flex bg='white' gap={2} alignItems='center' p={3}>
 														<FiArrowLeft fontSize={'27px'} cursor='pointer'/>
@@ -103,19 +115,22 @@ const Whishlist = () => {
 													</Flex>
 												</Box>
 											) : (
-												<Box>
-													<Box pb={5} borderBlockEnd="1px solid rgb(214,217,220)">
-														<Heading p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>(1)</span></Heading>
-													</Box>
-													<Text textAlign={'center'}>No More Product to show</Text>
+												<Box  width='100%'>
+													<Flex bg='white' gap={2} alignItems='center' p={3}>
+														<FiArrowLeft fontSize={'27px'} cursor='pointer'/>
+														<Heading fontSize={'20px'}>My Orders</Heading>
+													</Flex>
+													<OrderProducts />
+													<Text bg='white' gap={2} alignItems='center' p={3} mt={10} textAlign={'center'}>No More Product to show</Text>
 												</Box>
+													
 												)}
 										</TabPanel>
 
 										{/* my Whishlist */}
 
 										<TabPanel bg='white'>
-											{cartItem.length === 0 ? (
+											{dataWishlist.product.data?.length === 0 ? (
 												<Flex direction={'column'} justifyContent='center' alignItems='center' minHeight={'75vh'}>
 													<Heading fontWeight={'500'} fontSize='25px'>NO ITEMS IN THE WISHLIST</Heading>
 													<Text mt={10}>Add now, Buy Later.</Text>
@@ -127,7 +142,8 @@ const Whishlist = () => {
 													<Box pb={5} borderBlockEnd="1px solid rgb(214,217,220)">
 														<Heading p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>(1)</span></Heading>
 													</Box>
-													<Text textAlign={'center'}>No More Product to show</Text>
+													<WishlistProducts />
+													<Text mt={10} textAlign={'center'}>No More Product to show</Text>
 												</Box>
 												)}
 										</TabPanel>
