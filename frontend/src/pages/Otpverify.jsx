@@ -113,7 +113,7 @@ const Otpverify = () => {
           1234567890
         </Text> */}
 
-        <Flex marginBottom="2.8rem">
+        <Box mb={3}>
         <Input
             variant="flushed"
             placeholder="Enter Email"
@@ -130,7 +130,7 @@ const Otpverify = () => {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
-          <Text
+          {/* <Text
             backgroundColor="#fff"
             border="0"
             color="#fc2779"
@@ -141,8 +141,8 @@ const Otpverify = () => {
             cursor="pointer"
           >
             RESEND OTP
-          </Text>
-        </Flex>
+          </Text> */}
+        </Box>
 
         <Button
           backgroundColor="#fc2779"

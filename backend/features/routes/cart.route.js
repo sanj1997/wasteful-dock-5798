@@ -29,7 +29,7 @@ router.delete("/:id", authmiddleware, async (req, res) => {
   
   const mainToken = req.headers.authorization;
   const response = await removeFromCart(id, mainToken);
-  if (response.message === "Successful") {
+  if (response.message === "Item removed successfully") {
     return res.send(response);
   }
   return res.status(401).send(response);
@@ -41,7 +41,7 @@ router.patch("/", authmiddleware, async (req, res) => {
   console.log(id,quantity)
   const mainToken = req.headers.authorization;
   const response = await updateCart(id, mainToken, quantity);
-  if (response.message === "Successful") {
+  if (response.message === "Cart updated successfully") {
     return res.send(response);
   }
   return res.status(401).send(response);
