@@ -12,3 +12,8 @@ export const WISHLIST_PRODUCT_GET_BY_ID_SUCCESS = "wishlist/get_by_id/success";
 export const WISHLIST_PRODUCT_DELETE_LOADING = "wishlist/delete/loading";
 export const WISHLIST_PRODUCT_DELETE_ERROR = "wishlist/delete/error";
 export const WISHLIST_PRODUCT_DELETE_SUCCESS = "wishlist/delete/success";
+
+//add to wishlist
+export const WISHLIST_PRODUCT_ADD_LOADING = "wishlist/add/loading";
+export const WISHLIST_PRODUCT_ADD_ERROR = "wishlist/add/error";
+export const WISHLIST_PRODUCT_ADD_SUCCESS = "wishlist/add/success";

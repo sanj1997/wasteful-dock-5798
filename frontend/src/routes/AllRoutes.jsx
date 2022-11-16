@@ -25,7 +25,7 @@ const AllRoutes = () => {
       <Route path='/orderconfirm' element={<OrderConfirm />} />
       <Route path='/payment' element={<Payment />} />
       <Route path='/skin' element={<Skin/>}/>
-      <Route path='/whishlist' element={<Whishlist />}/>
+      <Route path='/wishlist' element={<Whishlist />}/>
       <Route path='/skin/:id' element={<PrivateRoutes><SingalProduct /></PrivateRoutes>}/>
       <Route path='/signIn' element={<SignIn />}/>
       <Route path='/signUp' element={<SignUp />}/>

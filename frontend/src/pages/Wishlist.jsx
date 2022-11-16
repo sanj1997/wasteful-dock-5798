@@ -8,9 +8,10 @@ import { BsBag, BsCart3 } from 'react-icons/bs';
 import { GrFavorite } from 'react-icons/gr';
 import { AiFillCreditCard, AiOutlinePoweroff } from 'react-icons/ai';
 import WishlistProducts from '../components/wishlist/WishlistProduct';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderProducts from '../components/wishlist/OrderProduct';
 import { useEffect } from 'react';
+import { getWishlistProduct } from '../store/wishlist/wishlist.action';
 
 const userInfo= {
 	name: "Dinesh Karde",
@@ -22,14 +23,13 @@ const userInfo= {
 
 const Whishlist = () => {
 	const [cartItem, setCartItem] = useState([{name: "Dk", product: "ok"}]);
-	const dataWishlist = useSelector((store) => store.getWishlistReducer.data);
-	const dataOrder = useSelector((store) => store.getWishlistReducer.data);
-
-	console.log(dataWishlist.product.data)
-
+	const dataWishlist = useSelector((store) => store.getWishlistReducer.product);
+	const dataOrder = useSelector((store) => store.getOrderReducer.data);
+	const dispatch=useDispatch()
+    console.log(dataWishlist)
 	useEffect(()=>{
-
-	}, [dataWishlist])
+        dispatch(getWishlistProduct())
+	}, [])
 
     return (
 			<Box bg={'rgb(242,243,242)'}>
@@ -130,7 +130,7 @@ const Whishlist = () => {
 										{/* my Whishlist */}
 
 										<TabPanel bg='white'>
-											{dataWishlist.product.data?.length === 0 ? (
+											{!dataWishlist.length>0? (
 												<Flex direction={'column'} justifyContent='center' alignItems='center' minHeight={'75vh'}>
 													<Heading fontWeight={'500'} fontSize='25px'>NO ITEMS IN THE WISHLIST</Heading>
 													<Text mt={10}>Add now, Buy Later.</Text>

@@ -25,27 +25,15 @@ import { json, Link } from 'react-router-dom'
 const CartModal = () => {
     const {total,data}=useSelector((store)=>store.cart)
     const {userId}=useSelector((store)=>store.auth)
-
-    // const [total,setTotal]=useState(0)
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const ref=useRef(null)
     const btnRef = React.useRef()
     const dispatch=useDispatch()
-    console.log(data,"cart data")
     useEffect(()=>{
        dispatch(getCartData(userId))
     },[])
-
-    // localStorage.setItem("total",JSON.stringify(data?.reduce((acc,el)=>{
-    //     return acc+(el.quantity*el.product.price)
-    //  },0)))
-    // const total=JSON.parse(localStorage.getItem("total"))||0
-
     return (
         <>
-            {/* <Button ref={btnRef} onClick={onOpen}> */}
               <AiFillShopping size={"25px"} ref={btnRef} onClick={onOpen}/>
-            {/* </Button> */}
             <Drawer
                 isOpen={isOpen}
                 placement='right'

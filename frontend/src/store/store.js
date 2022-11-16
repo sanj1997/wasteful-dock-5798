@@ -12,8 +12,6 @@ const rootReducer = combineReducers({
 	getProductByIdReducer,
 	auth:authReducer,
 	cart:cartReducer,
-	deleteWishlistReducer,
-	getWishlistByIdReducer,
 	getWishlistReducer,
 	getOrderReducer,
 	getOrderByIdReducer,

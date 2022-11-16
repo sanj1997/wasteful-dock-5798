@@ -1,19 +1,25 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { border, Box, Center, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { border, Box, Center, Flex, Grid, Heading, Image, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import AddressCard from '../components/AddressCard'
+import Addresscard from '../components/AddressCard'
 import AddressModal from '../components/AddressModal'
 import CartDetails from '../components/CartDetails'
+import { getUserdetails } from '../store/auth/auth.action'
 import { getCartData } from '../store/Cart/cart.action'
 
 const Address = () => {
     const {total,data}=useSelector((store)=>store.cart)
     const {userId}=useSelector((store)=>store.auth)
+    const {address}=useSelector((store)=>store.auth)
     const dispatch=useDispatch()
     useEffect(()=>{
          dispatch(getCartData(userId))
     },[])
-   
+    useEffect(()=>{
+        dispatch(getUserdetails(userId))
+    },[])
     return (
         <Box w={"80%"} m="auto">
             <Flex justify={"space-between"} align="center">
@@ -36,7 +42,11 @@ const Address = () => {
                     </Flex>
                 </Box>
             </Flex>
-
+            <Grid gridTemplateColumns="repeat(3,1fr)" gap={5} mb="2rem" mt={"50px"} >
+                {address?.map((el)=>{
+                    return <AddressCard el={el}/>
+                })}
+            </Grid>
         </Box>
     )
 }

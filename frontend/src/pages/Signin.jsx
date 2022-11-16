@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signInUser } from "../store/auth/auth.action";
-// import { createcart } from "../store/Cart/cart.action";
+
 
 const SignIn = () => {
   const {Mtoken, error}=useSelector((store)=>store.auth)
@@ -38,32 +38,42 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signInUser(creds))
+    dispatch(signInUser(creds)).then((s)=>{
+      toast({
+        description:"Login successful",
+        status:"success"
+       })
+       setTimeout(()=>{
+         navigate("/")
+       },3000)
+    }).catch((e)=>{
+      if(e.message==="Network Error")
+      {
+        toast({
+          description: "Oops! Something went wrong",
+          status: "error",
+        });
+      }
+      else if(e.response.data.message==="Invalid credentials")
+        {
+          toast({
+            description: "Invalid credentials",
+            status: "error",
+          });
+        }
+    })
   };
   
- useEffect(()=>{
-   if(Mtoken)
-   {
-     toast({
-      description:"Login successful",
-      status:"success"
-     })
-    //  dispatch(createcart())
-     setTimeout(()=>{
-       navigate("/")
-     },3000)
-   }
- },[Mtoken])
-
   return (
     <Box
       border="1px solid grey"
       width="23%"
       margin="auto"
-      marginTop="4rem"
+      marginTop="2rem"
       height="full"
-      borderTopRadius="1rem"
+      borderRadius="1rem"
       padding=".8rem"
+      mb="2rem"
     >
       <Flex mt=".7rem" mb="1rem" ml=".4rem" mr=".4rem">
         <Link to="#">
@@ -77,19 +87,7 @@ const SignIn = () => {
         <Spacer />
       </Flex>
       <Divider />
-      {/* <Text
-        backgroundColor="#f3f3f3"
-        border="1px solid #ebebeb"
-        borderRadius="2px"
-        color="#3f414d"
-        padding=".4rem"
-        mt=".4rem"
-        marginBottom="16px"
-        fontSize="14px"
-        textAlign="center"
-      >
-        1234567890
-      </Text> */}
+      <form onSubmit={handleSubmit}>
       <FormControl mt="2rem" >
         <Input
           variant="flushed"
@@ -117,7 +115,7 @@ const SignIn = () => {
           name="password"
           onChange={handleChange}
         />
-        <Link><Button
+        <Button
           backgroundColor="#fc2779"
           borderRadius="2px"
           color="white"
@@ -125,13 +123,14 @@ const SignIn = () => {
           textAlign="center"
           fontWeight="600"
           width="full"
+          type="submit"
           marginBottom="11.8rem"
           _hover={{ backgroundColor: "#fc2779" }}
-          onClick={handleSubmit}
         >
           SIGN IN
-        </Button></Link>
+        </Button>
       </FormControl>
+      </form>
     </Box>
   );
 };

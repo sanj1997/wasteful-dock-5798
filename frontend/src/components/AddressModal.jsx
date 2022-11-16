@@ -14,6 +14,7 @@ import {
     Box,
     Center,
     Text,
+    Grid,
 } from '@chakra-ui/react'
 import React from 'react'
 import AddressForm from './AddressForm'
@@ -33,6 +34,7 @@ const AddressModal = () => {
                     </Center>
                     <Text fontWeight={"600"}>Add New Address</Text>
                 </Box>
+               
             </Flex>
             <Drawer
                 isOpen={isOpen}
