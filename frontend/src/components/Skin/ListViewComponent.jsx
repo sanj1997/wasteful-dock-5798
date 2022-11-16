@@ -22,7 +22,7 @@ const ListViewComponent = ({listArr, name, checkBoxStatus, getFilterData}) => {
 			{listArr.map((l, i)=>(
 				<Flex key={i} p={2} justifyContent='space-between' alignItems={'center'} onClick={()=> getFilterData(name, l)}>
 					<Text fontSize={'17px'} cursor={'pointer'}>{l}</Text>
-					<Flex alignItems={'center'} justifyContent='center' width={'20px'} height='20px' border={checkBoxStatus[name] === l ? "" :'1px solid gray'} borderRadius={'50%'} bg={checkBoxStatus[name] === l ? 'rgb(253,39,120)': "gray.200"}>
+					<Flex alignItems={'center'} justifyContent='center' width={'20px'} height='20px' border={checkBoxStatus[name] === l ? "" :'1px solid rgb(215,218,223)'} borderRadius="3px" bg={checkBoxStatus[name] === l ? 'rgb(253,39,120)': "gray.200"}>
 						{checkBoxStatus[name] === l ? (<BsCheck fontSize={'20px'} color='white' />) : ""}
 					</Flex>
 				</Flex>
