@@ -1,4 +1,5 @@
 const express = require("express")
+const jwt=require("jsonwebtoken")
 const passport = require("../utils/google-oauth")
 const {createUserEmail,validateUser,revalidateUser, verifyUser, forgotPassword, resetPassword, reSendOtp} = require("../controllers/auth.controller")
 const router=express.Router()
@@ -137,7 +138,18 @@ router.get('/google/callback',
 router.post("/address",authmiddleware,async(req,res)=>{
     console.log(req.body,"body")
     try{
-        const updateUser=await UserModel.updateOne({_id:req.body.userID},{$set:{address:req.body}})
+        let id=req.body.userID
+        delete req.body.userID
+        // const checkUser=await UserModel.findOne({_id:id})
+        // if(checkUser.address.length==0)
+        // {
+        //     const createaddress=await UserModel.updateOne({_id:id},{$set:{address:req.body}})
+        // }
+        // else
+        // {
+            const updateUser=await UserModel.updateOne({_id:req.body.userID},{$push:{address:req.body}})
+        // }
+        
         return res.send({message:"Successful"})
     }catch(e){
         return res.status(401).send({message:e.message})
@@ -153,5 +165,18 @@ router.get("/:id",authmiddleware,async(req,res)=>{
         return res.status(401).send({message:e.message})
     }
 
+})
+router.get("/all-users",async(req,res)=>{
+    const mainToken=req.headers.authorization
+    try{
+      const data=jwt.decode(mainToken,`${process.env.JWT_MAIN_SECRET}`)
+      if(data.role==="Admin")
+      {
+        const userData=await UserModel.find()
+        return res.send({message:"Successful",data:userData})
+      }
+    }catch(e){
+    return res.status(401).send({message:"Failure"})
+    }
 })
 module.exports=router

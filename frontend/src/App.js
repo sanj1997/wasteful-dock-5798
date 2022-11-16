@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+
 import AdminDashboard from "./pages/AdminDashboard";
 import CartModal from "./components/CartModal";
 import Address from "./pages/Address";
@@ -10,10 +10,12 @@ import Otpverify from "./pages/Otpverify";
 import AddUser from "./pages/AddUser";
 import SignIn from "./pages/SignIn";
 import AllRoutes from "./routes/AllRoutes";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <Box>
+      <Navbar />
       <AllRoutes />
     </Box>
   );

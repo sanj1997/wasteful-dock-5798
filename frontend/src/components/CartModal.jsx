@@ -23,8 +23,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCartData } from '../store/Cart/cart.action'
 import { json, Link } from 'react-router-dom'
 const CartModal = () => {
-    const {data}=useSelector((store)=>store.cart)
+    const {total,data}=useSelector((store)=>store.cart)
     const {userId}=useSelector((store)=>store.auth)
+
     // const [total,setTotal]=useState(0)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const ref=useRef(null)
@@ -34,10 +35,12 @@ const CartModal = () => {
     useEffect(()=>{
        dispatch(getCartData(userId))
     },[])
-    localStorage.setItem("total",JSON.stringify(data?.reduce((acc,el)=>{
-        return acc+(el.quantity*el.product.price)
-     },0)))
-    const total=JSON.parse(localStorage.getItem("total"))||0
+
+    // localStorage.setItem("total",JSON.stringify(data?.reduce((acc,el)=>{
+    //     return acc+(el.quantity*el.product.price)
+    //  },0)))
+    // const total=JSON.parse(localStorage.getItem("total"))||0
+
     return (
         <>
             {/* <Button ref={btnRef} onClick={onOpen}> */}

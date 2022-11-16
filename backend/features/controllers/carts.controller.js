@@ -29,7 +29,7 @@ const removeFromCart = async (pId, mainToken) => {
   try {
     const userData = jwt.verify(mainToken, process.env.JWT_MAIN_SECRET);
     const updateCart = await CartModel.deleteOne({userId:userData.id,product:pId});
-    response = { message: "Successful" };
+    response = { message: "Item removed successfully" };
   } catch (e) {
     response = { message: e.message };
   }
@@ -45,7 +45,7 @@ const updateCart = async (pid, mainToken, quantity) => {
     console.log(pr,"existing")
     const updateCart = await CartModel.updateOne({userId: userData.id,product:pid},{$set:{quantity:quantity}});
     console.log(updateCart)
-    response = { message: "Successful"};
+    response = { message: "Cart updated successfully"};
   } catch (e) {
     response = { message: e.message };
   }

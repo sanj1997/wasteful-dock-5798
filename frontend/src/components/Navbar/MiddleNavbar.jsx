@@ -1,6 +1,6 @@
 import { Search2Icon } from '@chakra-ui/icons'
 import { Avatar, Box, Button, Center, Flex, HStack, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from "../../assets/pngs/Beautiva_logo.png"
 import { AiFillShopping } from "react-icons/ai"
 import Styles from "./Navbar.module.css"
@@ -8,11 +8,19 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import CartModal from '../CartModal'
 import { signOutUser } from '../../store/auth/auth.action'
+import { getCartData } from '../../store/Cart/cart.action'
 
 const MiddleNavbar = () => {
-    const {loading,Mtoken,userName}=useSelector((store)=>store.auth)
-    const dispatch=useDispatch()
-    const handleLogout=()=>{
+    const { loading, Mtoken, userName, role, userId } = useSelector((store) => store.auth)
+    const { data } = useSelector((store) => store.cart)
+    console.log(role)
+
+    useEffect(() => {
+        dispatch(getCartData(userId))
+    }, [])
+
+    const dispatch = useDispatch()
+    const handleLogout = () => {
         dispatch(signOutUser())
     }
     return (
@@ -34,20 +42,22 @@ const MiddleNavbar = () => {
                     <Input type='text' placeholder='Search for Products,Brands etc..' />
                 </InputGroup>
                 <HStack >
-                
-                        {Mtoken?<Box>
-                            <HStack>
-                        <Avatar size='sm' src='https://bit.ly/broken-link' />
-                        <Text fontWeight={"bold"}>{userName}</Text>
-                        <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
-                    </HStack>
-                    
-                        </Box>:<Box><Link to={"/signUp"}><Button mr={"5px"} colorScheme={"pink"}>Signup</Button></Link>
-                    <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
+
+                    {Mtoken ? <Box>
+                        <HStack>
+                            <a target={"_blank"} href="https://admin-beautiva.netlify.app/"><Avatar size='sm' src='https://bit.ly/broken-link' /></a>
+
+
+                            <Text fontWeight={"bold"}>{userName}</Text>
+                            <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
+                        </HStack>
+
+                    </Box> : <Box><Link to={"/signUp"}><Button mr={"5px"} colorScheme={"pink"}>Signup</Button></Link>
+                        <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
                     <Box position="relative" >
                         <CartModal />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>
-                            <Center fontSize={"15px"} color={"white"}>4</Center>
+                            <Center fontSize={"15px"} color={"white"}>{data ? data.length : 0}</Center>
                         </Box>
                     </Box>
 

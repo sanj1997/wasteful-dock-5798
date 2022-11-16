@@ -5,7 +5,9 @@ import { CART_ADD_ERROR, CART_ADD_LOADING, CART_ADD_SUCCESS, CART_DELETE_ERROR, 
 const initialData = {
     loading: false,
     error: false,
-    data: []
+    data: [],
+    total: 0,
+    message: ""
 }
 
 
@@ -17,9 +19,13 @@ export const cartReducer = (state = initialData, { type, payload }) => {
         case CART_GET_ERROR: return {
             ...state, loading: false, error: true
         }
-        case CART_GET_SUCCESS: return {
-            ...state, loading: false, error: false, data: payload
-        }
+        case CART_GET_SUCCESS:
+            let total = payload?.reduce((acc, el) => {
+                return acc + (el.quantity * el.product.price)
+            }, 0)
+            return {
+                ...state, loading: false, error: false, data: payload, total: total,
+            }
         case CART_ADD_LOADING: return {
             ...state, loading: true,
         }
@@ -27,7 +33,7 @@ export const cartReducer = (state = initialData, { type, payload }) => {
             ...state, loading: false, error: true
         }
         case CART_ADD_SUCCESS: return {
-            ...state, loading: false
+            ...state, loading: false, message: payload
         }
         case CART_UPDATE_LOADING: return {
             ...state, loading: true,
@@ -36,7 +42,7 @@ export const cartReducer = (state = initialData, { type, payload }) => {
             ...state, loading: false, error: true
         }
         case CART_UPDATE_SUCCESS: return {
-            ...state, loading: false, error: false,
+            ...state, loading: false, error: false, message: payload
         }
         case CART_DELETE_LOADING: return {
             ...state, loading: true,
@@ -45,7 +51,7 @@ export const cartReducer = (state = initialData, { type, payload }) => {
             ...state, loading: false, error: true
         }
         case CART_DELETE_SUCCESS: return {
-            ...state, loading: false, error: false,
+            ...state, loading: false, error: false, message: payload
         }
         default: return {
             ...state
