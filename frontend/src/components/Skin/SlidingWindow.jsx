@@ -3,9 +3,7 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import React from 'react';
 import { useState } from 'react';
 
-const imgArr = ["https://images-static.nykaa.com/uploads/9943eccd-8912-4ebe-95ca-53530baf4985.jpg?tr=w-1200,cm-pad_resize", "https://images-static.nykaa.com/uploads/ee176f62-41d4-48db-9105-e688ff99a22f.jpg?tr=w-1200,cm-pad_resize", "https://images-static.nykaa.com/uploads/568d03f7-1831-4216-8bc1-d3971237b68f.jpg?tr=w-1200,cm-pad_resize"];
-
-const SlidingWindow = () => {
+const SlidingWindow = ({imgArr}) => {
 	const [imgId, setImgId] = useState(0);
 
 	const slidingFun = (val) =>{

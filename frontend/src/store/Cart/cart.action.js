@@ -12,11 +12,11 @@ import { CART_ADD_ERROR, CART_ADD_LOADING, CART_ADD_SUCCESS, CART_DELETE_ERROR, 
 // }
 export const getCartData = (id) => async (dispatch) => {
     dispatch({ type: CART_GET_LOADING });
-
+    console.log(id,"id")
     try {
         const res = await instance.get(`/cart/${id}`);
-        console.log(res.data,"get")
-        dispatch({ type: CART_GET_SUCCESS, payload: res.data.data.products })
+        console.log(res.data.data,"get")
+        dispatch({ type: CART_GET_SUCCESS, payload: res.data.data})
     } catch (er) {
         dispatch({ type: CART_GET_ERROR })
     }
@@ -34,11 +34,11 @@ export const addCartData = (id) => async (dispatch) => {
         dispatch({ type: CART_ADD_ERROR })
     }
 }
-export const updateCartData = (id, data) => async (dispatch) => {
+export const updateCartData = (id, quantity) => async (dispatch) => {
     dispatch({ type: CART_UPDATE_LOADING })
 
     try {
-        const res = await axios.put(`http://localhost:8080/${id}`, data);
+        const res = await instance.patch(`/cart`, {id:id,quantity:quantity});
         dispatch({ type: CART_UPDATE_SUCCESS, payload: res.data })
         return res.data
     } catch (er) {
@@ -47,12 +47,13 @@ export const updateCartData = (id, data) => async (dispatch) => {
 }
 export const deleteCartData = (id) => async (dispatch) => {
     dispatch({ type: CART_DELETE_LOADING })
-
+    
     try {
-        const res = await axios.delete(`http://localhost:8080/${id}`);
-        dispatch({ type: CART_DELETE_SUCCESS, payload: res.data })
-        return res.data
+        const res = await instance.delete(`cart/${id}`);
+        dispatch({ type: CART_DELETE_SUCCESS})
+        console.log(res.message)
     } catch (er) {
+        console.log(er.message)
         dispatch({ type: CART_DELETE_ERROR })
     }
 }

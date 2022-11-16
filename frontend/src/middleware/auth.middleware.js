@@ -3,7 +3,7 @@ import axios from "axios";
 const APP_URL=process.env.REACT_APP_URL
 const instance=axios.create({
     // headers: { "Content-Type": "application/json" },
-    baseURL:"http://localhost:8080"
+    baseURL:"https://beautiva-backend-production.up.railway.app"
     
 })
 
@@ -32,7 +32,7 @@ instance.interceptors.response.use(
       {
          previousRequest.sent=true
          let rToken = JSON.parse(localStorage.getItem("csv"))
-         const res=await axios("http://localhost:8080/auth/refresh",{
+         const res=await axios("https://beautiva-backend-production.up.railway.app/auth/refresh",{
             headers:{
                 "Authorization":rToken
             },

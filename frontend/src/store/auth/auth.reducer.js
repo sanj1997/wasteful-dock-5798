@@ -1,4 +1,4 @@
-import { EMAIL_VERIFY_ERROR, EMAIL_VERIFY_LOADING, EMAIL_VERIFY_SUCCESS, SIGN_IN_ERROR, SIGN_IN_LOADING, SIGN_IN_SUCCESS, SIGN_UP_ERROR, SIGN_UP_LOADING, SIGN_UP_SUCCESS } from "./auth.types"
+import { EMAIL_VERIFY_ERROR, EMAIL_VERIFY_LOADING, EMAIL_VERIFY_SUCCESS, SIGN_IN_ERROR, SIGN_IN_LOADING, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS, SIGN_UP_ERROR, SIGN_UP_LOADING, SIGN_UP_SUCCESS } from "./auth.types"
 
 
 const InitialState={
@@ -58,6 +58,16 @@ const authReducer=(state=InitialState,{type,payload})=>{
             }
         case SIGN_IN_ERROR:return {
             ...state, loading:false,error:true
+        }
+        case SIGN_OUT_SUCCESS:
+           localStorage.removeItem("asv")
+           localStorage.removeItem("csv")
+           localStorage.removeItem("firstName")
+           localStorage.removeItem("lastName")
+           localStorage.removeItem("yql")
+           localStorage.removeItem("userName")
+        return{
+            ...state,Mtoken:null,Rtoken:null,firstName:null,lastName:null, userName:null, userId:null
         }
         default: return state
         
