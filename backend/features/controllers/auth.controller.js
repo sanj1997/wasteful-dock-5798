@@ -8,34 +8,39 @@ const redis = new Redis(
 )
 require("dotenv").config()
 
+const createUserEmail=async(firstName,lastName,userName,password,email)=>{
+    
+       let response;
+       try{
+           const user=await UserModel.findOne({email:email})
+     
+           if(user)
+           {
+               response={message:"Account already exists"} 
+           }
+           else
+           {
+               const otp=Math.floor(Math.random()*100000)
+               const sentOtp=await sendEmail(email,otp)
+               const hashed_password=crypto.AES.encrypt(password,process.env.PASSWORD_SECRET).toString()
+               const newUser=await UserModel.create({firstName,lastName,userName,password:hashed_password,email})
+               console.log(newUser)
+               redis.set(email,otp,"ex",300,(err,res)=>{
+                  if(err)
+                  {
+                    console.log(err,"error")
+                  }
+                  else console.log(res,"success")
+               })
+               response= {message:"Otp is sent to your registered email"}
+           }
+       }
+       catch(e)
+       {
+           response={message:e.message}
+       }
+   return response
 
-const createUserEmail = async (firstName, lastName, userName, password, email) => {
-
-    let response;
-    try {
-        const user = await UserModel.findOne({ email: email })
-
-        if (user) {
-            response = { message: "Account already exists" }
-        }
-        else {
-            const otp = Math.floor(Math.random() * 100000)
-            const sentOtp = await sendEmail(email, otp)
-            const hashed_password = crypto.AES.encrypt(password, process.env.PASSWORD_SECRET).toString()
-            const newUser = await UserModel.create({ firstName, lastName, userName, password: hashed_password, email })
-            redis.set(email, otp, "ex", 300, (err, res) => {
-                if (err) {
-                    console.log(err, "error")
-                }
-                else console.log(res, "success")
-            })
-            response = { message: "Otp is sent to your registered email" }
-        }
-    }
-    catch (e) {
-        response = { message: "pagal" }
-    }
-    return response
 }
 
 

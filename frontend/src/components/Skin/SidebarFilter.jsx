@@ -1,10 +1,10 @@
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import ListViewComponent from './ListViewComponent';
-
-const sortByName = ["Popularity", "Discount", "Name", "Customer Top Rated", "New Arrivals", "Price: High To Low", "Price: Low To High"];
+import ListViewComponent2 from './ListViewComponent2';
 
 const category = [
+	'Hair_Styling_Tools',
 	'Face Moisturizer & Day Cream',
 	'Serums & Essence',
 	'Night Cream',
@@ -14,7 +14,7 @@ const category = [
 ];
 
 const Brand = [
-	'Mamaearth',
+	'Philips India',
 	'TAC - The Ayurveda Co.',
 	'Soulflower',
 	'Olay',
@@ -33,7 +33,7 @@ const price = [
 ]
 
 
-const SidebarFilter = () => {
+const SidebarFilter = ({sendFilterValue}) => {
 	const [checkBoxStatus, setCheckBoxStatus] = useState({});
 
 	const getFilterData = (filterName, filterValue)=>{
@@ -44,7 +44,8 @@ const SidebarFilter = () => {
 		}
 	}
 
-	console.log(Object.keys(checkBoxStatus).length);
+	// console.log(Object.keys(checkBoxStatus).length);
+	// console.log(checkBoxStatus);
 
 	// 
 	
@@ -59,7 +60,8 @@ const SidebarFilter = () => {
 			</Box>
 		)}
 		<Flex direction={'column'} gap={5} p={"22px 30px 30px 30px"}>
-			<ListViewComponent listArr={sortByName} name='Sort By : Popularity' getFilterData={getFilterData} checkBoxStatus={checkBoxStatus}/>
+			<ListViewComponent2 sendFilterValue={sendFilterValue} />
+			{/* <ListViewComponent listArr={sortByName} name='Sort By : Popularity' getFilterData={getFilterData} checkBoxStatus={checkBoxStatus}/> */}
 			<ListViewComponent listArr={category} name='Category' getFilterData={getFilterData} checkBoxStatus={checkBoxStatus}/>
 			<ListViewComponent listArr={Brand} name='Brand' getFilterData={getFilterData} checkBoxStatus={checkBoxStatus}/>
 			<ListViewComponent listArr={price} name='Price' getFilterData={getFilterData} checkBoxStatus={checkBoxStatus}/>
