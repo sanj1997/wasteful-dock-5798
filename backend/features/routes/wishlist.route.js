@@ -4,6 +4,7 @@ const router=express.Router()
 const authmiddleware=require("../middlewares/authmiddleware")
 //add to wishlist
 router.post("/",authmiddleware,async(req,res)=>{
+    console.log(req.body.id,"idd")
     const mainToken=req.headers.authorization
     const {id}=req.body
     const response=await addToWishlist(mainToken,id)

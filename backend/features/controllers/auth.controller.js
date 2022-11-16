@@ -24,7 +24,6 @@ const createUserEmail=async(firstName,lastName,userName,password,email)=>{
                const sentOtp=await sendEmail(email,otp)
                const hashed_password=crypto.AES.encrypt(password,process.env.PASSWORD_SECRET).toString()
                const newUser=await UserModel.create({firstName,lastName,userName,password:hashed_password,email})
-               console.log(newUser)
                redis.set(email,otp,"ex",300,(err,res)=>{
                   if(err)
                   {
@@ -43,14 +42,17 @@ const createUserEmail=async(firstName,lastName,userName,password,email)=>{
 
 }
 
-
-
 const reSendOtp = async (email) => {
+    console.log(email)
     let response;
     try {
         const verifyUser = await UserModel.findOne({ email: email })
         if (!verifyUser) {
             response = { message: "Email not registered" }
+        }
+        else if(verifyUser.isVerified===true)
+        {
+            response = {message: "Email is already verified"}
         }
         else {
             const otp = Math.floor(Math.random() * 100000)

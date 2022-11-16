@@ -42,9 +42,7 @@ const updateCart = async (pid, mainToken, quantity) => {
     const userData = jwt.verify(mainToken, process.env.JWT_MAIN_SECRET);
     console.log(userData.id,pid)
     const pr=await CartModel.findOne({userId:userData.id,product:pid})
-    console.log(pr,"existing")
     const updateCart = await CartModel.updateOne({userId: userData.id,product:pid},{$set:{quantity:quantity}});
-    console.log(updateCart)
     response = { message: "Cart updated successfully"};
   } catch (e) {
     response = { message: e.message };
@@ -56,7 +54,6 @@ const getCart = async (id) => {
   let response;
   try {
     const userCart = await CartModel.find({ userId: id }).populate("product")
-    console.log(userCart,"cert")
     response = { message: "Successful", data: userCart };
   } catch (e) {
     response = { message: e.message };
