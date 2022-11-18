@@ -3,12 +3,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../userdatatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import {useSelector,useDispatch} from 'react-redux';
+
 
 const UserDataTable = () => {
   const [data, setData] = useState(userRows);
+  // const {productRows,productColumns}=useSelector(store=>store.users)
+  // const dispatch=useDispatch();
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
+    //dispatch()
   };
 
   const actionColumn = [

@@ -15,8 +15,6 @@ import UserHoverBox from './UserHoverBox'
 const MiddleNavbar = () => {
     const { loading, Mtoken, userName, role, userId } = useSelector((store) => store.auth)
     const { data } = useSelector((store) => store.cart)
-    console.log(role)
-
     useEffect(() => {
         dispatch(getCartData(userId))
     }, [])
@@ -45,6 +43,7 @@ const MiddleNavbar = () => {
                 <HStack >
 
                     {Mtoken ? <Box>
+
                         <HStack gap={4} position={"relative"} className={Styles.stack}>
                             <Box >
                                 <a target={"_blank"} href="https://admin-beautiva.netlify.app/">
@@ -58,10 +57,12 @@ const MiddleNavbar = () => {
                                 <UserHoverBox />
                             </Box>
 
+
+
                             <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
                         </HStack>
 
-                    </Box> : <Box><Link to={"/signUp"}><Button mr={"5px"} colorScheme={"pink"}>Signup</Button></Link>
+                    </Box> : <Box><Link to={"/signUp"}><Button mr={"10px"} colorScheme={"pink"}>Signup</Button></Link>
                         <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
                     <Box position="relative" >
                         <CartModal />

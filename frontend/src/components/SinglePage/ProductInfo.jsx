@@ -10,7 +10,6 @@ const ProductInfo = ({ data }) => {
 	const toast = useToast()
 	const dispatch = useDispatch()
 	const { message } = useSelector((store) => store.cart)
-	console.log(message)
 	const { title, price, off_price, offer, image1, image2, image3, description, _id } = data?.product;
 	const { userId } = useSelector((store) => store.auth)
 	const handleAddToCart = () => {

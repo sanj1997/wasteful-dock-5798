@@ -3,7 +3,7 @@ import axios from "axios";
 const APP_URL=process.env.REACT_APP_URL
 const instance=axios.create({
     // headers: { "Content-Type": "application/json" },
-    baseURL:"https://beautiva-backend-production.up.railway.app"
+    baseURL:"http://localhost:8080/"
     
 })
 

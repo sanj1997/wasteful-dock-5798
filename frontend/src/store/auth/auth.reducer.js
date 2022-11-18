@@ -1,4 +1,4 @@
-import { EMAIL_VERIFY_ERROR, EMAIL_VERIFY_LOADING, EMAIL_VERIFY_SUCCESS, SIGN_IN_ERROR, SIGN_IN_LOADING, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS, SIGN_UP_ERROR, SIGN_UP_LOADING, SIGN_UP_SUCCESS } from "./auth.types"
+import { EMAIL_VERIFY_ERROR, EMAIL_VERIFY_LOADING, EMAIL_VERIFY_SUCCESS, GET_USER_DETAILS_FAILURE, GET_USER_DETAILS_LOADING, GET_USER_DETAILS_SUCCESS, SIGN_IN_ERROR, SIGN_IN_LOADING, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS, SIGN_UP_ERROR, SIGN_UP_LOADING, SIGN_UP_SUCCESS } from "./auth.types"
 
 
 const InitialState = {
@@ -11,6 +11,7 @@ const InitialState = {
     userName: JSON.parse(localStorage.getItem("userName")) || null,
     message: null,
     isVerified: false,
+    address:[],
     userId: JSON.parse(localStorage.getItem("yql")) || null,
     role: JSON.parse(localStorage.getItem("role")) || null
 }
@@ -71,6 +72,17 @@ const authReducer = (state = InitialState, { type, payload }) => {
             return {
                 ...state, Mtoken: null, Rtoken: null, firstName: null, lastName: null, userName: null, userId: null
             }
+        case GET_USER_DETAILS_LOADING:return {
+            ...state,loading:true
+        }
+        case GET_USER_DETAILS_SUCCESS:
+        console.log(payload,"payload")    
+        return {
+            ...state,address:[...payload],loading:false
+         } 
+        case GET_USER_DETAILS_FAILURE:return {
+            ...state,loading:false,error:true
+        } 
         default: return state
 
     }

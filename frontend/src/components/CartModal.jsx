@@ -27,6 +27,7 @@ import empty_cart from "../assets/pngs/empty_cart.png"
 
 
 const CartModal = () => {
+
     const { total, data } = useSelector((store) => store.cart)
     const { userId } = useSelector((store) => store.auth)
 
@@ -47,6 +48,7 @@ const CartModal = () => {
             <Box _hover={{ cursor: "pointer" }}>
                 <AiFillShopping size={"25px"} ref={btnRef} onClick={onOpen} />
             </Box>
+
 
 
             <Drawer

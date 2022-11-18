@@ -30,7 +30,7 @@ const SingalProduct = () => {
 
 	return (
 		<>
-	
+
 		<ProductInfo data={data}/>
 		<Box bg={'rgb(242,243,242)'}>
 			<Flex width='85%' margin='auto' gap={7}>

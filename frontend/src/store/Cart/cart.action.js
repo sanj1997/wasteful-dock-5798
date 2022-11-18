@@ -53,9 +53,9 @@ export const deleteCartData = (id) => async (dispatch) => {
     try {
         const res = await instance.delete(`cart/${id}`);
         dispatch({ type: CART_DELETE_SUCCESS, payload: res.data.message })
-        console.log(res.message)
+        // console.log(res.message)
     } catch (er) {
-        console.log(er.message)
+        // console.log(er.message)
         dispatch({ type: CART_DELETE_ERROR, payload: er.message })
     }
 }
