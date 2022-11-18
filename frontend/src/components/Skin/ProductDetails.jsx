@@ -1,25 +1,22 @@
 import { Box, Button, Flex, Img, Text, useToast } from '@chakra-ui/react';
 import React from 'react';
 import {GrFavorite} from 'react-icons/gr';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { addToWishlist, getWishlistProduct } from '../../store/wishlist/wishlist.action';
 
-const ProductDetails = ({product, favButton = true}) => {
-	const navigate = useNavigate();
+const ProductDetails = ({product}) => {
 	const dispatch=useDispatch()
+	const {userId}=useSelector((store)=>store.auth)
 	const {_id, title, image1, offer, price, off_price,  offertag} = product;
     const toast=useToast()
-	const viewDetails = () =>{
-		navigate(_id);
-	}
     const handleWishlist=(_id)=>{
        dispatch(addToWishlist(_id)).then(()=>{
 		   toast({
 			description:"Item added to wishlist successfully",
 			status:"success"
 		   })
-           dispatch(getWishlistProduct())
+		//    dispatch(getWishlistProduct(userId))
 	   }).catch((e)=>{
            
 	   })
@@ -37,8 +34,8 @@ const ProductDetails = ({product, favButton = true}) => {
 			</Flex>
 			<Text textAlign={'center'} color='red'>{offertag}</Text>
 			<Flex width={'100%'} pt={5} alignItems='center'>
-				{favButton ? (<Flex justifyContent={'center'}  width={'20%'}><GrFavorite cursor={"pointer"} onClick={()=>handleWishlist(_id)} fontSize={'20px'}/></Flex>) : ""}
-				<Button onClick={viewDetails} color={'white'} _hover={{bg: 'rgb(253,39,120)'}} width={favButton ? "80%" : '100%'}>Preview Shades</Button>
+				<Flex justifyContent={'center'}  width={'20%'}><GrFavorite cursor={"pointer"} onClick={()=>handleWishlist(_id)} fontSize={'20px'}/></Flex>
+				<Link to={`/skin/${_id}`} color={'white'} _hover={{bg: 'rgb(253,39,120)'}}>Preview Shades</Link>
 			</Flex>
 		</Flex>
 		</>

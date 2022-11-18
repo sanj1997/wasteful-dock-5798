@@ -5,10 +5,10 @@ import { WISHLIST_PRODUCT_DELETE_LOADING, WISHLIST_PRODUCT_DELETE_ERROR, WISHLIS
 import instance from "../../middleware/auth.middleware";
 
 //get wishlist product
-export const getWishlistProduct = () => async(dispatch) =>{
+export const getWishlistProduct = (id) => async(dispatch) =>{
 	dispatch({type: WISHLIST_PRODUCT_GET_LOADING});
 	try{
-		let res = await instance.get(`/wishlist`)
+		let res = await instance.get(`/wishlist/${id}`)
         console.log(res.data.data,"get")
 		dispatch({type: WISHLIST_PRODUCT_GET_SUCCESS, payload: res.data.data});
 	}catch(e){
@@ -21,7 +21,7 @@ export const getWishlistProductById = (id) => async(dispatch) =>{
 	dispatch({type: WISHLIST_PRODUCT_GET_BY_ID_LOADING});
 	// console.log(id)
 	try{
-		let res = await instance.get(`/products/${id}`)
+		let res = await instance.get(`/wishlist/${id}`)
 		console.log(res.data)
 		dispatch({type: WISHLIST_PRODUCT_GET_BY_ID_SUCCESS, payload: res.data.data});
 	}catch(e){
@@ -33,7 +33,7 @@ export const removeWishlistProduct = (id) => async(dispatch) =>{
 	dispatch({type: WISHLIST_PRODUCT_DELETE_LOADING});
 	// console.log(id)
 	try{
-		let res = await instance.delete(`/products/${id}`)
+		let res = await instance.delete(`/wishlist/${id}`)
 		console.log(res.data)
 		dispatch({type: WISHLIST_PRODUCT_DELETE_SUCCESS, payload: res.data.data});
 	}catch(e){

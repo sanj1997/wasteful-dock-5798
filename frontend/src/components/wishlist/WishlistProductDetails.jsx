@@ -1,20 +1,35 @@
-import { Button, Flex, Img, Text } from '@chakra-ui/react';
+import { Button, Flex, Img, Text, useToast } from '@chakra-ui/react';
 import React from 'react';
 import {GrFavorite} from 'react-icons/gr';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { getWishlistProduct, removeWishlistProduct } from '../../store/wishlist/wishlist.action';
+import {TiDeleteOutline} from 'react-icons/ti';
 const ProductDetails = ({product, favButton = true}) => {
 	const navigate = useNavigate();
 	const {_id, title, image1, offer, price, off_price,  offertag} = product;
-
+    const dispatch=useDispatch()
+	const {userId}=useSelector((store)=>store.auth)
+	const toast = useToast()
 	const viewDetails = () =>{
-		navigate(_id);
+		// navigate(_id);
 	}
-
+    const handleDelete=(id)=>{
+		console.log("heyy")
+       dispatch(removeWishlistProduct(id)).then(()=>{
+          toast({
+			description:"Item removed successfully",
+			status:"success"
+		  })
+		  dispatch(getWishlistProduct(userId))
+	   }).catch(()=>{
+          
+	   })
+	}
 	return (
 		<>
 		<Flex direction={'column'} justifyContent={'space-between'} shadow={'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;'} bg='white' borderRadius={'10px'} cursor='pointer' p={2} onClick={viewDetails} width="100%">
-			<Flex justifyContent={'end'}><TiDeleteOutline fontSize={'30px'} fontWeight='500'/></Flex>
+			<Flex   justifyContent={'end'}><TiDeleteOutline onClick={()=>handleDelete(_id)} fontSize={'30px'} fontWeight='500'/></Flex>
 			<Img src={image1} borderRadius={'10px'} width='100%' height={'250px'} p={5}/>
 			<Text cursor='pointer' p={2} textAlign={'center'} fontWeight='500'>{title}</Text>
 			<Flex justifyContent={'center'} gap={1}>

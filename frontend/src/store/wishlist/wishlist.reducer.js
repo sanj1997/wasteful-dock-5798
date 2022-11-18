@@ -4,16 +4,15 @@ import { WISHLIST_PRODUCT_GET_ERROR, WISHLIST_PRODUCT_GET_LOADING, WISHLIST_PROD
 
 
 //product initial
-const getWishlistInitial = {
+const wishlistInitial = {
 	loading: false,
-	product: [],
+	wishlist: [],
 	status: false,
-	singleProduct:{},
 	error: false,
 };
 
 //get wishlist product
-export const getWishlistReducer = (state = getWishlistInitial, {type, payload}) =>{
+export const wishlistReducer = (state = wishlistInitial, {type, payload}) =>{
 	switch (type){
 		case WISHLIST_PRODUCT_GET_LOADING: {
 			return {
@@ -33,10 +32,19 @@ export const getWishlistReducer = (state = getWishlistInitial, {type, payload}) 
 				...state,
 				loading: false,
 				error: false,
-			    product: payload,
+			    wishlist: payload,
 				status: true
 			};
 		} 
+		case WISHLIST_PRODUCT_DELETE_LOADING:return {
+			...state,loading:true
+		}
+		case WISHLIST_PRODUCT_DELETE_SUCCESS:return {
+			...state,loading:false,wishlist:payload
+		}
+		case WISHLIST_PRODUCT_DELETE_ERROR:return {
+			...state,loading:false,error:true
+		}
 		default: {
 			return state;
 		}
