@@ -15,25 +15,42 @@ import {
     Text,
     Flex,
     Heading,
+    Center,
 } from '@chakra-ui/react'
 import CartProductCard from './CartProductCard'
 import { ArrowBackIcon, ArrowForwardIcon, InfoOutlineIcon } from '@chakra-ui/icons'
-import {AiFillShopping} from "react-icons/ai"
+import { AiFillShopping } from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
 import { getCartData } from '../store/Cart/cart.action'
 import { json, Link } from 'react-router-dom'
+import empty_cart from "../assets/pngs/empty_cart.png"
+
+
 const CartModal = () => {
-    const {total,data}=useSelector((store)=>store.cart)
-    const {userId}=useSelector((store)=>store.auth)
+
+    const { total, data } = useSelector((store) => store.cart)
+    const { userId } = useSelector((store) => store.auth)
+
+    // const [total,setTotal]=useState(0)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const ref = useRef(null)
     const btnRef = React.useRef()
-    const dispatch=useDispatch()
-    useEffect(()=>{
-       dispatch(getCartData(userId))
-    },[])
+    const dispatch = useDispatch()
+    console.log(data, "cart data")
+    useEffect(() => {
+        dispatch(getCartData(userId))
+    }, [])
+
+
+
     return (
         <>
-              <AiFillShopping size={"25px"} ref={btnRef} onClick={onOpen}/>
+            <Box _hover={{ cursor: "pointer" }}>
+                <AiFillShopping size={"25px"} ref={btnRef} onClick={onOpen} />
+            </Box>
+
+
+
             <Drawer
                 isOpen={isOpen}
                 placement='right'
@@ -56,12 +73,15 @@ const CartModal = () => {
 
 
                     <DrawerBody>
-                        <Box>
-                            {data?.map((el)=>{
-                                return <CartProductCard key={el._id} el={el.product} qty={el.quantity}/>
+                        {data.length === 0 ? <Center my={5}>
+                            <Image maxH={"400px"} w="80%" src={empty_cart} />
+                        </Center> : <Box>
+                            {data?.map((el) => {
+                                return <CartProductCard key={el._id} el={el.product} qty={el.quantity} />
                             })}
                         </Box>
-                        <Box border="1px solid #D3D3D3" p={3} borderRadius="10px">
+                        }
+                        <Box border="1px solid #D3D3D3" p={3} borderRadius="10px" mt={5}>
                             <Text fontWeight="bold">Price Details</Text>
                             <SimpleGrid columns={2} spacing={2} p={3}>
                                 <Box>

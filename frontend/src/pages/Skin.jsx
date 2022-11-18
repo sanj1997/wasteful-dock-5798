@@ -19,6 +19,7 @@ const Skin = () => {
 
 	return (
 		<>
+
 		<Box pt={10} bg={'rgb(242,243,242)'}>
 			<Heading fontSize={'24px'} textAlign='center'>Moisturizers Products Collection (4539)</Heading>
 			<SlidingWindow imgArr={imgArr}/>
@@ -32,6 +33,7 @@ const Skin = () => {
 				</Box>
 			</Flex>
 			</Box>
+
 		</>
 	)
 }
