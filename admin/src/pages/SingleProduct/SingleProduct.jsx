@@ -3,8 +3,14 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import List from "../../components/Table/Table";
+import {useParams} from 'react-router-dom';
+import { productColumns, productRows } from "../../productdatatablesource";
 
-const Single = () => {
+const SingleProduct = () => {
+  const {productId}=useParams();
+  // console.log(userId);
+  let obj=productRows.find(el=>(el.id===+productId));
+  //console.log(obj);
   return (
     <div className="single">
       <Sidebar />
@@ -16,35 +22,33 @@ const Single = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src="https://media-exp1.licdn.com/dms/image/D5603AQGij1OMmM4ZXA/profile-displayphoto-shrink_200_200/0/1665811799424?e=1673481600&v=beta&t=FUXa3XLsmJbcucNGVz-Sjfm7M3DY_F9Sm6iQ4wzcP00"
+                src={obj.img}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Shirso Bhattacharyya</h1>
+                <h1 className="itemTitle">{obj.title}</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">shirso369@gmail.com</span>
+                  <span className="itemKey">Category:</span>
+                  <span className="itemValue">{obj.category}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+91 81001 53339</span>
+                  <span className="itemKey">Quantity:</span>
+                  <span className="itemValue">100</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    Hooghly, West Bengal.
-                  </span>
+                  <span className="itemKey">Price</span>
+                  <span className="itemValue">{obj.price}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">India</span>
+                  <span className="itemKey">Availability:</span>
+                  <span className="itemValue">{obj.status==='active'?'In Stock':'Out of Stock'}</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
+            <Chart aspect={3 / 1} title="Statistics ( Last 12 Months)" />
           </div>
         </div>
         <div className="bottom">
@@ -56,4 +60,4 @@ const Single = () => {
   );
 };
 
-export default Single;
+export default SingleProduct;
