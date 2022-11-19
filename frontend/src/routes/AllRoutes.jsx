@@ -8,7 +8,7 @@ import Home from "../pages/Home";
 import OrderConfirm from "../pages/OrderConfirm";
 import Otpverify from "../pages/Otpverify";
 import Payment from "../pages/Payment";
-import SignIn from "../pages/SignIn";
+import SignIn from "../pages/Signin";
 import SignUp from "../pages/SignUp";
 import SingalProduct from "../pages/SingalProduct";
 import Skin from "../pages/Skin";
