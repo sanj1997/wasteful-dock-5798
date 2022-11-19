@@ -9,18 +9,15 @@ import ProductPagination from './ProductPagination';
 const Products = ({filterValue}) => {
 	const [page, setPage] = useState(1);
 	const dispatch = useDispatch();
-	const data = useSelector((store) => store.getProductReducer.data);
-
+	const {product} = useSelector((store) => store.product);
 	useEffect(()=>{
-		dispatch(getProduct(page, filterValue));
-	}, [page, filterValue]);
-
-	// console.log(page, data, filterValue);
+		dispatch(getProduct());
+	}, []);
 	return (
 		<>
 		<Grid p={'20px 20px 20px 0px'} templateColumns='repeat(3, 1fr)' gap={6}>
-			{data.product.data?.map((p, i)=>(
-				<ProductDetails product={p} key={i}/>
+			{product?.map((el)=>(
+				<ProductDetails product={el} key={el._id}/>
 			))}
 		</Grid>
 		<Box mt={10} mb={10}>

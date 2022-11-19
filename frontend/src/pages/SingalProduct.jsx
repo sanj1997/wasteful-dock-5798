@@ -14,36 +14,31 @@ import Footer from '../components/Footer/Footer';
 const SingalProduct = () => {
 	const params = useParams();
 	const dispatch = useDispatch();
-	const data = useSelector((store) => store.getProductByIdReducer.data);
-	const loading = useSelector((store) => store.getProductByIdReducer.loading);
-	const {description, rating} = data?.product;
-
+	const {singleProduct,loading} = useSelector((store) => store.product);
+	console.log(loading)
 	useEffect(()=>{
 		dispatch(getProductById(params.id));
 	}, []);
-
-	// console.log(data, loading);
-
 	if(loading){
 		return 
 	}
 
 	return (
 		<>
+		<ProductInfo data={singleProduct}/>
 
-		<ProductInfo data={data}/>
 		<Box bg={'rgb(242,243,242)'}>
 			<Flex width='85%' margin='auto' gap={7}>
 				<Box width={'78%'}>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Product Description</Heading >
-					<ProductDescription description={description}/>
+					<ProductDescription description={singleProduct.description}/>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Customer also Viewed</Heading >
 					<CustomerViewProducts width="100%"/>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Product Details</Heading >
-					<ProductReview rating = {rating}/>
+					<ProductReview rating = {singleProduct.rating}/>
 				</Box>
 				<Box width={'20%'} mt={"102px"}> 
-					<ProductDetails product = {data.product} favButton = {false}/>
+					<ProductDetails product = {singleProduct} />
 				</Box>
 			</Flex>
 		</Box>

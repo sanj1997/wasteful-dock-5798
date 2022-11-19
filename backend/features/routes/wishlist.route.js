@@ -4,7 +4,6 @@ const router=express.Router()
 const authmiddleware=require("../middlewares/authmiddleware")
 //add to wishlist
 router.post("/",authmiddleware,async(req,res)=>{
-    console.log(req.body.id,"idd")
     const mainToken=req.headers.authorization
     const {id}=req.body
     const response=await addToWishlist(mainToken,id)
@@ -20,9 +19,10 @@ router.post("/",authmiddleware,async(req,res)=>{
 })
 
 //get wishlist
-router.get("/",authmiddleware,async(req,res)=>{
+router.get("/:id",authmiddleware,async(req,res)=>{
     const mainToken=req.headers.authorization
-    const response=await getWishlist(req.body.userID)
+    const {id}=req.params
+    const response=await getWishlist(id)
     if(response.message==="Successful")
     {
         return res.send(response)

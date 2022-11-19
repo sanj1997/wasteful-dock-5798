@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 const OrderProductDetails = ({product, favButton = true}) => {
 	const navigate = useNavigate();
 	const {_id, title, image1, offer, price, off_price,  offertag} = product;
-
+    console.log("heyyy")
 	const viewDetails = () =>{
-		navigate(_id);
+		// navigate(_id);
 	}
 
 	return (

@@ -52,6 +52,7 @@ const Payment = () => {
         const rzp1 = new Razorpay(options)
 
         rzp1.open();
+        dispatch()
     };
 
 

@@ -10,7 +10,7 @@ export const getProduct = () => async(dispatch) =>{
 	try{
 		let res = await instance.get("/products/all-products")
 
-		dispatch({type: PRODUCT_GET_SUCCESS, payload: res.data});
+		dispatch({type: PRODUCT_GET_SUCCESS, payload: res.data.data});
 	}catch(e){
 		dispatch({type: PRODUCT_GET_ERROR});
 	}
@@ -22,6 +22,7 @@ export const getProductById = (id) => async(dispatch) =>{
 	// console.log(id)
 	try{
 		let res = await instance.get(`/products/${id}`)
+		console.log(res.data)
 		dispatch({type: PRODUCT_GET_BY_ID_SUCCESS, payload: res.data.data});
 	}catch(e){
 		dispatch({type: PRODUCT_GET_BY_ID_ERROR});
