@@ -24,7 +24,7 @@ const UserDataTable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`/users/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -42,7 +42,7 @@ const UserDataTable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         All Users
-        <Link to="/users/new" className="link">
+        <Link to="/users/newuser" className="link">
           Add New
         </Link>
       </div>

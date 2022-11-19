@@ -3,7 +3,7 @@ export const userInputs = [
       id: 1,
       label: "Username",
       type: "text",
-      placeholder: "john_doe",
+      placeholder: "Enter your username",
     },
     {
       id: 2,
@@ -21,24 +21,25 @@ export const userInputs = [
       id: 4,
       label: "Phone",
       type: "text",
-      placeholder: "+1 234 567 89",
+      placeholder: "Enter your phone number",
     },
     {
       id: 5,
       label: "Password",
       type: "password",
+      placeholder:'Enter your password',
     },
     {
       id: 6,
       label: "Address",
       type: "text",
-      placeholder: "Elton St. 216 NewYork",
+      placeholder: "Enter your address",
     },
     {
       id: 7,
       label: "Country",
       type: "text",
-      placeholder: "USA",
+      placeholder: "India",
     },
   ];
   
@@ -47,30 +48,42 @@ export const userInputs = [
       id: 1,
       label: "Title",
       type: "text",
-      placeholder: "Apple Macbook Pro",
+      placeholder: "Enter product title",
     },
     {
       id: 2,
       label: "Description",
       type: "text",
-      placeholder: "Description",
+      placeholder: "Enter product description",
     },
     {
       id: 3,
       label: "Category",
       type: "text",
-      placeholder: "Computers",
+      placeholder: "Enter product category",
     },
     {
       id: 4,
-      label: "Price",
+      label: "Sub-Category",
       type: "text",
-      placeholder: "100",
+      placeholder: "Enter product subcategory",
     },
     {
       id: 5,
+      label: "Price",
+      type: "text",
+      placeholder: "Enter product price",
+    },
+    {
+      id: 6,
       label: "Stock",
       type: "text",
       placeholder: "in stock",
     },
+    {
+      id:7,
+      label:"Quantity",
+      type:"text",
+      placeholder:'Enter product quantity'
+    }
   ];
