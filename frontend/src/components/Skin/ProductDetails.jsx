@@ -12,13 +12,26 @@ const ProductDetails = ({product}) => {
     const toast=useToast()
     const handleWishlist=(_id)=>{
        dispatch(addToWishlist(_id)).then(()=>{
+		console.log("showwww")
 		   toast({
 			description:"Item added to wishlist successfully",
 			status:"success"
 		   })
-		//    dispatch(getWishlistProduct(userId))
 	   }).catch((e)=>{
-           
+		if(e.messag==="Network Error")
+        {
+          toast({
+            description: "Oops! Something went wrong",
+            status: "error",
+          });
+        }
+		else if(e.response.data.message==="Product already exists in wishlist")
+		{
+			toast({
+				description: "Product already exists in wishlist",
+				status: "error",
+			  });
+		}
 	   })
 	}
 	return (

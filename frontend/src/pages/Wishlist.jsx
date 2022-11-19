@@ -29,12 +29,15 @@ const Whishlist = () => {
 	const {userId}=useSelector((store)=>store.auth)
 	const dispatch=useDispatch()
 	console.log(orders)
-	useEffect(()=>{
-        dispatch(getWishlistProduct(userId))
-	}, [])
-	useEffect(()=>{
-		dispatch(getOrderProduct());
-	}, []);
+	
+	const handleGetWishlist=()=>{
+		dispatch(getWishlistProduct(userId))
+	}
+
+	const handleGetOrders=()=>{
+		dispatch(getOrderProduct(userId));
+	}
+	
     return (
 			<Box bg={'rgb(242,243,242)'}>
 		<Box w={"90%"} m="auto">
@@ -105,7 +108,7 @@ const Whishlist = () => {
 
 										{/* My orders */}
 
-										<TabPanel>
+										<TabPanel onClick={handleGetOrders}>
 											{orders?.length === 0 ? (
 												<Box  width='100%'>
 													<Flex bg='white' gap={2} alignItems='center' p={3}>
@@ -133,7 +136,7 @@ const Whishlist = () => {
 
 										{/* my Whishlist */}
 
-										<TabPanel bg='white'>
+										<TabPanel onClick={handleGetWishlist} bg='white'>
 											{!wishlist?.length>0? (
 												<Flex direction={'column'} justifyContent='center' alignItems='center' minHeight={'75vh'}>
 													<Heading fontWeight={'500'} fontSize='25px'>NO ITEMS IN THE WISHLIST</Heading>

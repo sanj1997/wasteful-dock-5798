@@ -10,10 +10,9 @@ const WishlistProducts = () => {
 	const dispatch = useDispatch();
 	const {userId}=useSelector((store)=>store.auth)
 	const {wishlist} = useSelector((store) => store.wishlist);
-	
-	useEffect(()=>{
-		dispatch(getWishlistProduct(userId));
-	}, []);
+	// useEffect(()=>{
+	// 	dispatch(getWishlistProduct(userId));
+	// }, []);
 
 	return (
 		<>

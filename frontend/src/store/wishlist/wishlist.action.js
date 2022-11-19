@@ -35,7 +35,7 @@ export const removeWishlistProduct = (id) => async(dispatch) =>{
 	try{
 		let res = await instance.delete(`/wishlist/${id}`)
 		console.log(res.data)
-		dispatch({type: WISHLIST_PRODUCT_DELETE_SUCCESS, payload: res.data.data});
+		dispatch({type: WISHLIST_PRODUCT_DELETE_SUCCESS, payload: id});
 	}catch(e){
 		dispatch({type: WISHLIST_PRODUCT_DELETE_ERROR});
 	}
@@ -46,7 +46,7 @@ export const addToWishlist=(id)=>async(dispatch)=>{
    try{
      const res=await instance.post(`/wishlist`,{id:id})
 	 console.log(res.data,"wishlist")
-	 dispatch({type:WISHLIST_PRODUCT_ADD_SUCCESS})
+	 dispatch({type:WISHLIST_PRODUCT_ADD_SUCCESS,payload:res.data.data})
 	 return res
    }catch(e){
 	  console.log(e.message)

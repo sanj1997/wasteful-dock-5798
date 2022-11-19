@@ -5,13 +5,13 @@ import { ORDER_PRODUCT_DELETE_LOADING, ORDER_PRODUCT_DELETE_ERROR, ORDER_PRODUCT
 import { ORDER_PRODUCT_GET_ERROR, ORDER_PRODUCT_GET_LOADING, ORDER_PRODUCT_GET_SUCCESS } from "./order.types";
 
 //get wishlist product
-export const getOrderProduct = () => async(dispatch) =>{
+export const getOrderProduct = (id) => async(dispatch) =>{
 	dispatch({type: ORDER_PRODUCT_GET_LOADING});
 
 	try{
-		let res = await instance.get(`/orders`)
+		let res = await instance.get(`/orders/${id}`)
 
-		dispatch({type: ORDER_PRODUCT_GET_SUCCESS, payload: res.data});
+		dispatch({type: ORDER_PRODUCT_GET_SUCCESS, payload: res.data.data});
 	}catch(e){
 		dispatch({type: ORDER_PRODUCT_GET_ERROR});
 	}
