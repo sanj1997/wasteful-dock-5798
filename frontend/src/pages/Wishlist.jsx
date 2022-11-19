@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import OrderProducts from '../components/wishlist/OrderProduct';
 import { useEffect } from 'react';
 import { getWishlistProduct } from '../store/wishlist/wishlist.action';
+import { getOrderProduct } from '../store/order/order.action';
 
 const userInfo= {
 	name: "Dinesh Karde",
@@ -23,14 +24,20 @@ const userInfo= {
 
 const Whishlist = () => {
 	const [cartItem, setCartItem] = useState([{name: "Dk", product: "ok"}]);
-	const dataWishlist = useSelector((store) => store.getWishlistReducer.product);
-	const dataOrder = useSelector((store) => store.getOrderReducer.data);
+	const {orders} = useSelector((store) => store.order);
+	const {wishlist,loading} = useSelector((store) => store.wishlist);
+	const {userId}=useSelector((store)=>store.auth)
 	const dispatch=useDispatch()
-    console.log(dataWishlist)
-	useEffect(()=>{
-        dispatch(getWishlistProduct())
-	}, [])
+	console.log(orders)
+	
+	const handleGetWishlist=()=>{
+		dispatch(getWishlistProduct(userId))
+	}
 
+	const handleGetOrders=()=>{
+		dispatch(getOrderProduct(userId));
+	}
+	
     return (
 			<Box bg={'rgb(242,243,242)'}>
 		<Box w={"90%"} m="auto">
@@ -101,8 +108,8 @@ const Whishlist = () => {
 
 										{/* My orders */}
 
-										<TabPanel>
-											{dataOrder.product.data?.length === 0 ? (
+										<TabPanel onClick={handleGetOrders}>
+											{orders?.length === 0 ? (
 												<Box  width='100%'>
 													<Flex bg='white' gap={2} alignItems='center' p={3}>
 														<FiArrowLeft fontSize={'27px'} cursor='pointer'/>
@@ -129,8 +136,8 @@ const Whishlist = () => {
 
 										{/* my Whishlist */}
 
-										<TabPanel bg='white'>
-											{!dataWishlist.length>0? (
+										<TabPanel onClick={handleGetWishlist} bg='white'>
+											{!wishlist?.length>0? (
 												<Flex direction={'column'} justifyContent='center' alignItems='center' minHeight={'75vh'}>
 													<Heading fontWeight={'500'} fontSize='25px'>NO ITEMS IN THE WISHLIST</Heading>
 													<Text mt={10}>Add now, Buy Later.</Text>
@@ -140,7 +147,7 @@ const Whishlist = () => {
 											) : (
 												<Box>
 													<Box pb={5} borderBlockEnd="1px solid rgb(214,217,220)">
-														<Heading p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>(1)</span></Heading>
+														<Heading p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>({wishlist?.length})</span></Heading>
 													</Box>
 													<WishlistProducts />
 													<Text mt={10} textAlign={'center'}>No More Product to show</Text>

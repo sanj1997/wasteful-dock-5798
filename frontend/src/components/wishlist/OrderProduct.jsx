@@ -7,17 +7,15 @@ import OrderProductDetails from '../wishlist/OrderProductDetails';
 
 const OrderProducts = () => {
 	const dispatch = useDispatch();
-	const data = useSelector((store) => store.getOrderReducer.data);
+	const {orders} = useSelector((store) => store.order);
 
-	useEffect(()=>{
-		dispatch(getOrderProduct());
-	}, []);
+
 
 	return (
 		<>
 		<Grid p={'20px 20px 20px 0px'} templateColumns='repeat(3, 1fr)' gap={6}>
-			{data.product.data?.map((p, i)=>(
-				<OrderProductDetails product={p} key={i}/>
+			{orders?.map((el)=>(
+				<OrderProductDetails product={el} key={el._id}/>
 			))}
 		</Grid>
 		</>
