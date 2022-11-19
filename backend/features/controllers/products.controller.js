@@ -32,7 +32,7 @@ const getAllProducts=async(req)=>{
     const {page=1,category}=req.query
     let response;
     try{
-       const allProducts=await ProductModel.find().skip((page-1)*5).limit(5)
+       const allProducts=await ProductModel.find().skip((page-1)*6).limit(6)
        response={message:"Successful", data:allProducts}
     }catch(e){
        response={message:e.message}

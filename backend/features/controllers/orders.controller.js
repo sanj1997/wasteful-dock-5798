@@ -6,17 +6,14 @@ const CartModel=require("../models/carts.model")
 const addToOrders=async(uid)=>{
     let response;
     try{
-         const userCart=await CartModel.findOne({userId:uid}).populate("product")
+         const userCart=await CartModel.find({userId:uid}).populate("product")
+         console.log(userCart)
          const isPresent=await OrderModel.findOne({userId:uid})
          if(isPresent)
          {
-               // for(let i=0;i<userCart.length;i++)
-               // {
-                  // userCart[i]["date"]=getDate()
                   const deleteOrders=await OrderModel.deleteOne({userId:uid})
-                  const updateOrders=await OrderModel.create({userId:uid,products:[...isPresent.products,userCart]})
+                  const updateOrders=await OrderModel.create({userId:uid,products:[...isPresent.products,...userCart]})
                   
-               // }
                response={message:"Orders updated successfully"}
          }else
          {
@@ -38,7 +35,8 @@ const addToOrders=async(uid)=>{
 const getOrders=async(uid)=>{
    let response;
    try{
-      const userOrders=await OrderModel.find({userId:uid})
+      const userOrders=await OrderModel.findOne({userId:uid})
+      
       response={message:"Successful",data:userOrders}
    }catch(e){
       response={message:e.message}
