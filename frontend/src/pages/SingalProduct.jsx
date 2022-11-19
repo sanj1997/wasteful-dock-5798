@@ -25,7 +25,9 @@ const SingalProduct = () => {
 
 	return (
 		<>
+
 		<ProductInfo data={singleProduct}/>
+
 		<Box bg={'rgb(242,243,242)'}>
 			<Flex width='85%' margin='auto' gap={7}>
 				<Box width={'78%'}>

@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import CartModal from '../CartModal'
 import { signOutUser } from '../../store/auth/auth.action'
 import { getCartData } from '../../store/Cart/cart.action'
+import UserHoverBox from './UserHoverBox'
+
 
 const MiddleNavbar = () => {
     const { loading, Mtoken, userName, role, userId } = useSelector((store) => store.auth)
@@ -22,17 +24,16 @@ const MiddleNavbar = () => {
         dispatch(signOutUser())
     }
     return (
-        <Box height={"70px"} borderBottom="1px solid #D3D3D3">
-            <Flex w={"85%"} m="auto" gap={8} align="center" h="full">
+        <Box height={"70px"} borderBottom="1px solid #D3D3D3" >
+            <Flex w={"85%"} m="auto" justify={"space-between"} align="center" h="full">
                 <Image w={"100px"} src={logo} alt="logo" />
                 <Flex gap={6} fontWeight="600" fontSize={"14px"}>
                     <Text className={Styles.category}>Categories</Text>
                     <Text className={Styles.category}>Brands</Text>
                     <Text className={Styles.category}>Luxe</Text>
                     <Text className={Styles.category}>Beautiva Fashion</Text>
-                    {/* <Text className={Styles.category}>Beauty Advice</Text> */}
                 </Flex>
-                <InputGroup w={"25%"}>
+                <InputGroup w={"30%"}>
                     <InputLeftElement
                         pointerEvents='none'
                         children={<Search2Icon color='gray.300' />}
@@ -42,9 +43,22 @@ const MiddleNavbar = () => {
                 <HStack >
 
                     {Mtoken ? <Box>
-                        <HStack>
-                            <a target={"_blank"} href="https://admin-beautiva.netlify.app/"><Avatar size='sm' src='https://bit.ly/broken-link' /></a>
-                            <Text fontWeight={"bold"}>{userName}</Text>
+
+                        <HStack gap={4} position={"relative"} className={Styles.stack}>
+                            <Box >
+                                <a target={"_blank"} href="https://admin-beautiva.netlify.app/">
+                                    <Flex gap={2}>
+                                        <Avatar size='sm' src='https://bit.ly/broken-link' />
+                                        <Text fontWeight={"bold"}>{userName}</Text>
+                                    </Flex>
+                                </a>
+                            </Box>
+                            <Box className={Styles.userBox}  >
+                                <UserHoverBox />
+                            </Box>
+
+
+
                             <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
                         </HStack>
 
