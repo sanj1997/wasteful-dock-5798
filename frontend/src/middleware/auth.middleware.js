@@ -32,7 +32,7 @@ instance.interceptors.response.use(
       {
          previousRequest.sent=true
          let rToken = JSON.parse(localStorage.getItem("csv"))
-         const res=await axios("https://beautiva-backend-production.up.railway.app/auth/refresh",{
+         const res=await axios("http://localhost:8080/auth/refresh",{
             headers:{
                 "Authorization":rToken
             },

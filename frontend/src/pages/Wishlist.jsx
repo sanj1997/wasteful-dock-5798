@@ -13,6 +13,7 @@ import OrderProducts from '../components/wishlist/OrderProduct';
 import { useEffect } from 'react';
 import { getWishlistProduct } from '../store/wishlist/wishlist.action';
 import { getOrderProduct } from '../store/order/order.action';
+import { signOutUser } from '../store/auth/auth.action';
 
 const userInfo= {
 	name: "Dinesh Karde",
@@ -29,15 +30,16 @@ const Whishlist = () => {
 	const {userId}=useSelector((store)=>store.auth)
 	const dispatch=useDispatch()
 	console.log(orders)
-	
-	const handleGetWishlist=()=>{
+    useEffect(()=>{
 		dispatch(getWishlistProduct(userId))
-	}
+	},[])
 
-	const handleGetOrders=()=>{
+	useEffect(()=>{
 		dispatch(getOrderProduct(userId));
+	},[])
+	const handleClick=()=>{
+		dispatch(signOutUser())
 	}
-	
     return (
 			<Box bg={'rgb(242,243,242)'}>
 		<Box w={"90%"} m="auto">
@@ -75,7 +77,7 @@ const Whishlist = () => {
 														<Text>My Saved Payment</Text>
 												</Flex>
 										</Tab>
-										<Tab _selected={{ bg: 'white', color: '#e80071', borderRight: "4px solid #e80071" }} borderBlockEnd="1px solid rgb(214,217,220)">
+										<Tab onClick={handleClick} _selected={{ bg: 'white', color: '#e80071', borderRight: "4px solid #e80071" }} borderBlockEnd="1px solid rgb(214,217,220)">
 												<Flex alignItems={'center'} width="100%" gap={3} fontSize='18px' p={3}>
 												    <AiOutlinePoweroff fontSize='22px'/>
 														<Text>Log Out</Text>
@@ -108,8 +110,8 @@ const Whishlist = () => {
 
 										{/* My orders */}
 
-										<TabPanel onClick={handleGetOrders}>
-											{orders?.length === 0 ? (
+										<TabPanel>
+											{orders===null ? (
 												<Box  width='100%'>
 													<Flex bg='white' gap={2} alignItems='center' p={3}>
 														<FiArrowLeft fontSize={'27px'} cursor='pointer'/>
@@ -136,7 +138,7 @@ const Whishlist = () => {
 
 										{/* my Whishlist */}
 
-										<TabPanel onClick={handleGetWishlist} bg='white'>
+										<TabPanel  bg='white'>
 											{!wishlist?.length>0? (
 												<Flex direction={'column'} justifyContent='center' alignItems='center' minHeight={'75vh'}>
 													<Heading fontWeight={'500'} fontSize='25px'>NO ITEMS IN THE WISHLIST</Heading>
@@ -147,7 +149,7 @@ const Whishlist = () => {
 											) : (
 												<Box>
 													<Box pb={5} borderBlockEnd="1px solid rgb(214,217,220)">
-														<Heading p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>({wishlist?.length})</span></Heading>
+														<Heading  p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>({wishlist?.length})</span></Heading>
 													</Box>
 													<WishlistProducts />
 													<Text mt={10} textAlign={'center'}>No More Product to show</Text>

@@ -76,7 +76,7 @@ const SignIn = () => {
       mb="2rem"
     >
       <Flex mt=".7rem" mb="1rem" ml=".4rem" mr=".4rem">
-        <Link to="#">
+        <Link to="/">
           {" "}
           <CloseIcon height="14px" width="14px" cursor="pointer" />{" "}
         </Link>

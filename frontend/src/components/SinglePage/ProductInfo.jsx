@@ -12,6 +12,7 @@ const ProductInfo = ({ data }) => {
 	const { message } = useSelector((store) => store.cart)
 	const { title, price, off_price, offer, image1, image2, image3, description, _id } = data;
 	const { userId } = useSelector((store) => store.auth)
+	const {Mtoken} = useSelector((store)=>store.auth)
 	const handleAddToCart = () => {
 		dispatch(addCartData(_id)).then(() => {
 			toast({

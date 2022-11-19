@@ -43,12 +43,6 @@ const SidebarFilter = ({sendFilterValue}) => {
 			setCheckBoxStatus({... checkBoxStatus, [filterName]: filterValue});
 		}
 	}
-
-	// console.log(Object.keys(checkBoxStatus).length);
-	// console.log(checkBoxStatus);
-
-	// 
-	
 	return (
 		<>
 		{checkBoxStatus !== '{}' ? "" : (

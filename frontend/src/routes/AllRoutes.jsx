@@ -11,7 +11,8 @@ import PageNotFound from "../pages/PageNotFound";
 import Payment from "../pages/Payment";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import SingalProduct from "../pages/SingalProduct";
+import SingleProduct from "../pages/SingleProduct";
+import SingalProduct from "../pages/SingleProduct";
 import Skin from "../pages/Skin";
 
 // import Skin from '../pages/Skin';
@@ -22,14 +23,14 @@ const AllRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/cart' element={<Cart />} />
-      <Route path='/address' element={<Address />} />
-      <Route path='/orderconfirm' element={<OrderConfirm />} />
-      <Route path='/payment' element={<Payment />} />
+      <Route path='/cart' element={<PrivateRoutes><Cart /></PrivateRoutes>} />
+      <Route path='/address' element={<PrivateRoutes><Address /></PrivateRoutes>} />
+      <Route path='/orderconfirm' element={<PrivateRoutes><OrderConfirm /></PrivateRoutes>} />
+      <Route path='/payment' element={<PrivateRoutes><Payment /></PrivateRoutes>} />
 
       <Route path='/skin' element={<Skin />} />
-      <Route path='/whishlist' element={<Whishlist />} />
-      <Route path='/skin/:id' element={<PrivateRoutes><SingalProduct /></PrivateRoutes>} />
+      <Route path='/profile' element={<PrivateRoutes><Whishlist /></PrivateRoutes>} />
+      <Route path='/skin/:id' element={<PrivateRoutes><SingleProduct /></PrivateRoutes>} />
       <Route path='/signIn' element={<SignIn />} />
       <Route path='/signUp' element={<SignUp />} />
       <Route path='/details' element={<AddUser />} />

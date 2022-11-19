@@ -45,11 +45,9 @@ export const addToWishlist=(id)=>async(dispatch)=>{
 	dispatch({type:WISHLIST_PRODUCT_ADD_LOADING})
    try{
      const res=await instance.post(`/wishlist`,{id:id})
-	 console.log(res.data,"wishlist")
 	 dispatch({type:WISHLIST_PRODUCT_ADD_SUCCESS,payload:res.data.data})
 	 return res
    }catch(e){
-	  console.log(e.message)
       dispatch({type:WISHLIST_PRODUCT_ADD_ERROR})
 	  return Promise.reject(e)
    }

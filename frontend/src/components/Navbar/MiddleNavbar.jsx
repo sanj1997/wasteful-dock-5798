@@ -22,6 +22,7 @@ const MiddleNavbar = () => {
     const dispatch = useDispatch()
     const handleLogout = () => {
         dispatch(signOutUser())
+        window.location.reload()
     }
     return (
         <Box height={"70px"} borderBottom="1px solid #D3D3D3" >
@@ -43,22 +44,18 @@ const MiddleNavbar = () => {
                 <HStack >
 
                     {Mtoken ? <Box>
-
-                        <HStack gap={4} position={"relative"} className={Styles.stack}>
-                            <Box >
-                                <a target={"_blank"} href="https://admin-beautiva.netlify.app/">
-                                    <Flex gap={2}>
-                                        <Avatar size='sm' src='https://bit.ly/broken-link' />
-                                        <Text fontWeight={"bold"}>{userName}</Text>
-                                    </Flex>
-                                </a>
+                        <HStack gap={4} className={Styles.stack}>
+                            <Box className={Styles.boxshow} position={"relative"}>
+                                <Box  >
+                                        <Flex alignItems={"center"} gap={2}>
+                                            <Avatar size='sm' src='https://bit.ly/broken-link' />
+                                            <Text fontWeight={"bold"}>{userName}</Text>
+                                        </Flex>
+                                </Box>
+                                <Box position={"absolute"} className={Styles.userBox}  >
+                                    <UserHoverBox />
+                                </Box>
                             </Box>
-                            <Box className={Styles.userBox}  >
-                                <UserHoverBox />
-                            </Box>
-
-
-
                             <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
                         </HStack>
 

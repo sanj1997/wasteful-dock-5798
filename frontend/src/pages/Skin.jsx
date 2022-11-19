@@ -1,5 +1,6 @@
 import { Heading, Box, Flex } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Products from '../components/Skin/Products';
 import SidebarFilter from '../components/Skin/SidebarFilter';
 import SlidingWindow from '../components/Skin/SlidingWindow';
@@ -8,7 +9,7 @@ const imgArr = ["https://images-static.nykaa.com/uploads/9943eccd-8912-4ebe-95ca
 
 const Skin = () => {
 	const [filterValue, setFilterValue] = useState(1);
-
+    const {product}=useSelector((store)=>store.product)
 	const sendFilterValue = (filterValue) =>{
 		if(filterValue==="Price: Low To High"){
 			setFilterValue(1);
@@ -21,7 +22,7 @@ const Skin = () => {
 		<>
 
 		<Box pt={10} bg={'rgb(242,243,242)'}>
-			<Heading fontSize={'24px'} textAlign='center'>Moisturizers Products Collection (4539)</Heading>
+			<Heading fontSize={'24px'} textAlign='center'>Moisturizers Products Collection {`(${30})`}</Heading>
 			<SlidingWindow imgArr={imgArr}/>
 			<Heading fontSize={'24px'} textAlign='center'>All Products</Heading>
 			<Flex width={'98%'} margin='auto'>

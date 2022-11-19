@@ -48,14 +48,14 @@
 /* ########## userHoverCss ########### */
 
 .userBox {
-    position: absolute;
-    top: 2.5rem;
-    right: 2rem;
+    /* position: absolute; */
+    top: 2.4rem;
+    left: -0.5rem;
     display: none;
 }
 
 
-.stack:hover .userBox {
+.boxshow:hover .userBox {
     display: block;
     z-index: 5;
 }

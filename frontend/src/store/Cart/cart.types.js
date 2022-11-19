@@ -16,3 +16,7 @@ export const CART_UPDATE_SUCCESS = "cart/update/success"
 export const CART_DELETE_LOADING = "cart/delete/loading"
 export const CART_DELETE_ERROR = "cart/delete/error"
 export const CART_DELETE_SUCCESS = "cart/delete/success"
+
+export const CART_USER_DELETE_LOADING = "cart/user/delete/loading"
+export const CART_USER_DELETE_ERROR = "cart/user/delete/error"
+export const CART_USER_DELETE_SUCCESS = "cart/user/delete/success"

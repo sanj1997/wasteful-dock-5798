@@ -7,7 +7,8 @@ import r_logo from "../assets/pngs/razorpay_logo.png"
 import instance from '../middleware/auth.middleware';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartData } from '../store/Cart/cart.action';
+import { deleteUserCartData, getCartData } from '../store/Cart/cart.action';
+import { addToOrders } from '../store/order/order.action';
 
 const Payment = () => {
     const navigate=useNavigate()
@@ -40,6 +41,8 @@ const Payment = () => {
                     description:response.razorpay_signature,
                     status:"success"
                 })
+                dispatch(addToOrders(userId))
+                dispatch(deleteUserCartData(userId))
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
                 // alert(response.razorpay_signature);
@@ -52,7 +55,7 @@ const Payment = () => {
         const rzp1 = new Razorpay(options)
 
         rzp1.open();
-        dispatch()
+        
     };
 
 

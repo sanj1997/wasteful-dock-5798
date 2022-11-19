@@ -109,10 +109,10 @@ const CartModal = () => {
 
                     <Flex borderTop="1px solid #D3D3D3" py={5} px={8} justify="space-between" align={"center"}>
                         <Box>
-                            <Text fontSize="20px" fontWeight="bold">{total}</Text>
+                            <Text fontSize="20px" fontWeight="bold">₹ {total}</Text>
                             <Text fontSize="12px">Grand Total <InfoOutlineIcon w="20px" /></Text>
                         </Box>
-                        <Link to={"/address"}><Button rightIcon={<ArrowForwardIcon w={6} h={6} />} color="white" bg='#E80071' >
+                        <Link to={"/address"}><Button onClick={onClose} rightIcon={<ArrowForwardIcon w={6} h={6} />} color="white" bg='#E80071' >
                             Proceed
                         </Button></Link>
                     </Flex>

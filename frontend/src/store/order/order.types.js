@@ -4,9 +4,9 @@ export const ORDER_PRODUCT_GET_ERROR = "order/get/error";
 export const ORDER_PRODUCT_GET_SUCCESS = "order/get/success";
 
 //get by id
-export const ORDER_PRODUCT_GET_BY_ID_LOADING = "order/get_by_id/loading";
-export const ORDER_PRODUCT_GET_BY_ID_ERROR = "order/get_by_id/error";
-export const ORDER_PRODUCT_GET_BY_ID_SUCCESS = "order/get_by_id/success";
+export const ORDER_ADD_LOADING = "order/add/loading";
+export const ORDER_ADD_ERROR = "order/add/error";
+export const ORDER_ADD_SUCCESS = "order/add/success";
 
 //get by delete
 export const ORDER_PRODUCT_DELETE_LOADING = "order/delete/loading";

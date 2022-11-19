@@ -8,7 +8,7 @@ const PrivateRoutes = ({children}) => {
     {
       return children
     }
-    return <Navigate to={"/signIn"} replace={true}/>
+    return <Navigate to={"/"} replace={true}/>
 }
 
 export default PrivateRoutes

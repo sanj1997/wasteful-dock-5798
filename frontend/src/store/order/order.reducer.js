@@ -1,4 +1,4 @@
-import { ORDER_PRODUCT_GET_BY_ID_LOADING, ORDER_PRODUCT_GET_BY_ID_ERROR, ORDER_PRODUCT_GET_BY_ID_SUCCESS } from "./order.types";
+import { ORDER_ADD_LOADING, ORDER_ADD_ERROR, ORDER_ADD_SUCCESS } from "./order.types";
 import { ORDER_PRODUCT_DELETE_LOADING, ORDER_PRODUCT_DELETE_ERROR, ORDER_PRODUCT_DELETE_SUCCESS } from "./order.types";
 import { ORDER_PRODUCT_GET_ERROR, ORDER_PRODUCT_GET_LOADING, ORDER_PRODUCT_GET_SUCCESS } from "./order.types";
 
@@ -51,6 +51,17 @@ export const orderReducer = (state = orderInitial, {type, payload}) =>{
 					orders: payload,
 					status: true
 					}
+		case ORDER_ADD_LOADING:return {
+			...state,loading:true
+		}
+		
+		case ORDER_ADD_SUCCESS: return {
+			...state,loading:false,orders:payload
+		}
+
+		case ORDER_ADD_ERROR:return {
+			...state,loading:false,error:true
+		}
 		default:return state;
 
 	}

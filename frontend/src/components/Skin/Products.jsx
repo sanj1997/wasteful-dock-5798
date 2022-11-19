@@ -10,9 +10,11 @@ const Products = ({filterValue}) => {
 	const [page, setPage] = useState(1);
 	const dispatch = useDispatch();
 	const {product} = useSelector((store) => store.product);
+	console.log(filterValue,"filterval")
 	useEffect(()=>{
-		dispatch(getProduct());
-	}, []);
+		dispatch(getProduct(page));
+	}, [page]);
+
 	return (
 		<>
 		<Grid p={'20px 20px 20px 0px'} templateColumns='repeat(3, 1fr)' gap={6}>

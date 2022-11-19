@@ -36,7 +36,7 @@ const Login = () => {
       padding=".8rem"
     >
       <Flex marginTop=".3rem">
-        <Link to="/signin">
+        <Link to="/">
           <CloseIcon height="14px" width="14px" cursor="pointer" />
         </Link>
         <Spacer />

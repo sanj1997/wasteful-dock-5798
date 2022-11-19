@@ -9,7 +9,7 @@ const CartProductCard = ({ el, qty }) => {
 
     const toast = useToast()
     const { message } = useSelector((store) => store.cart)
-    const { brand, image1, price, title, _id } = el
+    const { brand, image1, price,off_price, title, _id } = el
     const { userId } = useSelector((store) => store.auth)
     const dispatch = useDispatch()
     const handleDelete = (id) => {
@@ -73,7 +73,7 @@ const CartProductCard = ({ el, qty }) => {
 
                 </Box>
                 <Box>
-                    <Text fontWeight="bold">{price}</Text>
+                    <Text fontWeight="bold">₹ {off_price}/per product</Text>
                 </Box>
             </Flex>
         </Box>

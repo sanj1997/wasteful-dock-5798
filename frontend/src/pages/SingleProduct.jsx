@@ -11,7 +11,7 @@ import ProductReview from '../components/SinglePage/ProductReview';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
-const SingalProduct = () => {
+const SingleProduct = () => {
 	const params = useParams();
 	const dispatch = useDispatch();
 	const {singleProduct,loading} = useSelector((store) => store.product);
@@ -47,4 +47,4 @@ const SingalProduct = () => {
 	)
 }
 
-export default SingalProduct;
+export default SingleProduct;
