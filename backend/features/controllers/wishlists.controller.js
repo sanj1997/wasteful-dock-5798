@@ -12,9 +12,9 @@ const addToWishlist=async(mainToken,productID)=>{
         }
         else
         {
-            console.log(productID,"from user")
             const updateWishlist=await WishlistModel.create({userId:userData.id,product:productID})
-            response={message:"Successful"}
+            const userWishlist=await WishlistModel.find({userId:userData.id}).populate("product")
+            response={message:"Successful",data:userWishlist}
         }
     }catch(e){
          response={message:e.message}
@@ -24,7 +24,7 @@ const addToWishlist=async(mainToken,productID)=>{
 const getWishlist=async(id)=>{
         let response;
         try{
-           const userWishlist=await WishlistModel.findOne({userId:id}).populate("product")
+           const userWishlist=await WishlistModel.find({userId:id}).populate("product")
            response={message:"Successful",data:userWishlist}
         }catch(e){
            response={message:e.message}

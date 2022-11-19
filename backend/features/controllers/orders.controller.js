@@ -38,7 +38,7 @@ const addToOrders=async(uid)=>{
 const getOrders=async(uid)=>{
    let response;
    try{
-      const userOrders=await OrderModel.findOne({userId:uid})
+      const userOrders=await OrderModel.find({userId:uid})
       response={message:"Successful",data:userOrders}
    }catch(e){
       response={message:e.message}
