@@ -7,11 +7,13 @@ import Cart from "../pages/Cart";
 import Home from "../pages/Home";
 import OrderConfirm from "../pages/OrderConfirm";
 import Otpverify from "../pages/Otpverify";
+import PageNotFound from "../pages/PageNotFound";
 import Payment from "../pages/Payment";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import SingalProduct from "../pages/SingalProduct";
 import Skin from "../pages/Skin";
+
 // import Skin from '../pages/Skin';
 
 import Whishlist from '../pages/Wishlist'
@@ -24,13 +26,15 @@ const AllRoutes = () => {
       <Route path='/address' element={<Address />} />
       <Route path='/orderconfirm' element={<OrderConfirm />} />
       <Route path='/payment' element={<Payment />} />
-      <Route path='/skin' element={<Skin/>}/>
-      <Route path='/wishlist' element={<Whishlist />}/>
-      <Route path='/skin/:id' element={<PrivateRoutes><SingalProduct /></PrivateRoutes>}/>
-      <Route path='/signIn' element={<SignIn />}/>
-      <Route path='/signUp' element={<SignUp />}/>
-      <Route path='/details' element={<AddUser />}/>
-      <Route path='/otp-verify' element={<Otpverify />}/>
+
+      <Route path='/skin' element={<Skin />} />
+      <Route path='/whishlist' element={<Whishlist />} />
+      <Route path='/skin/:id' element={<PrivateRoutes><SingalProduct /></PrivateRoutes>} />
+      <Route path='/signIn' element={<SignIn />} />
+      <Route path='/signUp' element={<SignUp />} />
+      <Route path='/details' element={<AddUser />} />
+      <Route path='/otp-verify' element={<Otpverify />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };
