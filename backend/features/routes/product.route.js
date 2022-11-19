@@ -2,6 +2,7 @@ const express = require("express")
 const { getAllProducts, getSingleProduct, removeProduct, updateProduct, addProducts } = require("../controllers/products.controller")
 const router=express.Router()
 const authmiddleware=require("../middlewares/authmiddleware")
+const ProductModel = require("../models/product.model")
 //add product
 router.post("/",async(req,res)=>{
     const mainToken=req.headers.authorization
@@ -74,4 +75,16 @@ router.patch("/:id",async(req,res)=>{
     }
     return res.status(401).send(response)
 })
+
+//all products-admin
+router.get("/admin-products",async(req,res)=>{
+    try{
+        const allProducts=await ProductModel.find()
+        return res.send({message:success,data:allProducts})
+    }catch(e){
+        return res.status(401).send({message:e.message})
+    }
+
+})
+
 module.exports=router

@@ -12,6 +12,7 @@ const InitialState = {
     message: null,
     isVerified: false,
     address:[],
+    email:JSON.parse(localStorage.getItem("email")) || null,
     userId: JSON.parse(localStorage.getItem("yql")) || null,
     role: JSON.parse(localStorage.getItem("role")) || null
 }
@@ -55,6 +56,7 @@ const authReducer = (state = InitialState, { type, payload }) => {
             localStorage.setItem("userName", JSON.stringify(payload.userName))
             localStorage.setItem("yql", JSON.stringify(payload.uId))
             localStorage.setItem("role", JSON.stringify(payload.role))
+            localStorage.setItem("email", JSON.stringify(payload.email))
             return {
                 ...state, loading: false, Rtoken: payload.csv, Mtoken: payload.asv, firstName: payload.firstName, lastName: payload.lastName, userName: payload.userName, userId: payload.uId
             }
@@ -69,6 +71,7 @@ const authReducer = (state = InitialState, { type, payload }) => {
             localStorage.removeItem("yql")
             localStorage.removeItem("userName")
             localStorage.removeItem("role")
+            localStorage.removeItem("email")
             return {
                 ...state, Mtoken: null, Rtoken: null, firstName: null, lastName: null, userName: null, userId: null
             }

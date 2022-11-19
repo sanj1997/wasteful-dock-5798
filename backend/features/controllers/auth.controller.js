@@ -112,7 +112,7 @@ const validateUser = async (email, password) => {
             const refreshToken = jwt.sign({ id: user._id, role: user.role }, `${process.env.JWT_REFRESH_SECRET}`, {
                 expiresIn: "7 days"
             })
-            response = { message: "Login successful", asv: mainToken, csv: refreshToken, firstName: user.firstName, lastName: user.lastName, userName: user.userName, uId: user._id, role: user.role }
+            response = { message: "Login successful", asv: mainToken, csv: refreshToken, firstName: user.firstName, lastName: user.lastName, userName: user.userName, uId: user._id, role: user.role, email:user.email }
         }
     }
     catch (e) {

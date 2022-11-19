@@ -7,7 +7,7 @@ const AddressCard = ({el}) => {
     const {pin,house,road,name,phone,email}=el
   return (
     <Link to="/payment">
-    <Flex padding={"1rem"} borderRadius={"10px"} border={"2px dotted #d53f8c"} flexDirection={"column"}>
+    <Flex _hover={{color:"black"}} padding={"1rem"} borderRadius={"10px"} border={"2px dotted #d53f8c"} flexDirection={"column"}>
         <Text><Highlight styles={{color:"#d53f8c",fontWeight:"bold"}} query={"Pin"}>{`Pin: ${pin}`}</Highlight></Text>
         <Text><Highlight styles={{color:"#d53f8c",fontWeight:"bold"}} query={"House No"}>{`House No: ${house}`}</Highlight></Text>
         <Text><Highlight styles={{color:"#d53f8c",fontWeight:"bold"}} query={"Road"}>{`Road: ${road}`}</Highlight></Text>

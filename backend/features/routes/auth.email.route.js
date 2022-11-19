@@ -167,6 +167,7 @@ router.get("/:id",authmiddleware,async(req,res)=>{
     }
 
 })
+
 router.get("/all-users",async(req,res)=>{
     const mainToken=req.headers.authorization
     try{
@@ -178,6 +179,21 @@ router.get("/all-users",async(req,res)=>{
       }
     }catch(e){
     return res.status(401).send({message:"Failure"})
+    }
+})
+
+router.delete("/:id",async(req,res)=>{
+    const mainToken=req.headers.authorization
+    const {id}=req.params
+    try{
+      const data=jwt.decode(mainToken,`${process.env.JWT_MAIN_SECRET}`)
+      if(data.role==="Admin")
+      {
+        const userData=await UserModel.deleteOne({_id:id})
+        return res.send({message:"Successful"})
+      }
+    }catch(e){
+      return res.status(401).send({message:"Failure"})
     }
 })
 module.exports=router

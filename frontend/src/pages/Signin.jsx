@@ -61,6 +61,15 @@ const SignIn = () => {
             status: "error",
           });
         }
+      else
+      {
+        {
+          toast({
+            description: "Invalid credentials",
+            status: "error",
+          });
+        }
+      }  
     })
   };
   

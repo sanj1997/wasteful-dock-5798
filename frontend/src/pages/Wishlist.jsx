@@ -19,7 +19,7 @@ const userInfo= {
 	name: "Dinesh Karde",
 	email: "dineshkarde103@gmail.com",
 	mobile: 7743891068,
-	dob: "dd-mm-yyyy"
+	dob: "02-07-1997"
 }
 
 
@@ -27,7 +27,7 @@ const Whishlist = () => {
 	const [cartItem, setCartItem] = useState([{name: "Dk", product: "ok"}]);
 	const {orders} = useSelector((store) => store.order);
 	const {wishlist,loading} = useSelector((store) => store.wishlist);
-	const {userId}=useSelector((store)=>store.auth)
+	const {userId, email, firstName, lastName}=useSelector((store)=>store.auth)
 	const dispatch=useDispatch()
 	console.log(orders)
     useEffect(()=>{
@@ -93,8 +93,8 @@ const Whishlist = () => {
 															<Flex gap={6}>
 																<Img src="https://www.nykaa.com/assets/desktop/images/my_account/default_avatar.svg" alt=""/>
 																<Flex direction={'column'} justifyContent='center' gap={2} >
-																	<Text fontWeight={'800'} fontSize='20px'>{userInfo.name}</Text>
-																	<Text color='gray'>Email: {userInfo.email}</Text>
+																	<Text fontWeight={'800'} fontSize='20px'>{firstName} {lastName}</Text>
+																	<Text color='gray'>Email: {email}</Text>
 																	<Text color='gray'>Mobile: {userInfo.mobile}</Text>
 																	<Text color='gray'>Date of Birth: {userInfo.dob}</Text>
 																</Flex>
