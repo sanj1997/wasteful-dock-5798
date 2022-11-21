@@ -27,7 +27,7 @@ const MiddleNavbar = () => {
     return (
         <Box height={"70px"} borderBottom="1px solid #D3D3D3" >
             <Flex w={"85%"} m="auto" justify={"space-between"} align="center" h="full">
-                <Image w={"100px"} src={logo} alt="logo" />
+                <Link to={"/"}><Image w={"100px"} src={logo} alt="logo" /></Link>
                 <Flex gap={6} fontWeight="600" fontSize={"14px"}>
                     <Text className={Styles.category}>Categories</Text>
                     <Text className={Styles.category}>Brands</Text>

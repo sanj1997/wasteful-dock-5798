@@ -25,7 +25,7 @@ const AllRoutes = () => {
       <Route path='/' element={<Home />} />
       <Route path='/cart' element={<PrivateRoutes><Cart /></PrivateRoutes>} />
       <Route path='/address' element={<PrivateRoutes><Address /></PrivateRoutes>} />
-      <Route path='/orderconfirm' element={<PrivateRoutes><OrderConfirm /></PrivateRoutes>} />
+      <Route path='/order-confirm' element={<PrivateRoutes><OrderConfirm /></PrivateRoutes>} />
       <Route path='/payment' element={<PrivateRoutes><Payment /></PrivateRoutes>} />
 
       <Route path='/skin' element={<Skin />} />

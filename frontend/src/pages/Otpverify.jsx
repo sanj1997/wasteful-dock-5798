@@ -23,7 +23,7 @@ const TimeString = (time) => {
 };
 const Otpverify = () => {
   const toast = useToast();
-  const [count,setCount]=useState(30)
+  const [count,setCount]=useState(20)
   const ref=useRef(null)
   const dispatch=useDispatch()
   const {isVerified}=useSelector((store)=>store.auth)

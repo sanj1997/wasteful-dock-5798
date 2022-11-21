@@ -58,7 +58,7 @@ const authReducer = (state = InitialState, { type, payload }) => {
             localStorage.setItem("role", JSON.stringify(payload.role))
             localStorage.setItem("email", JSON.stringify(payload.email))
             return {
-                ...state, loading: false, Rtoken: payload.csv, Mtoken: payload.asv, firstName: payload.firstName, lastName: payload.lastName, userName: payload.userName, userId: payload.uId
+                ...state, loading: false, Rtoken: payload.csv, Mtoken: payload.asv, firstName: payload.firstName, lastName: payload.lastName, userName: payload.userName, userId: payload.uId, email:payload.email, role:payload.role
             }
         case SIGN_IN_ERROR: return {
             ...state, loading: false, error: true

@@ -31,23 +31,24 @@ const Payment = () => {
             handler: function (response) {
                 toast({
                     description:response.razorpay_payment_id,
-                    status:"success"
+                    status:"success",
+                    duration:3000
                 })
-                toast({
-                    description:response.razorpay_order_id,
-                    status:"success"
-                })
-                toast({
-                    description:response.razorpay_signature,
-                    status:"success"
-                })
+                // toast({
+                //     description:response.razorpay_order_id,
+                //     status:"success"
+                // })
+                // toast({
+                //     description:response.razorpay_signature,
+                //     status:"success"
+                // })
                 dispatch(addToOrders(userId))
                 dispatch(deleteUserCartData(userId))
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
                 // alert(response.razorpay_signature);
                 setTimeout(() => {
-                    navigate("/")
+                    navigate("/order-confirm")
                 }, 3000);
             },
         };
