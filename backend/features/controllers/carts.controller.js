@@ -29,23 +29,32 @@ const removeFromCart = async (pId, mainToken) => {
   try {
     const userData = jwt.verify(mainToken, process.env.JWT_MAIN_SECRET);
     const updateCart = await CartModel.deleteOne({userId:userData.id,product:pId});
-    response = { message: "Successful" };
+    response = { message: "Item removed successfully" };
   } catch (e) {
     response = { message: e.message };
   }
   return response;
 };
 
+const removeUserCart= async(uid)=>{
+  console.log(uid)
+   let response
+   try{
+       const userCart=await CartModel.deleteMany({userId:uid})
+       response={message:"Successful"}
+   }catch(e){
+       response={message:e.message}
+   } 
+   return response
+}
+
 const updateCart = async (pid, mainToken, quantity) => {
   let response;
   try {
     const userData = jwt.verify(mainToken, process.env.JWT_MAIN_SECRET);
-    console.log(userData.id,pid)
     const pr=await CartModel.findOne({userId:userData.id,product:pid})
-    console.log(pr,"existing")
     const updateCart = await CartModel.updateOne({userId: userData.id,product:pid},{$set:{quantity:quantity}});
-    console.log(updateCart)
-    response = { message: "Successful"};
+    response = { message: "Cart updated successfully"};
   } catch (e) {
     response = { message: e.message };
   }
@@ -56,11 +65,10 @@ const getCart = async (id) => {
   let response;
   try {
     const userCart = await CartModel.find({ userId: id }).populate("product")
-    console.log(userCart,"cert")
     response = { message: "Successful", data: userCart };
   } catch (e) {
     response = { message: e.message };
   }
   return response;
 };
-module.exports = { addTocart, removeFromCart, updateCart, getCart };
+module.exports = { addTocart, removeFromCart, updateCart, getCart, removeUserCart };

@@ -8,29 +8,38 @@ import { BsBag, BsCart3 } from 'react-icons/bs';
 import { GrFavorite } from 'react-icons/gr';
 import { AiFillCreditCard, AiOutlinePoweroff } from 'react-icons/ai';
 import WishlistProducts from '../components/wishlist/WishlistProduct';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderProducts from '../components/wishlist/OrderProduct';
 import { useEffect } from 'react';
+import { getWishlistProduct } from '../store/wishlist/wishlist.action';
+import { getOrderProduct } from '../store/order/order.action';
+import { signOutUser } from '../store/auth/auth.action';
 
 const userInfo= {
 	name: "Dinesh Karde",
 	email: "dineshkarde103@gmail.com",
 	mobile: 7743891068,
-	dob: "dd-mm-yyyy"
+	dob: "02-07-1997"
 }
 
 
 const Whishlist = () => {
 	const [cartItem, setCartItem] = useState([{name: "Dk", product: "ok"}]);
-	const dataWishlist = useSelector((store) => store.getWishlistReducer.data);
-	const dataOrder = useSelector((store) => store.getWishlistReducer.data);
-
-	console.log(dataWishlist.product.data)
+	const {orders} = useSelector((store) => store.order);
+	const {wishlist,loading} = useSelector((store) => store.wishlist);
+	const {userId, email, firstName, lastName}=useSelector((store)=>store.auth)
+	const dispatch=useDispatch()
+	console.log(orders)
+    useEffect(()=>{
+		dispatch(getWishlistProduct(userId))
+	},[])
 
 	useEffect(()=>{
-
-	}, [dataWishlist])
-
+		dispatch(getOrderProduct(userId));
+	},[])
+	const handleClick=()=>{
+		dispatch(signOutUser())
+	}
     return (
 			<Box bg={'rgb(242,243,242)'}>
 		<Box w={"90%"} m="auto">
@@ -68,7 +77,7 @@ const Whishlist = () => {
 														<Text>My Saved Payment</Text>
 												</Flex>
 										</Tab>
-										<Tab _selected={{ bg: 'white', color: '#e80071', borderRight: "4px solid #e80071" }} borderBlockEnd="1px solid rgb(214,217,220)">
+										<Tab onClick={handleClick} _selected={{ bg: 'white', color: '#e80071', borderRight: "4px solid #e80071" }} borderBlockEnd="1px solid rgb(214,217,220)">
 												<Flex alignItems={'center'} width="100%" gap={3} fontSize='18px' p={3}>
 												    <AiOutlinePoweroff fontSize='22px'/>
 														<Text>Log Out</Text>
@@ -84,8 +93,8 @@ const Whishlist = () => {
 															<Flex gap={6}>
 																<Img src="https://www.nykaa.com/assets/desktop/images/my_account/default_avatar.svg" alt=""/>
 																<Flex direction={'column'} justifyContent='center' gap={2} >
-																	<Text fontWeight={'800'} fontSize='20px'>{userInfo.name}</Text>
-																	<Text color='gray'>Email: {userInfo.email}</Text>
+																	<Text fontWeight={'800'} fontSize='20px'>{firstName} {lastName}</Text>
+																	<Text color='gray'>Email: {email}</Text>
 																	<Text color='gray'>Mobile: {userInfo.mobile}</Text>
 																	<Text color='gray'>Date of Birth: {userInfo.dob}</Text>
 																</Flex>
@@ -102,7 +111,7 @@ const Whishlist = () => {
 										{/* My orders */}
 
 										<TabPanel>
-											{dataOrder.product.data?.length === 0 ? (
+											{orders===null ? (
 												<Box  width='100%'>
 													<Flex bg='white' gap={2} alignItems='center' p={3}>
 														<FiArrowLeft fontSize={'27px'} cursor='pointer'/>
@@ -129,8 +138,8 @@ const Whishlist = () => {
 
 										{/* my Whishlist */}
 
-										<TabPanel bg='white'>
-											{dataWishlist.product.data?.length === 0 ? (
+										<TabPanel  bg='white'>
+											{!wishlist?.length>0? (
 												<Flex direction={'column'} justifyContent='center' alignItems='center' minHeight={'75vh'}>
 													<Heading fontWeight={'500'} fontSize='25px'>NO ITEMS IN THE WISHLIST</Heading>
 													<Text mt={10}>Add now, Buy Later.</Text>
@@ -140,7 +149,7 @@ const Whishlist = () => {
 											) : (
 												<Box>
 													<Box pb={5} borderBlockEnd="1px solid rgb(214,217,220)">
-														<Heading p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>(1)</span></Heading>
+														<Heading  p={2} fontWeight={500}>My Wishlist <span style={{color: "rgb(253,38,121)"}}>({wishlist?.length})</span></Heading>
 													</Box>
 													<WishlistProducts />
 													<Text mt={10} textAlign={'center'}>No More Product to show</Text>

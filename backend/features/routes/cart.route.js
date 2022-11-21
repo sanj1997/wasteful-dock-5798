@@ -4,6 +4,7 @@ const {
   removeFromCart,
   updateCart,
   getCart,
+  removeUserCart,
 } = require("../controllers/carts.controller");
 const router = express.Router();
 const authmiddleware = require("../middlewares/authmiddleware");
@@ -11,7 +12,6 @@ const authmiddleware = require("../middlewares/authmiddleware");
 //add to cart
 router.post("/:id", authmiddleware, async (req, res) => {
   const { id } = req.params;
-  console.log(id,"add to cart")
   // console.log(id, "req id");
   const mainToken = req.headers.authorization;
   const response = await addTocart(id, mainToken);
@@ -29,11 +29,22 @@ router.delete("/:id", authmiddleware, async (req, res) => {
   
   const mainToken = req.headers.authorization;
   const response = await removeFromCart(id, mainToken);
-  if (response.message === "Successful") {
+  if (response.message === "Item removed successfully") {
     return res.send(response);
   }
   return res.status(401).send(response);
 });
+
+router.delete("/user-cart/:id",async(req,res)=>{
+   const {id}=req.params
+   console.log(id,"to remove")
+   const response=await removeUserCart(id)
+   if(response.message==="Successful")
+   {
+     return res.send(response)
+   }
+   return res.status(401).send(response)
+})
 
 //update Cart
 router.patch("/", authmiddleware, async (req, res) => {
@@ -41,7 +52,7 @@ router.patch("/", authmiddleware, async (req, res) => {
   console.log(id,quantity)
   const mainToken = req.headers.authorization;
   const response = await updateCart(id, mainToken, quantity);
-  if (response.message === "Successful") {
+  if (response.message === "Cart updated successfully") {
     return res.send(response);
   }
   return res.status(401).send(response);
@@ -50,6 +61,7 @@ router.patch("/", authmiddleware, async (req, res) => {
 //get cart
 router.get("/:id", authmiddleware, async (req, res) => {
   const { id } = req.params;
+  console.log(id,"for getting cart")
   const response = await getCart(id);
   if (response.message === "Successful") {
     return res.send(response);

@@ -1,0 +1,65 @@
+.login {
+    height: 100vh;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .card {
+      width: 55%;
+      display: flex;
+      background-color: white;
+      border-radius: 10px;
+      min-height: 600px;
+      overflow: hidden;
+  
+      .left {
+        flex: 1;
+        background:linear-gradient(to bottom, transparent, pink),
+          url("https://images-static.nykaa.com/media/catalog/product/c/a/ca52eecpacxx00000133_1.jpg?tr=w-344,h-344,cm-pad_resize")
+            center;
+        background-size: cover;
+        padding: 50px;
+        display: flex;
+        align-items:center;
+      }
+  
+      .right {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        justify-content: center;
+  
+        h1 {
+        color: #555;
+        }
+        
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          
+          input {
+          border: none;
+          border-bottom: 1px solid lightgray;
+          padding: 20px 10px;
+          margin-right:1rem;
+          outline:none;
+          }
+          
+          button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            background-color: #fc2779;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }

@@ -1,4 +1,5 @@
 const express = require("express")
+const jwt=require("jsonwebtoken")
 const passport = require("../utils/google-oauth")
 const {createUserEmail,validateUser,revalidateUser, verifyUser, forgotPassword, resetPassword, reSendOtp} = require("../controllers/auth.controller")
 const router=express.Router()
@@ -18,7 +19,6 @@ router.post("/signup",async(req,res)=>{
      }
      else if (response.message==="Otp is sent to your registered email")
      {
-        console.log("heeeeeeeeeyyyyyyy")
         return res.send(response)
      }
      return res.status(401).send(response)
@@ -54,6 +54,10 @@ router.post("/verify-email/resend-otp",async(req,res)=>{
     if(response.message==="Email not registered")
     {
         return res.status(401).send(response)
+    }
+    else if(response.message==="Email is already verified")
+    {
+        return res.send(response)
     }
     else if(response.message==="Otp is sent to your registered email")
     {
@@ -135,17 +139,26 @@ router.get('/google/callback',
 //logout
 
 router.post("/address",authmiddleware,async(req,res)=>{
-    console.log(req.body,"body")
     try{
-        const updateUser=await UserModel.updateOne({_id:req.body.userID},{$set:{address:req.body}})
+        let id=req.body.userID
+        let pin=req.body.pin
+        let house=req.body.house
+        let road=req.body.road
+        let name=req.body.name
+        let phone=req.body.phone
+        let email=req.body.email
+        const findUserAddress=await UserModel.find({_id:id})
+        console.log(findUserAddress)
+        const deleteOldAddress=await UserModel.updateOne({_id:id},{$push:{address:{pin:pin,house:house,road:road,name:name,phone:phone,email:email}}})
         return res.send({message:"Successful"})
     }catch(e){
         return res.status(401).send({message:e.message})
     }
 })
 router.get("/:id",authmiddleware,async(req,res)=>{
+    const {id}=req.params
     try{
-        const userDetails=await UserModel.findById({_id:req.body.userID})
+        const userDetails=await UserModel.findById({_id:id})
         delete userDetails.password
         delete userDetails.email
         return res.send({message:"Successful",data:userDetails})
@@ -153,5 +166,34 @@ router.get("/:id",authmiddleware,async(req,res)=>{
         return res.status(401).send({message:e.message})
     }
 
+})
+
+router.get("/all-users",async(req,res)=>{
+    const mainToken=req.headers.authorization
+    try{
+      const data=jwt.decode(mainToken,`${process.env.JWT_MAIN_SECRET}`)
+      if(data.role==="Admin")
+      {
+        const userData=await UserModel.find()
+        return res.send({message:"Successful",data:userData})
+      }
+    }catch(e){
+    return res.status(401).send({message:"Failure"})
+    }
+})
+
+router.delete("/:id",async(req,res)=>{
+    const mainToken=req.headers.authorization
+    const {id}=req.params
+    try{
+      const data=jwt.decode(mainToken,`${process.env.JWT_MAIN_SECRET}`)
+      if(data.role==="Admin")
+      {
+        const userData=await UserModel.deleteOne({_id:id})
+        return res.send({message:"Successful"})
+      }
+    }catch(e){
+      return res.status(401).send({message:"Failure"})
+    }
 })
 module.exports=router

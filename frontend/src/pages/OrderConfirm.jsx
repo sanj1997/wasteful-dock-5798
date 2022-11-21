@@ -20,9 +20,9 @@ const OrderConfirm = () => {
 
                     <Heading my={3} fontWeight={"600"}>Order Confirmed!</Heading>
                     <Text color={"gray"}>We are pleased to confirm your order no.#NYK-127609671-7238228</Text>
-                    <Box borderRadius={"5px"} p={2} m={"auto"} my={3} w={"50%"} bg={"gray.200"}>
+                    {/* <Box borderRadius={"5px"} p={2} m={"auto"} my={3} w={"50%"} bg={"gray.200"}>
                         Amount Due : ₹<span>{"500"}</span>
-                    </Box>
+                    </Box> */}
                     <Link to="/">
                         <Text fontWeight={"bold"} color='#fc2779'>Continue Shopping <ChevronRightIcon w={6} h={6} /></Text>
                     </Link>

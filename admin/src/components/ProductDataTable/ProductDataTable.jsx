@@ -22,7 +22,7 @@ const ProductDataTable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/products/test" style={{ textDecoration: "none" }}>
+            <Link to={`/products/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -40,7 +40,7 @@ const ProductDataTable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         All Products
-        <Link to="/products/new" className="link">
+        <Link to="/products/newproduct" className="link">
           Add New
         </Link>
       </div>

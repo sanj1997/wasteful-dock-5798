@@ -1,43 +1,54 @@
 import { Box, Button, Center, Flex, Heading, Image, Text, Toast, useToast } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import CartDetails from '../components/CartDetails'
 import useRazorpay from "react-razorpay";
 import r_logo from "../assets/pngs/razorpay_logo.png"
 import instance from '../middleware/auth.middleware';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUserCartData, getCartData } from '../store/Cart/cart.action';
+import { addToOrders } from '../store/order/order.action';
 
 const Payment = () => {
     const navigate=useNavigate()
     const Razorpay = useRazorpay();
-    const total=JSON.parse(localStorage.getItem("total"))||0
+    const {total,data}=useSelector((store)=>store.cart)
+    const {userId}=useSelector((store)=>store.auth)
+    const dispatch=useDispatch()
+    useEffect(()=>{
+         dispatch(getCartData(userId))
+    },[])
     const toast=useToast()
     const handlePayment = async (params) => {
         const order = await instance.post("/payments",{amount:params}); //  Create order on your backend
         console.log(order.message)
         const options = {
             key: "rzp_test_AXYx1ocjhVC5q5", // Enter the Key ID generated from the Dashboard
-            amount: params, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            amount: params * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             currency: "INR",
             order_id: order.data.order, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
             handler: function (response) {
                 toast({
                     description:response.razorpay_payment_id,
-                    status:"success"
+                    status:"success",
+                    duration:3000
                 })
-                toast({
-                    description:response.razorpay_order_id,
-                    status:"success"
-                })
-                toast({
-                    description:response.razorpay_signature,
-                    status:"success"
-                })
+                // toast({
+                //     description:response.razorpay_order_id,
+                //     status:"success"
+                // })
+                // toast({
+                //     description:response.razorpay_signature,
+                //     status:"success"
+                // })
+                dispatch(addToOrders(userId))
+                dispatch(deleteUserCartData(userId))
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
                 // alert(response.razorpay_signature);
                 setTimeout(() => {
-                    navigate("/")
+                    navigate("/order-confirm")
                 }, 3000);
             },
         };
@@ -45,6 +56,7 @@ const Payment = () => {
         const rzp1 = new Razorpay(options)
 
         rzp1.open();
+        
     };
 
 

@@ -240,7 +240,7 @@ const Landing = () => {
                 "repeat(2, 1fr)",
                 "repeat(2, 1fr)",
               ]}
-              gap={8}
+              gap={10}
               width="80%"
               m="auto"
               position="relative"
@@ -253,6 +253,7 @@ const Landing = () => {
                     textAlign="center"
                     boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
                     key={id}
+                    mb="10px"
                     position="relative"
                     _hover={{
                       boxShadow:
@@ -311,6 +312,7 @@ const Landing = () => {
             >
               {featuredArr.map((el, id) => (
                 <Box
+                  height="300px"
                   key={id}
                   m="auto"
                   boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
@@ -354,12 +356,13 @@ const Landing = () => {
               w="75%"
               m="auto"
               mt="2rem"
-              gap={7}
+              gap={10}
               position="relative"
             >
               {threePhotosArr.map((el, id) => (
                 <Box
                   key={id}
+                  mb="10px"
                   boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
                   _hover={{
                     boxShadow:
@@ -404,6 +407,8 @@ const Landing = () => {
                 coor="#3f414d"
                 letterSpacing="normal"
                 mt="2rem"
+                mb="1rem"
+                pt="1rem"
               >
                 CATEGORY IN FOCUS
               </Text>
@@ -449,6 +454,8 @@ const Landing = () => {
                 coor="#3f414d"
                 letterSpacing="normal"
                 mt="1rem"
+                mb="1rem"
+                pt="1rem"
               >
                 BUYING GUIDES
               </Text>
@@ -473,6 +480,8 @@ const Landing = () => {
                 coor="#3f414d"
                 letterSpacing="normal"
                 mt="1rem"
+                mb="1rem"
+                pt="1rem"
               >
                 GIFT CARD
               </Text>
@@ -527,11 +536,13 @@ const Landing = () => {
                 coor="#3f414d"
                 letterSpacing="normal"
                 mt="1rem"
+                mb="1rem"
+                pt="1rem"
               >
                 POP-UP STORES
               </Text>
 
-              <Flex width="80%" gap={2} m="auto">
+              <Flex width="80%" gap={5} m="auto">
                 <Box
                   _hover={{
                     boxShadow:
@@ -567,11 +578,13 @@ const Landing = () => {
                 coor="#3f414d"
                 letterSpacing="normal"
                 mt="1rem"
+                mb="1rem"
+                pt="1rem"
               >
                 SPECIAL CURATIONS
               </Text>
 
-              <Flex width="80%" gap={2} m="auto">
+              <Flex width="80%" gap={5} m="auto">
                 <Box
                   _hover={{
                     boxShadow:
@@ -624,5 +637,5 @@ const Landing = () => {
     </>
   );
 };
-
-export default Landing;
+  
+  export default Landing;

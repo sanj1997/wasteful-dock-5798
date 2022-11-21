@@ -10,20 +10,21 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    
+
 }
 
-.ListItem{
+.ListItem {
     height: full;
     padding: 10px;
 }
+
 .ListItem:hover {
     color: #fc2779;
     cursor: pointer;
-    border-bottom: 3px solid #fc2779;   
+    border-bottom: 3px solid #fc2779;
 }
 
-.container{
+.container {
     position: absolute;
     margin-top: 15px;
     display: none;
@@ -32,13 +33,29 @@
 .ListItem:hover .container {
     display: block;
     z-index: 5;
-  }
+}
 
-  .txt:hover{
-    color:black;
-  }
+.txt:hover {
+    color: black;
+}
 
-  .container_list:hover{
+.container_list:hover {
     color: #fc2779;
     cursor: pointer;
-  }
+}
+
+
+/* ########## userHoverCss ########### */
+
+.userBox {
+    /* position: absolute; */
+    top: 2.4rem;
+    left: -0.5rem;
+    display: none;
+}
+
+
+.boxshow:hover .userBox {
+    display: block;
+    z-index: 5;
+}

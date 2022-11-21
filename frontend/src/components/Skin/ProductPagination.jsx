@@ -5,9 +5,7 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 const ProductPagination = ({currentPage, totalPage, setPage}) => {
 	
 	let newArr = new Array(totalPage).fill(0);
-
-	// console.log(newArr);
-
+    
 	return (
 		<>
 			<Flex gap = {"100px"} alignItems='center' fontSize={'18px'}>
@@ -18,7 +16,7 @@ const ProductPagination = ({currentPage, totalPage, setPage}) => {
 					</Flex>
 
 					<Flex alignItems={'center'} justifyContent={'center'} bg={'white'} p={2} width={"40px"} color="rgb(253,38,121)" height="40px" borderRadius="50%" fontWeight={500}cursor="pointer">
-						<BiChevronLeft fontSize={'30px'} />
+						<BiChevronLeft  onClick={()=>currentPage>1? setPage(currentPage-1):null} fontSize={'30px'} />
 					</Flex>
 
 					<Flex>
@@ -30,7 +28,7 @@ const ProductPagination = ({currentPage, totalPage, setPage}) => {
 					</Flex>
 
 					<Flex alignItems={'center'} justifyContent={'center'} bg={'white'} p={2} width={"40px"} color="rgb(253,38,121)" height="40px" borderRadius="50%" fontWeight={500} cursor="pointer">
-						<BiChevronRight fontSize={'30px'}/>
+						<BiChevronRight onClick={()=>currentPage<5? setPage(currentPage+1):null} fontSize={'30px'}/>
 					</Flex>
 
 					<Flex alignItems={'center'} justifyContent={'center'} bg={'white'} p={2} width={"40px"} color="rgb(253,38,121)" height="40px" borderRadius="50%" fontWeight={500} >

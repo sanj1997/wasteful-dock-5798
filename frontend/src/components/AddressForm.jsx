@@ -11,11 +11,19 @@ import {
     VStack,
     Text,
     Textarea,
+    useToast,
 } from "@chakra-ui/react";
 import instance from '../middleware/auth.middleware';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserdetails } from '../store/auth/auth.action';
 
 const AddressForm = ({ onClose }) => {
+
+    const toast = useToast()
+    const navigate = useNavigate()
+    const {userId}=useSelector((store)=>store.auth)
+    const dispatch=useDispatch()
     return (
         <Flex align="center" justify="center" mb={5}>
             <Box rounded="md" w="90%" pb={5}>
@@ -29,10 +37,18 @@ const AddressForm = ({ onClose }) => {
                         phone: "",
                         email: ""
                     }}
-                    onSubmit={async(values) => {
+                    onSubmit={async (values) => {
+                        console.log(values, "heeeyyy")
                         //    ############## form submit logic here ########## 
-                       const res=await instance.post("/auth/address",values)
-                       console.log(res.message)
+                        const res = await instance.post("/auth/address", values)
+                        dispatch(getUserdetails(userId))
+                        toast({
+                            description: "User address added successfully",
+                            status: 'success',
+                            duration: 5000,
+                            isClosable: true,
+                            position: "top"
+                        })
                     }}
                 >
                     {({ handleSubmit, errors, touched }) => (
@@ -175,6 +191,7 @@ const AddressForm = ({ onClose }) => {
                                         name="email"
                                         placeholder="Email ID"
                                         variant='outline'
+                                        type="email"
                                         size='lg'
                                         bg="gray.100"
                                         border="1px solid black"
@@ -190,9 +207,10 @@ const AddressForm = ({ onClose }) => {
 
                                     <FormErrorMessage>{errors.name}</FormErrorMessage>
                                 </FormControl>
-                                <Link to={"/payment"}><Button onClick={onClose} position={"fixed"} bottom="20px" h="48px" _hover={{ bg: "#E80071" }} type="submit" bg="#E80071" color={"white"} width="80%">
-                                    Ship to this address
-                                </Button></Link>
+                                <Button type="submit" onClick={onClose} position={"fixed"} bottom="20px" h="48px" _hover={{ bg: "#E80071" }} bg="#E80071" color={"white"} width="80%">
+                                    Add address
+                                </Button>
+                                {/* <Link to={"/payment"}></Link> */}
                             </VStack>
                         </form>
                     )}

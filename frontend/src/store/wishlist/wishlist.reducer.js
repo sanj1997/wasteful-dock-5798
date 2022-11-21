@@ -1,37 +1,18 @@
-import { WISHLIST_PRODUCT_GET_BY_ID_LOADING, WISHLIST_PRODUCT_GET_BY_ID_ERROR, WISHLIST_PRODUCT_GET_BY_ID_SUCCESS } from "./wishlist.types";
+import { WISHLIST_PRODUCT_GET_BY_ID_LOADING, WISHLIST_PRODUCT_GET_BY_ID_ERROR, WISHLIST_PRODUCT_GET_BY_ID_SUCCESS, WISHLIST_PRODUCT_ADD_LOADING, WISHLIST_PRODUCT_ADD_SUCCESS, WISHLIST_PRODUCT_ADD_ERROR } from "./wishlist.types";
 import { WISHLIST_PRODUCT_DELETE_LOADING, WISHLIST_PRODUCT_DELETE_ERROR, WISHLIST_PRODUCT_DELETE_SUCCESS } from "./wishlist.types";
 import { WISHLIST_PRODUCT_GET_ERROR, WISHLIST_PRODUCT_GET_LOADING, WISHLIST_PRODUCT_GET_SUCCESS } from "./wishlist.types";
 
 
 //product initial
-const getWishlistInitial = {
+const wishlistInitial = {
 	loading: false,
-	data: {
-		product: [],
-		status: false
-	},
-	error: false,
-};
-
-//product initial
-const getWishlistByIdInitial = {
-	loading: false,
-	data: {
-		product: {},
-		status: false
-	},
-	error: false,
-};
-
-//product initial
-const deleteWishlistInitial = {
-	loading: false,
-	data: "Not delete",
+	wishlist: [],
+	status: false,
 	error: false,
 };
 
 //get wishlist product
-export const getWishlistReducer = (state = getWishlistInitial, {type, payload}) =>{
+export const wishlistReducer = (state = wishlistInitial, {type, payload}) =>{
 	switch (type){
 		case WISHLIST_PRODUCT_GET_LOADING: {
 			return {
@@ -51,78 +32,43 @@ export const getWishlistReducer = (state = getWishlistInitial, {type, payload}) 
 				...state,
 				loading: false,
 				error: false,
-				data: {
-					product: payload,
-					status: true
-				}
+			    wishlist: payload,
+				status: true
 			};
 		} 
+
+		case WISHLIST_PRODUCT_ADD_LOADING:return {
+			...state,loding:true
+		}
+
+		case WISHLIST_PRODUCT_ADD_SUCCESS:
+		console.log(payload,"reducer")	
+		return {
+			...state,loding:false,wishlist:[...payload]
+		}
+
+		case WISHLIST_PRODUCT_ADD_ERROR:return {
+			...state,loading:false,error:true
+		}
+
+		case WISHLIST_PRODUCT_DELETE_LOADING:return {
+			...state,loading:true
+		}
+
+		case WISHLIST_PRODUCT_DELETE_SUCCESS:
+		let newData=state.wishlist.filter((el)=>{
+			return el.product._id!=payload
+		})	
+		return {
+			...state,loading:false,wishlist:[...newData]
+		}
+
+		case WISHLIST_PRODUCT_DELETE_ERROR:return {
+			...state,loading:false,error:true
+		}
 		default: {
 			return state;
 		}
 	}
 } 
 
-//getbyid wishlist product
-export const getWishlistByIdReducer = (state = deleteWishlistInitial, {type, payload}) =>{
-	switch (type){
-		case WISHLIST_PRODUCT_DELETE_LOADING: {
-			return {
-				...state,
-				loading: true,
-			};
-		}
-		case WISHLIST_PRODUCT_DELETE_ERROR: {
-			return {
-				...state,
-				loading: false,
-				error: true
-			};
-		}
-		case WISHLIST_PRODUCT_DELETE_SUCCESS: {
-			return {
-				...state,
-				loading: false,
-				error: false,
-				data: {
-					product: payload,
-					status: true
-				}
-			};
-		} 
-		default: {
-			return state;
-		}
-	}
-} 
-
-
-//delete wishlist product
-export const deleteWishlistReducer = (state = getWishlistByIdInitial, {type, payload}) =>{
-	switch (type){
-		case WISHLIST_PRODUCT_GET_BY_ID_LOADING: {
-			return {
-				...state,
-				loading: true,
-			};
-		}
-		case WISHLIST_PRODUCT_GET_BY_ID_ERROR: {
-			return {
-				...state,
-				loading: false,
-				error: true
-			};
-		}
-		case WISHLIST_PRODUCT_GET_BY_ID_SUCCESS: {
-			return {
-				...state,
-				loading: false,
-				error: false,
-				data: payload
-			};
-		} 
-		default: {
-			return state;
-		}
-	}
-} 

@@ -87,10 +87,10 @@ const Sidebar = () => {
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
           </li>
-          {/* <li>
+          <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
-          </li> */}
+          </li>
         </ul>
       </div>
       <div className="bottom">

@@ -9,65 +9,134 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { verifyUser } from "../store/auth/auth.action";
-
+import { resendOtp, verifyUser } from "../store/auth/auth.action";
+const formateZero = (time) => {
+  return time < 10 ? `0` + time : time;
+};
+const TimeString = (time) => {
+  const seconds = time % 60;
+  const minute = Math.floor(time / 60)  % 60;
+  return `${formateZero(minute)}:${formateZero(seconds)}`;
+};
 const Otpverify = () => {
   const toast = useToast();
+  const [count,setCount]=useState(20)
+  const ref=useRef(null)
   const dispatch=useDispatch()
   const {isVerified}=useSelector((store)=>store.auth)
-  console.log(isVerified)
   const [otp, setOtp] = useState("");
   const [email, setEmail] = useState({email:""})
   const navigate=useNavigate()
-  //dummy conditions
-  // const [condition, setCondition] = useState(false);
-
-  // function for otp verifucation
-  const handleVerify = () => {
+  const handleOtp=()=>{
+    let mail=JSON.parse(localStorage.getItem("email"))
+    setCount(5)
+     ref.current=setInterval(()=>{
+        setCount((prev)=>{
+          if(prev<=0)
+          {
+            clearInterval(ref.current)
+            ref.current=null
+            return 0
+          }
+          else
+          {
+            return prev-1
+          }
+        })
+     },1000)
+     dispatch(resendOtp(mail)).then((s)=>{
+      let message;
+      if(s.data.message==="Email is already verified")
+      {
+        message="Email is already verified"
+      }
+      else
+      {
+        message="Otp is sent to your registered email"
+      }
+      toast({
+        description: message,
+        status: "info",
+      });
+     }).catch((e)=>{
+      if(e.message==="Network Error")
+      {
+        toast({
+          description: "Oops! Something went wrong",
+          status: "error",
+        });
+      }
+     })
+  }
+  useEffect(()=>{
+    ref.current=setInterval(()=>{
+       setCount((prev)=>{
+        if(prev<=0)
+        {
+          clearInterval(ref.current)
+          ref.current=null
+          return 0
+        }
+        else
+        {
+          return prev-1
+        }
+       })
+    },1000)
+  },[])
+  const handleVerify = (e) => {
+    e.preventDefault()
     console.log(email,otp)
-    dispatch(verifyUser(otp,email))
-    // if (condition) {
-    //   return toast({ description: "Otp Verified", status: "success" });
-    // } else {
-    //   return toast({ description: "Invalid otp", status: "error" });
-    // }
-    // if otp was verified successfully then navigate to
-    // add user page
-  };
-
-  // when the page redering for the first time
-  // this message will appear , like opt sent successfully
-  useEffect(() => {
-    if(isVerified)
-    {
+    dispatch(verifyUser(otp,email)).then((s)=>{
       toast({
         description: "Verification successful",
         status:"success"
       });
-      setTimeout(() => {
+      setTimeout(()=>{
         navigate("/signIn")
-     }, 3000);
-    }
-    
-  }, [isVerified]);
+      },2500)
+    }).catch((e)=>{
+      let message;
+      let error=e.response.data.message
+      if(e.message==="Network Error")
+      {
+        message="Network Error"
+      }
+      else if(error==="Email is not registered")
+      {
+         message="Email is not registered"
+      }
+      else if(error==="Otp is expired")
+      {
+        message="Otp is expired"
+      }
+      else if(error==="Invalid Otp")
+      {
+        message= "Invalid Otp"
+      }
+      toast({
+        description: message,
+        status:"error"
+      });
+    })
+  };
 
   return (
     <Box
       border="1px solid grey"
-      width="23%"
+      width="25%"
       margin="auto"
-      marginTop="4rem"
+      marginTop="2rem"
       height="full"
       borderRadius="1rem"
       padding=".8rem"
+      mb={"2rem"}
     >
       <Flex marginTop=".3rem">
-        
-          <CloseIcon height="14px" width="14px" cursor="pointer" />
+        <Link to={"/signIn"}><CloseIcon height="14px" width="14px" cursor="pointer" /></Link>
         <Spacer />
         <Text color="#3f414d" fontSize="14px" fontWeight="semibold">
           REGISTER
@@ -101,23 +170,13 @@ const Otpverify = () => {
           Register now and get{" "}
           <span style={{ color: "#fc2779" }}>2000 Reward Points!</span>{" "}
         </Text>
-        {/* <Text
-          backgroundColor="#f3f3f3"
-          border="1px solid #ebebeb"
-          borderRadius="2px"
-          color="#3f414d"
-          padding=".4rem"
-          marginBottom="16px"
-          fontSize="14px"
-        >
-          1234567890
-        </Text> */}
-
-        <Flex marginBottom="2.8rem">
+        <form onSubmit={handleVerify}>
+        <Box mb={3}>
         <Input
             variant="flushed"
             placeholder="Enter Email"
             borderBottomColor="red"
+            type={"email"}
             paddingRight="25px"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -130,20 +189,7 @@ const Otpverify = () => {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
-          <Text
-            backgroundColor="#fff"
-            border="0"
-            color="#fc2779"
-            fontSize="12px"
-            fontWeight="600"
-            padding="5px"
-            width="75%"
-            cursor="pointer"
-          >
-            RESEND OTP
-          </Text>
-        </Flex>
-
+        </Box>
         <Button
           backgroundColor="#fc2779"
           borderRadius="none"
@@ -152,12 +198,32 @@ const Otpverify = () => {
           textAlign="center"
           fontWeight="600"
           width="full"
-          marginBottom="11.8rem"
+          marginBottom="4rem"
           disabled={otp === ""}
-          onClick={handleVerify}
+          type={"submit"}
         >
           Verify
         </Button>
+        </form>
+        {count>0? <Text fontWeight={"bold"} color="#d53f8c" fontSize={"xl"}>{TimeString(count)}</Text>:null}
+        <Button
+        onClick={handleOtp}
+            disabled={count>0}
+            bg="none"
+            _active={{bg:"none"}}
+            _hover={{bg:"none"}}
+            backgroundColor="#fff"
+            border="0"
+            color="#fc2779"
+            fontSize="12px"
+            fontWeight="600"
+            padding="5px"
+            // width="75%"
+            cursor="pointer"
+            m={"auto"}
+          >
+            RESEND OTP
+          </Button>
       </Box>
     </Box>
   );

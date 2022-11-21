@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const productColumns = [
     { field: "id", headerName: "ID", width: 70 },
     {
@@ -136,3 +138,4 @@ export const productColumns = [
         price: 450,
       }
 ]
+// const productRows=axios.get('http://localhost:8080/...')

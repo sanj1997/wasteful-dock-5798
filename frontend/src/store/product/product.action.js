@@ -4,13 +4,13 @@ import axios from 'axios';
 import instance from "../../middleware/auth.middleware";
 
 //get product
-export const getProduct = () => async(dispatch) =>{
+export const getProduct = (page=1) => async(dispatch) =>{
 	dispatch({type: PRODUCT_GET_LOADING});
 
 	try{
-		let res = await instance.get("/products/all-products")
+		let res = await instance.get(`/products/all-products?page=${page}`)
 
-		dispatch({type: PRODUCT_GET_SUCCESS, payload: res.data});
+		dispatch({type: PRODUCT_GET_SUCCESS, payload: res.data.data});
 	}catch(e){
 		dispatch({type: PRODUCT_GET_ERROR});
 	}

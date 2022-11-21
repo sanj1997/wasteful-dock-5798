@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const userColumns = [
     { field: "id", headerName: "ID", width: 70 },
     {
@@ -121,3 +122,5 @@ export const userColumns = [
       age: 65,
     },
   ];
+
+  // const userRows=axios.get('http://localhost:8080/...')

@@ -9,10 +9,11 @@ const SignUp = () => {
     <>
       <Box
         border="1px solid grey"
-        width="24%"
+        width="28%"
         margin="auto"
-        marginTop="6rem"
-        height="full"
+        marginTop="2rem"
+        mb={"2rem"}
+        height={"fit-content"}
         borderRadius="1rem"
         padding="1rem"
       >

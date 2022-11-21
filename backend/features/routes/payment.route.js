@@ -9,7 +9,7 @@ router.post("/",authmiddleware,async(req,res)=>{
     try{
       var instance = new Razorpay({ key_id: process.env.RAZORPAY_KEY, key_secret: process.env.RAZORPAY_SECRET })
     let order=await instance.orders.create({
-      amount: amount*100,
+      amount: amount,
       currency: "INR",
       receipt: "receipt#1",
     })
