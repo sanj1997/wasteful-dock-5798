@@ -3,7 +3,8 @@ import axios from "axios";
 const APP_URL=process.env.REACT_APP_URL
 const instance=axios.create({
     // headers: { "Content-Type": "application/json" },
-    baseURL:"https://beautiva-backend-production.up.railway.app/"
+    // baseURL:"https://beautiva-backend-production.up.railway.app/"
+    baseURL:"https://gold-lazy-moth.cyclic.app/"
     
 })
 
@@ -32,7 +33,7 @@ instance.interceptors.response.use(
       {
          previousRequest.sent=true
          let rToken = JSON.parse(localStorage.getItem("csv"))
-         const res=await axios("https://beautiva-backend-production.up.railway.app/auth/refresh",{
+         const res=await axios("https://gold-lazy-moth.cyclic.app/auth/refresh",{
             headers:{
                 "Authorization":rToken
             },

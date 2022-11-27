@@ -6,7 +6,7 @@ import instance from "../../middleware/auth.middleware"
 export const signUpUser = (creds) => async (dispatch) => {
    dispatch({ type: SIGN_UP_LOADING })
    try {
-      const res = await axios.post("https://beautiva-backend-production.up.railway.app/auth/signup", creds)
+      const res = await axios.post("https://gold-lazy-moth.cyclic.app/auth/signup", creds)
       console.log(res.data.message)
       dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.message })
       return res
@@ -19,7 +19,7 @@ export const signUpUser = (creds) => async (dispatch) => {
 export const verifyUser = (otp, email) => async (dispatch) => {
    dispatch({ type: EMAIL_VERIFY_LOADING })
    try {
-      const res = await axios.post("https://beautiva-backend-production.up.railway.app/auth/verify-email", { otp, email })
+      const res = await axios.post("https://gold-lazy-moth.cyclic.app/auth/verify-email", { otp, email })
       dispatch({ type: EMAIL_VERIFY_SUCCESS })
       return res
    } catch (e) {
@@ -30,7 +30,7 @@ export const verifyUser = (otp, email) => async (dispatch) => {
 export const resendOtp = (email) => async (dispatch) => {
    dispatch({ type: EMAIL_VERIFY_LOADING })
    try {
-      const res = await axios.post("https://beautiva-backend-production.up.railway.app/auth/verify-email/resend-otp", { email })
+      const res = await axios.post("https://gold-lazy-moth.cyclic.app/auth/verify-email/resend-otp", { email })
       dispatch({ type: EMAIL_VERIFY_SUCCESS })
       return res
    } catch (e) {
@@ -42,7 +42,7 @@ export const resendOtp = (email) => async (dispatch) => {
 export const signInUser = (creds) => async (dispatch) => {
    dispatch({ type: SIGN_IN_LOADING })
    try {
-      const res = await axios.post("https://beautiva-backend-production.up.railway.app/auth/login", creds)
+      const res = await axios.post("https://gold-lazy-moth.cyclic.app/auth/login", creds)
       dispatch({ type: SIGN_IN_SUCCESS, payload: res.data })
       return res
    } catch (e) {

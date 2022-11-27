@@ -29,7 +29,7 @@ const SingleProduct = () => {
 
 		<Box bg={'rgb(242,243,242)'}>
 			<Flex width='85%' margin='auto' gap={7}>
-				<Box width={'78%'}>
+				<Box width={'100%'}>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Product Description</Heading >
 					<ProductDescription description={singleProduct.description}/>
 					<Heading fontSize={'20px'} pt={10} pb={10}>Customer also Viewed</Heading >
@@ -37,9 +37,9 @@ const SingleProduct = () => {
 					<Heading fontSize={'20px'} pt={10} pb={10}>Product Details</Heading >
 					<ProductReview rating = {singleProduct.rating}/>
 				</Box>
-				<Box width={'20%'} mt={"102px"}> 
+				{/* <Box width={'20%'} mt={"102px"}> 
 					<ProductDetails product = {singleProduct} />
-				</Box>
+				</Box> */}
 			</Flex>
 		</Box>
 		<Footer/>

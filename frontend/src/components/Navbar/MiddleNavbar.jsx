@@ -59,8 +59,8 @@ const MiddleNavbar = () => {
                             <Button onClick={handleLogout} colorScheme={"pink"}>Logout</Button>
                         </HStack>
 
-                    </Box> : <Box><Link to={"/signUp"}><Button mr={"10px"} colorScheme={"pink"}>Signup</Button></Link>
-                        <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">SignIn</Button></Link></Box>}
+                    </Box> : <Box><Link to={"/signUp"}><Button mr={"10px"} colorScheme={"pink"}>Sign up</Button></Link>
+                        <Link to={"/signIn"}><Button colorScheme={"pink"} variant="outline">Sign in</Button></Link></Box>}
                     <Box position="relative" >
                         <CartModal />
                         <Box position={"absolute"} bottom="3" left="3" bg={"#fc2779"} w="22px" h="22px" borderRadius={"50%"}>
