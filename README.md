@@ -1,7 +1,7 @@
 # Beautiva | look good, feel good!
 (Based on Nykaa)
 ## Description:-
-Beautiva is an Indian e-commerce company, founded in 2022 and headquartered in Mumbai. It sells beauty, wellness and fashion products across websites, mobile apps and 100+ offline stores.
+Beautiva is an Ecommerce web application that deals with selling lifestyle-related products. Design inspiration is taken from Nykaa. 
 ## Screenshots:-
 - ### Client Side
   - #### Landing:-
