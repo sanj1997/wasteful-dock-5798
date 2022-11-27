@@ -5,31 +5,35 @@ Beautiva is an Indian e-commerce company, founded in 2022 and headquartered in M
 ## Screenshots:-
 - ### Client Side
   - #### Landing:-
-    ![Landing](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)  
+    ![Landing](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/homepage.png)  
    
   - #### All Products:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![All Products](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/allproducts.png)
     
   - #### Single Product:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Single Product](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/single-product1.png)
     
   - #### Sign in and Sign up:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Sign up](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/signup.png)
     
   - #### Wishlist:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Wishlist](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/wishlist.png)
     
   - #### Cart:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Cart](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/cart.png)
     
   - #### Address:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Address](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/address.png)
     
   - #### Payment:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Payment](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/payment1.png)
+    ![Razorpay-1](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-page.png)
+    ![Razorpay-2](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-2.png)
+    ![Razorpay-3](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-3.png)
+    ![Razorpay-4](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-4.png)
     
   - #### Orders:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+    ![Sign Up Page](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/order.png)
     
 - ### Admin Side
   - #### Landing:-
