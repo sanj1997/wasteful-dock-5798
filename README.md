@@ -27,9 +27,13 @@ Beautiva is an Indian e-commerce company, founded in 2022 and headquartered in M
     
   - #### Payment:-
     ![Payment](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/payment1.png)
+    
     ![Razorpay-1](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-page.png)
+    
     ![Razorpay-2](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-2.png)
+    
     ![Razorpay-3](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-3.png)
+    
     ![Razorpay-4](https://github.com/sanj1997/wasteful-dock-5798/blob/master/frontend/src/assets/pngs/razorpay-4.png)
     
   - #### Orders:-
@@ -37,32 +41,17 @@ Beautiva is an Indian e-commerce company, founded in 2022 and headquartered in M
     
 - ### Admin Side
   - #### Landing:-
-    ![Landing](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)  
+    ![Landing](https://github.com/sanj1997/wasteful-dock-5798/blob/master/admin/src/assets/pngs/admin-home.png)
+    ![Landing-2](https://github.com/sanj1997/wasteful-dock-5798/blob/master/admin/src/assets/pngs/admin-home-dark.png)
    
-  - #### All Products:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+  - #### All Users:-
+    ![All Users](https://github.com/sanj1997/wasteful-dock-5798/blob/master/admin/src/assets/pngs/admin-users.png)
     
-  - #### Single Product:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
+  - #### Single User:-
+    ![Single User](https://github.com/sanj1997/wasteful-dock-5798/blob/master/admin/src/assets/pngs/single-user.png)
     
-  - #### Sign in and Sign up:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
-    
-  - #### Wishlist:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
-    
-  - #### Cart:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
-    
-  - #### Address:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
-    
-  - #### Payment:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
-    
-  - #### Orders:-
-    ![Sign Up Page](https://i.ibb.co/GJTSytr/GBuying-Sign-Up.png)
-    
+  - #### Add New User:-
+    ![New User](https://github.com/sanj1997/wasteful-dock-5798/blob/master/admin/src/assets/pngs/admin-addnewuser.png)
 
 ## Features
 - ### Sign up and Sign in 
