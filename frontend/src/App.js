@@ -15,6 +15,7 @@ function App() {
   return (
     <Box>
       <AllRoutes />
+      
     </Box>
   );
 }
